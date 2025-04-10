@@ -1,0 +1,72 @@
+@import "../../../../app/styles/mixins";
+
+.group__products{
+    width: 300px;
+    background: var(--color-white-bg);
+    border-radius: var(--border-radius-xxl);
+    border: solid var(--color-tiffany-blue) 3px;
+    height: 60vh;
+    overflow: scroll;
+    overflow-x: hidden;
+    
+    &::-webkit-scrollbar-track{
+        background-color: transparent;
+        border-radius: 10px;
+        height: 90%;
+    }
+
+    &::-webkit-scrollbar{
+        background-color: transparent;
+        width: 3px;
+    }   
+
+    &::-webkit-scrollbar-thumb{
+        border-radius: 60px;
+        background-image: radial-gradient(#0d8d8f, #0fa4a700 60%);
+    }
+
+}
+
+.group__sidebar{
+    background: transparent;
+    border-radius: var(--border-radius-xxl);
+    border: none;
+    height: 60vh;
+    overflow: scroll;
+    overflow-x: hidden;
+    color: var(--color-black-bg);
+    
+    &::-webkit-scrollbar-track{
+        background-color: transparent;
+        border-radius: 10px;
+        height: 90%;
+    }
+
+    &::-webkit-scrollbar{
+        background-color: transparent;
+        width: 3px;
+    }   
+
+    &::-webkit-scrollbar-thumb{
+        border-radius: 60px;
+        background-image: radial-gradient(#0d8d8f, #0fa4a700 60%);
+    }
+
+}
+
+.group__sidebar:active {
+    outline: none;
+}
+
+.group_wrap {
+    width: 100%;
+    border-bottom: solid var(--color-gray-light) 1px;
+    cursor: pointer;
+    height: max-content;
+    position: relative;
+    padding: 15px;
+
+    &:hover{
+        background: #0fa4a723;
+    }
+}

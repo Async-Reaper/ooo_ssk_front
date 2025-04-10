@@ -1,0 +1,46 @@
+@import "@app/styles/mixins";
+
+.count {
+    display: flex;
+    align-items: center;
+    border: 1.5px solid var(--color-brown);
+    margin: 0;
+    height: 50px;
+    border-radius: 10px;
+
+
+    input{
+        padding: 1% !important;
+        text-align: center;
+        height: 50px;
+        width: 10px;
+    }
+
+    input::placeholder { 
+        color: var(--color-beet-pink)!important;
+    }   
+    
+}
+
+.input_count {
+    height: 45px;
+    border: none;
+}
+
+.control_count{
+    display: flex;
+    align-items: center;
+    color: var(--color-brown);
+
+    img {
+        width: 35px;
+    }
+
+    cursor: pointer;
+}
+
+
+.price_object{
+    padding-top: 5px;
+    color: var(--color-gray-light);
+}

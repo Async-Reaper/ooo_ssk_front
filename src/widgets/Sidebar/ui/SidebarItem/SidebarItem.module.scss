@@ -1,0 +1,31 @@
+.item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    transition: .3s ease-in-out;
+
+    .link {
+        border-bottom: 1px solid var(--color-blue-dark);
+        padding-block: var(--gap-l);
+        width: 100%;
+        transition: 0.3s opacity;
+    }
+}
+
+.active {
+    background: var(--color-blue-light);
+    color: var(--color-blue);
+    position: relative;
+
+    &:hover {
+        color: var(--color-blue);
+    }
+}
+
+.collapsed {
+    width: 0;
+
+    .link {
+        opacity: 0;
+    }
+}

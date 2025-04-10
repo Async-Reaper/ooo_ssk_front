@@ -1,0 +1,62 @@
+@import "@app/styles/mixins";
+
+.toggle {
+    border-radius: 12px;
+    width: max-content;
+    cursor: pointer;
+    transition: all, .2s;
+    border: 1px solid var(--color-primary-red);
+    background: red;
+
+    &.variant {
+        &--xs {
+            padding: 3px 17px 3px 4px;
+
+            &.active {
+                padding: 3px 4px 3px 17px;    
+            }
+        }
+
+        &--l {
+            padding: 4px 23px 4px 4px;
+
+            &.active {
+                padding: 4px 4px 4px 23px;
+            }
+        }
+
+        &--xl {
+            padding: 4px 28px 4px 4px;
+
+            &.active {
+                padding: 4px 4px 4px 28px;
+            }
+        }
+    }
+
+    &.active {
+        background: rebeccapurple;
+    }
+
+    .toggleSlider {
+        border-radius: 50px;
+        background: white;
+
+        &.variant {
+            &--xs {
+                width: 12px;
+                height: 12px;
+            }
+
+            &--l {
+                width: 14px;
+                height: 14px;
+            }
+
+            &--xl {
+                width: 18px;
+                height: 18px;
+            }
+        }
+    }
+}

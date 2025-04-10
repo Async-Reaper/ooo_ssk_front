@@ -1,0 +1,29 @@
+&.color {
+    &--inherit {
+        color: inherit;
+    }
+
+    &--neutral-text {
+        color: var(--color-white-bg);
+    }
+
+    &--primary-text {
+        color: var(--color-black);
+    }
+
+    &--grey-text {
+        color: var(--color-gray-secondary);
+    }
+
+    &--grey-light {
+        color: var(--color-black-light);
+    }
+
+    &--green {
+        color: #00ae4d;
+    }
+
+    &--red {
+        color: #ae000e;
+    }
+}

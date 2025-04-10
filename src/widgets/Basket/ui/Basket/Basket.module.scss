@@ -1,0 +1,25 @@
+@import "../../../../app/styles/mixins";
+
+.basket__wrapper {
+    @include page-flex;
+
+    align-items: center;
+    gap: 20px;
+
+    .input_date{
+        border-bottom: 1.5px solid var(--color-tiffany-blue);
+        padding: 5px 0;
+    }
+
+    .com_wrap{
+        flex-direction: column;
+        
+        @include tablets{
+            flex-direction: row;
+        }
+    }
+
+    .commentary{
+        width: 70%;
+    }
+}

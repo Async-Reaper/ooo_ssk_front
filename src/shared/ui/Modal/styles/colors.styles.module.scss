@@ -1,0 +1,10 @@
+&.color {
+    &--inherit {
+        color: inherit;
+    }
+
+    &--light {
+        border-radius: 25px;
+        background: var(--color-white-bg);
+    }
+}

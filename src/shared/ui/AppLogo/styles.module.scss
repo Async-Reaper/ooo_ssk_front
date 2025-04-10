@@ -1,0 +1,18 @@
+@import "@app/styles/mixins";
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: var(--color-white);
+
+    @include adaptive('width', 120, 70);
+
+    img {
+        width: 100%;
+    }
+}
+
+.logo  span {
+    color: var(--color-primary-red);
+}

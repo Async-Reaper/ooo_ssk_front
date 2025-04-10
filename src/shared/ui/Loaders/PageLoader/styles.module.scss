@@ -1,0 +1,8 @@
+.page__loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    inset: 0;
+    min-height: calc(100vh - var(--header-size));
+}

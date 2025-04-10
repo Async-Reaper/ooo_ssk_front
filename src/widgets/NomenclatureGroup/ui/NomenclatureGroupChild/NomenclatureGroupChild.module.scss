@@ -1,0 +1,16 @@
+.subgroup_wrap{
+    width: 100%;
+    border-bottom: solid var(--color-gray-light) 1px;
+    cursor: pointer;
+    height: max-content;
+    position: relative;
+    padding: 15px 40px;
+
+    &:hover{
+        background: #9e034913;
+    }
+
+    .text_subgroup{
+        font-size: 14px;
+    }
+}

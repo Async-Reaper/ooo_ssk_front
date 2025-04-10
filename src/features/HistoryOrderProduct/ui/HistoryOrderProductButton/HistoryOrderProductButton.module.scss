@@ -1,0 +1,10 @@
+.history_object {
+    display: flex;
+    text-align: left !important;
+    color: var(--color-brown);
+    cursor: pointer;
+}  
+
+.history_object:hover{
+    color: var(--color-green);
+}

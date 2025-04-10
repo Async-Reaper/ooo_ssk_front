@@ -1,0 +1,27 @@
+@import "@app/styles/mixins";
+
+&.variant {
+    &--primary {
+        background: rgb(2 5 12 / 68%);
+
+        .label {
+            color: #fff;
+        }
+
+        .input {
+            color: #fff;
+        }
+    }
+
+    &--dark {
+        background: rgb(2 5 12 / 68%);
+
+        .label {
+            color: #fff;
+        }
+
+        .input {
+            color: #fff;
+        }
+    }
+}

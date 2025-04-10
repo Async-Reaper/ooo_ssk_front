@@ -1,0 +1,65 @@
+@import "@app/styles/mixins";
+
+.Modal {
+    position: fixed;
+    inset: 0;
+    opacity: 0;
+    pointer-events: none;
+    z-index: -1;
+    color: var(--color-neutral);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+}
+
+.overlay {
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(#cc660c56 10%, #1c4e5156) ;
+    backdrop-filter: blur(20px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content {
+    padding: 20px;
+    margin: 20px;
+    border-radius: 25px;
+    transition: 0.3s transform;
+    transform: scale(0.5);
+    width: fit-content;
+    border: 1px solid var(--color-gray-secondary);
+
+    @import './styles/colors.styles.module';
+    @import './styles/sizes.styles.module';
+
+    @include desktop {
+        padding: 46px 40px;
+    }
+}
+
+.opened {
+    pointer-events: auto;
+    z-index: 99999;
+    animation: opened 0.2s ease-in-out forwards;
+
+    .content {
+        transform: scale(1);
+    }
+}
+
+.isClosing {
+    .content {
+        transform: scale(0.0);
+    }
+}
+
+@keyframes opened {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}

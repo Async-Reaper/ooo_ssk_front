@@ -1,0 +1,109 @@
+@import "../../../../app/styles/mixins";
+
+.header__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+    width: 100%;
+    padding: 10px 0;
+
+    .header__top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    .header__bottom {
+        display: grid;
+        grid-template-columns: 1fr;
+        width: 100%;
+        gap: 15px;
+        margin: 20px 0 0;
+        
+        @include grid-center;
+    }
+
+    .header__logo {
+        display: none;
+        margin: 0 10px 0 0;
+
+        @include adaptive('width', 150, 80);
+
+        img {
+            width: 100%
+        }
+
+        @include tablets {
+            display: flex;
+        }
+    }
+
+    .navigation__wrapper {
+        display: none;
+        
+        @include tablets {
+            display: flex;
+            max-width: 0 0 0 10px;
+            width: 70%;
+        }
+    }
+
+    .navigation__wrapper_seller{
+        display: none;
+        
+        @include tablets {
+            display: flex;
+            width: 40%;
+            margin: 0 0 0 20px;
+        }
+    }
+    
+    .sidebar__button {
+        display: flex;
+        cursor: pointer;
+        margin: 0 0 0 -10px;
+        
+        @include tablets {
+            display: none;
+        }
+    }
+
+    .logout_btn{
+        display: none;
+        position: fixed;
+        z-index: 20;
+        bottom: 5px;
+        right: 5px;
+        margin: 10px 10px 20px;
+
+        @include tablets {
+            display: flex;
+            width: 60px;
+            height: 60px;
+        }
+
+        @include laptop {
+            width: 70px;
+            height: 70px;
+        }
+        
+        @include  desktop{
+            bottom: 70px;
+            right: 80px;
+            width: 90px;
+            height: 90px;
+            margin: 20px;
+        }
+    }
+
+    .searchseller_wrap{
+        margin: 0 10px;
+        width: 40%;
+    }
+}
+
+.navigateMenu {
+    display: flex;
+}

@@ -1,0 +1,15 @@
+type DesignSystemColors =
+    | "primary"
+    | "neutral"
+    | "secondary"
+    | "primary-red"
+    | "neutral-light"
+    | "neutral-dark"
+    | "gray-primary"
+    | "gray-light"
+    | "gray-dark"
+    | "black"
+    | "green"
+    | "green-dark"
+    | "blue"
+    | "red-primary";

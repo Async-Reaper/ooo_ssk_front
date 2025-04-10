@@ -1,0 +1,42 @@
+.text {
+    font-weight: inherit;
+    font-size: inherit;
+    padding: 0;
+    margin: 0;
+
+    &.bold {
+        font-weight: bold;
+    }
+
+    &.inline {
+        display: inline-block;
+    }
+
+    &.noWrap {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    &.uppercase {
+        text-transform: uppercase;
+    }
+
+    &.align {
+        &--left {
+            text-align: left;
+        }
+
+        &--right {
+            text-align: right;
+        }
+
+        &--center {
+            text-align: center;
+        }
+    }
+
+    @import './styles/colors.styles.module';
+    @import './styles/sizes.styles.module';
+    @import './styles/fonts.styles.module';
+}

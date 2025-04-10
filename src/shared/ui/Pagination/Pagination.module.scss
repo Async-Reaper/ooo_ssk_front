@@ -1,0 +1,29 @@
+.pages__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 10px;
+    padding: 30px 0 0;
+
+    .page {
+        border-radius: 30px;
+        cursor: pointer;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all .3s;
+        background: #8f8f8f;
+        filter: brightness(120%);
+        color: var(--color-white-bg);
+        
+        &:hover {
+            background: #134a4161;
+        }
+
+        &.active {
+            background: var(--color-tiffany-blue);
+        }
+    }
+}

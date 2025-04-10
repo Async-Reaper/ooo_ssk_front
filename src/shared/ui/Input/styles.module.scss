@@ -1,0 +1,50 @@
+@import "../../../app/styles/mixins";
+
+.input_wrapper {
+    display: flex;
+
+    @include adaptive("height", 60, 45);
+
+    align-items: center;
+    border: 2px solid var(--color-gray-primary);
+    border-radius: var(--border-radius-xl);
+    background: var(--color-white-bg);
+
+    @import './styles/colors.styles.module';
+
+    .label {
+        display: flex;
+        align-items: center;
+        margin-right: 10px;
+        font-size: 17px;
+    }
+
+    .input {
+        font-family: var(--font-primary);
+        background: transparent;
+        border-radius: var(--border-radius-xxl);
+        outline: none;
+        width: 100%;
+        height: 100%;
+        font-weight: 500;
+        font-size: 17px;
+
+        @include adaptive("padding-inline", 28, 16);
+
+        &::placeholder {
+            display: flex;
+            align-items: center;
+            color: #850c42 !important;
+            font-weight: 400;
+            font-size: 17px;
+        }
+
+        &:focus {
+            outline: none;
+        }
+    }
+}
+
+.readonly {
+    opacity: 0.7;
+}

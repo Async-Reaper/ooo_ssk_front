@@ -1,0 +1,16 @@
+@import "./../../../app/styles/mixins";
+
+.main_page {
+    @include page-flex;
+
+    .hello_text{
+        text-align: center;
+        font-size: 23px;
+        margin-bottom: 20px;
+        color: #351d0e;
+    }
+
+    .select__point__wrapper {
+        margin: 0 0 20px;
+    }
+}

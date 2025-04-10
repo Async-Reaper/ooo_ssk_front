@@ -1,0 +1,24 @@
+@import "../../../../app/styles/mixins";
+
+.basket__title {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    @include flex-center;
+
+    .basket__count {
+        background-color: var(--color-beet-pink);
+        border-radius: var(--border-radius-over);
+        box-shadow: 0 0 10px var(--color-red-secondary);
+        padding: 0 7px;
+        color: var(--color-white-bg);
+        position: absolute;
+        top: -13px;
+        right: -15px;
+
+        .count_text{
+            line-height: 22px;
+        }
+    }
+}

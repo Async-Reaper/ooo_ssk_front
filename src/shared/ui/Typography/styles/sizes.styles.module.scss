@@ -1,0 +1,69 @@
+@import "@app/styles/mixins";
+
+&.variant {
+    &--h1 {
+        @include adaptive("font-size", 24, 22);
+        @include adaptive("line-height", 44, 32);
+
+        font-weight: 500;
+
+        &.bold {
+            font-weight: 800;
+        }
+    }
+
+    &--h2 {
+        @include adaptive("font-size", 22, 21);
+        @include adaptive("line-height", 38, 28);
+
+        font-weight: 500;
+
+        &.bold {
+            font-weight: 800;
+        }
+    }
+
+    &--h3 {
+        @include adaptive("font-size", 18, 14);
+        @include adaptive("line-height", 28, 22);
+
+        font-weight: 500;
+
+        &.bold {
+            font-weight: 700;
+        }
+    }
+
+    &--h4 {
+        @include adaptive("font-size", 16, 12);
+        @include adaptive("line-height", 30, 18);
+
+        font-weight: 500;
+
+        &.bold {
+            font-weight: 700;
+        }
+    }
+
+    &--h5 {
+        @include adaptive("font-size", 14, 12);
+        @include adaptive("line-height", 19, 16);
+
+        font-weight: 400;
+
+        &.bold {
+            font-weight: 600;
+        }
+    }
+
+    &--h6 {
+        @include adaptive("font-size", 12, 10);
+        @include adaptive("line-height", 12, 12);
+
+        font-weight: 400;
+
+        &.bold {
+            font-weight: 600;
+        }
+    }
+}

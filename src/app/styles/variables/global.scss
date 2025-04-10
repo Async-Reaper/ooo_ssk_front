@@ -1,0 +1,55 @@
+:root {
+    --font-primary: "Roboto";
+    --font-size-h1: 40px;
+    --font-size-h2: 32px;
+    --font-size-h3: 24px;
+    --font-size-body: 18px;
+    --font-size-small: 14px;
+    --font-size-h1-min: 40px;
+    --font-size-h2-min: 32px;
+    --font-size-h3-min: 24px;
+    --font-size-body-min: 14px;
+    --font-size-xs-min: 12px;
+    --border-radius-xs: 1px;
+    --border-radius-sm: 3px;
+    --border-radius-md: 5px;
+    --border-radius-lg: 10px;
+    --border-radius-xl: 15px;
+    --border-radius-xxl: 20px;
+    --border-radius-over: 100px;
+
+    /* COLORS */
+    --color-gray-primary: #757575;
+    --color-gray-secondary: #EEE5E9;
+    --color-gray-light: #b8b8b8;
+    --color-violet-primary: #9b53c8;
+    --color-violet-secondary: #7a29ac66;
+    --color-white-bg: #fff;
+    --color-black: #14151b;
+    --color-red-primary: #d69999;
+    --color-red-secondary: #e3c1c1ff;
+    --color-tiffany-blue: #0FA5A7;
+    --color-beet-pink: #9E0348;
+    --color-beige: #faecdf;
+    --color-brown: #b88867;
+    --color-green: #008124;
+    --color-red:#A70707;
+    --color-green-primary: #AFFC38;
+    --color-yellow-primary: #F6FD41;
+    --color-gradient-primary: linear-gradient(91.65deg, #AFFC38 2.43%, #F6FD41 100%);
+
+    /* SIZES */
+    --header-heigth: 187px;
+    --footer-heigth: 78px;
+
+    /* OTHER */
+    --hover-effect: brightness(1.15);
+
+    /* DURATION */
+    --duration-very-slow: 2500ms;
+    --duration-slow: 2000ms;
+    --duration-semi-slow: 1500ms;
+    --duration-semi-fast: 400ms;
+    --duration-fast: 300ms;
+    --duration-very-fast: 150ms;
+}

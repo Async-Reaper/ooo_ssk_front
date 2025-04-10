@@ -1,0 +1,11 @@
+.select__wrapper {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+
+    .input_date{
+        border-bottom: 1.5px solid var(--color-tiffany-blue);
+        padding: 5px 0;
+    }
+}

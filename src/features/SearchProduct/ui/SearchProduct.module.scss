@@ -1,0 +1,16 @@
+.input{
+    border-radius: 60px;
+    width: 100%;
+}
+
+.search_object{
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    width: 100%;
+
+    .glass{
+        position: relative;
+        margin: 0 0 0 -35px;
+    }
+}

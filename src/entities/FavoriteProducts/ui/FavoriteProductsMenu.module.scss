@@ -1,0 +1,12 @@
+@import "../../../app/styles/mixins";
+
+.favorite__wrapper{
+    @include flex-center;
+
+    flex-direction: column;
+    gap: 16px;
+    
+    .title_text{
+        padding: 10px;
+    }
+}

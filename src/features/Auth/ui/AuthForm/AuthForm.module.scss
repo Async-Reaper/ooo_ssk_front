@@ -1,0 +1,29 @@
+@import "/src/app/styles/normalize";
+@import "/src/app/styles/fonts";
+@import "/src/app/styles/mixins";
+
+.auth_wrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px;
+    width: 70%;
+    background-color: var(--color-white-bg);
+    padding: 15px;
+    border-radius: var(--border-radius-xxl);
+    
+    @include phones-xs {
+        width: 90%;
+            
+    }
+
+    .auth_inp{
+        width: 80%;
+    }
+}
+
+button{
+    width: 30%;
+    height: 40px;
+    margin: 10px 15px;
+}

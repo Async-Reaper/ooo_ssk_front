@@ -1,0 +1,41 @@
+&.size {
+    &--xs {
+        @include adaptive("width", 60, 40);
+    }
+
+    &--s {
+        @include adaptive("padding-block", 10, 5);
+        @include adaptive("padding-inline", 10, 5);
+    }
+
+    &--l {
+        @include adaptive("padding-block", 18, 14);
+        @include adaptive("padding-inline", 24, 18);
+
+        height: 50px;
+
+        @include tablets{
+            height: 40px;
+        }
+    }
+
+    &--xl {
+        @include adaptive("padding-block", 28, 18);
+        @include adaptive("padding-inline", 32, 18);
+    }
+
+    &--xxl {
+        @include adaptive("padding-block", 33, 24);
+        @include adaptive("padding-inline", 44, 18);
+    }
+
+    &--login {
+        @include adaptive("padding-block", 18, 14);
+        @include adaptive("padding-inline", 44, 24);
+    }
+
+    &--logout {
+        @include adaptive("padding-block", 18, 14);
+        @include adaptive("padding-inline", 24, 18);
+    }
+}

@@ -1,0 +1,14 @@
+@import "./normalize";
+@import "fonts";
+@import "./globals";
+@import "./mixins";
+
+body {
+    font-family: var(--font-primary);
+    font-size: var(--font-size-body);
+    color: var(--color-black);
+    background: var(--color-gradient-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: #0000;
+}

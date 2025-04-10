@@ -1,0 +1,17 @@
+.primary {
+    color: var(--color-black-dark);
+    transition: all .3s;
+
+    &:hover {
+        color: var(--color-tiffany-blue);
+    }
+}
+
+.blue {
+    color: var(--color-tiffany-blue);
+    transition: all .3s;
+
+    &:hover {
+        opacity: 0.9;
+    }
+}

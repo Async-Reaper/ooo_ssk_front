@@ -1,0 +1,8 @@
+@import "//src/app/styles/normalize";
+@import "//src/app/styles/fonts.scss";
+@import "//src/app/styles/globals";
+@import "//src/styles/mixins";
+
+.orders__wrapper {
+    background-color: var(--color-gray-secondary)
+}

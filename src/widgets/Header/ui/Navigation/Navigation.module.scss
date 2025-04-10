@@ -1,0 +1,21 @@
+.navigation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: max-content;
+    gap: 30px;
+    cursor: pointer;
+
+    .groups{
+        position: absolute;
+        z-index: 1000;
+        margin: 10px 0 0 -80px;
+    }
+
+    .assort{
+        &:hover{
+            transition: .3s;
+            color: var(--color-tiffany-blue);
+        }
+    }
+}

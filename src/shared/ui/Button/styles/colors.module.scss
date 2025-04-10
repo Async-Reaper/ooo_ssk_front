@@ -1,0 +1,125 @@
+&.color {
+    &--gray-primary {
+        color: var(--color-gray-primary);
+    }
+
+    &--gray-secondary {
+        color: var(--color-gray-secondary);
+    }
+
+    &--gray-light {
+        color: var(--color-gray-light);
+    }
+
+    &--violet-primary {
+        color: var(--color-violet-primary);
+    }
+
+    &--violet-secondary {
+        color: var(--color-violet-secondary);
+    }
+
+    &--white-bg {
+        color: var(--color-white-bg);
+    }
+
+    &--black {
+        color: var(--color-black);
+    }
+
+    &--red-primary {
+        color: var(--color-red-primary);
+    }
+
+    &--red-secondary {
+        color: var(--color-red-secondary);
+    }
+
+    &--tiffany-blue {
+        color: var(--color-tiffany-blue);
+    }
+
+    &--beet-pink {
+        color: var(--color-beet-pink);
+    }
+
+    &--beige {
+        color: var(--color-beige);
+    }
+
+    &--brown {
+        color: var(--color-brown);
+    }
+
+    &--green {
+        color: var(--color-green);
+    }
+
+    &--red {
+        color: var(--color-red);
+    }
+
+}
+
+&.background {
+    &--gray-primary {
+        background: var(--color-gray-primary);
+    }
+
+    &--gray-secondary {
+        background: var(--color-gray-secondary);
+    }
+
+    &--gray-light {
+        background: var(--color-gray-light);
+    }
+
+    &--violet-primary {
+        background: var(--color-violet-primary);
+    }
+
+    &--violet-secondary {
+        background: var(--color-violet-secondary);
+    }
+
+    &--white-bg {
+        background: var(--color-white-bg);
+    }
+    
+    &--black {
+        background: var(--color-black);
+    }
+
+    &--red-primary {
+        background: var(--color-red-primary);
+    }
+
+    &--red-secondary {
+        background: var(--color-red-secondary);
+    }
+
+    &--tiffany-blue {
+        background: var(--color-tiffany-blue);
+    }
+
+    &--beet-pink {
+        background: var(--color-beet-pink);
+    }
+
+    &--beige {
+        background: var(--color-beige);
+    }
+    
+    &--brown {
+        background: var(--color-brown);
+    }
+
+    &--green {
+        background: var(--color-green);
+    }
+
+    &--red {
+        background: var(--color-red);
+    }
+
+}

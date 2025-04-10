@@ -1,0 +1,14 @@
+.returnHome_object{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.button_style {
+    color: var(--color-green);    
+}
+
+.button_style:hover{
+    cursor:pointer;
+    color: var(--color-tiffany-blue);
+}

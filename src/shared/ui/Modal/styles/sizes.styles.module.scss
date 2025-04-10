@@ -1,0 +1,25 @@
+@import "@app/styles/mixins";
+
+&.size {
+    &--xs {
+        width: 310px;
+        height: 30vh;
+    }
+
+    &--l {
+        width: 543px;
+        height: fit-content;
+    }
+
+    &--xl {
+        width: 360px;
+        height: 50vh;
+    }
+
+    &--slider {
+        width: max-content;
+        max-width: 90vw;
+        height: max-content;
+        max-height: 90vh;
+    }
+}

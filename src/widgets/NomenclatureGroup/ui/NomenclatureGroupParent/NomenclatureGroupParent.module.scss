@@ -1,0 +1,17 @@
+.group_wrap {
+    width: 100%;
+    border-bottom: solid var(--color-gray-light) 1px;
+    cursor: pointer;
+    height: max-content;
+    position: relative;
+    padding: 15px;
+
+    &:hover{
+        background: #0fa4a723;
+    }
+}
+    
+    
+    
+
+

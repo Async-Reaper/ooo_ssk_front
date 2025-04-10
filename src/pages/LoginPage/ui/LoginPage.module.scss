@@ -1,0 +1,27 @@
+@import "//src/app/styles/normalize";
+@import "//src/app/styles/fonts.scss";
+@import "//src/app/styles/globals";
+@import "//src/styles/mixins";
+
+.login_page {
+    width: 100vw;
+    top:0;
+    left:0;
+    display: flex;
+    position: fixed;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+
+    .login__form__wrapper {
+        display: flex;
+        position:absolute;
+        flex-direction: column;
+        gap: 30px;
+        align-items: center;
+        max-width: 500px;
+        width: 100%;
+        margin: 0 auto;
+        top: 10vh;
+    }
+}

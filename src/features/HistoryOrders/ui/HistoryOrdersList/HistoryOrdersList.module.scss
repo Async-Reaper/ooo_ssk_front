@@ -1,0 +1,46 @@
+@import "../../../../app/styles/mixins";
+
+.history__orders__wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    padding-left: 45px;
+    padding-right: 45px;
+
+    // background: #b6d3ff60;
+    border-bottom: 2px dotted var(--color-tiffany-blue);
+    transition: all .3s;
+
+    // border-radius: 10px;
+    cursor: pointer;
+
+    &:last-child{
+        border: none;
+    }
+
+    @include tablets {
+        flex-direction: row;
+    }
+
+    .history__orders__info {
+        padding: 10px;
+        color: var(--color-black-bg);
+        background: var(--color-gray-light);
+        border-radius: 10px;
+        width: 100%;
+
+        @include tablets {
+            width: max-content;
+        }
+    }
+
+    &:hover {
+        .history__orders__info{
+            background: #cbcbcb;
+        }
+    }
+}

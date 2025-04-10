@@ -1,0 +1,15 @@
+@import "/src/app/styles/normalize";
+@import "/src/app/styles/fonts";
+@import "/src/app/styles/globals";
+@import "/src/app/styles/mixins";
+
+
+&.font {
+    &--inherit {
+        font-family: var(--font-primary);
+    }
+
+    &--secondary {
+        font-family: var(--font-family-secondary);
+    }
+}
