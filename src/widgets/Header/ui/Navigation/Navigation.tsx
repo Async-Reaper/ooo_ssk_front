@@ -3,11 +3,11 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
   getRouteBrands, getRouteFavorites, getRouteHistory,
-} from "../../../../shared/const/router";
-import { UserRoles, getUserRole } from "../../../../entities/user";
-import { Typography } from "../../../../shared/ui";
+} from "@shared/const/router";
+import { UserRoles, getUserRole } from "@entities/user";
+import { AppLink, Typography } from "@shared/ui";
+import { GroupList } from "@widgets/NomenclatureGroup";
 import cls from "./Navigation.module.scss";
-import { GroupList } from "../../../NomenclatureGroup/ui/NomenclatureGroupList/NomenclatureGroupList";
 
 const Component: React.FC = () => {
   const userRole = useSelector(getUserRole);
@@ -45,31 +45,31 @@ const Component: React.FC = () => {
     <div className={cls.navigation}>
 
       {userRole === UserRoles.BUYER && (
-        <div onClick={() => { handleClickLink(getRouteHistory()); }}>
-          <Typography className={cls.assort} align="center" variant="h3">История заказов</Typography>
-        </div>
+        <AppLink to={getRouteHistory()}>
+          <Typography align="center" variant="h3">История заказов</Typography>
+        </AppLink>
       )}
       <div>
         <div onClick={() => setBlockVisible(!blockVisible)}>
           <Typography className={cls.assort} variant="h3">Ассортимент</Typography>
         </div>
         {blockVisible
-               && (
-                 <div className={cls.groups} ref={blockRef}>
-                   <GroupList blockVisible={blockVisible} onVisibleChange={handleVisibleChange} />
-                 </div>
+          && (
+            <div className={cls.groups} ref={blockRef}>
+              <GroupList blockVisible={blockVisible} onVisibleChange={handleVisibleChange} />
+            </div>
 
-               )}
+          )}
       </div>
 
       <>
-        <div onClick={() => { handleClickLink(getRouteBrands()); }}>
+        <AppLink to={getRouteBrands()}>
           <Typography className={cls.assort} variant="h3">Бренды</Typography>
-        </div>
+        </AppLink>
         {(userRole === UserRoles.BUYER && (
-          <div onClick={() => { handleClickLink(getRouteFavorites()); }}>
+          <AppLink to={getRouteFavorites()}>
             <Typography className={cls.assort} variant="h3">Избранные</Typography>
-          </div>
+          </AppLink>
         ))}
       </>
     </div>

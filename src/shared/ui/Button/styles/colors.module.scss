@@ -104,6 +104,10 @@
 
     &--beet-pink {
         background: var(--color-beet-pink);
+
+        &:hover {
+            background: var(--color-red-primary);
+        }
     }
 
     &--beige {

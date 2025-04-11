@@ -1,10 +1,10 @@
 import { useSelector } from "react-redux";
-import { UserRoles, getUserRole } from "../../../entities/user";
-import { Container, Typography } from "../../../shared/ui";
-import { NomenclaturesList, NomenclaturesListForSeller } from "../../../widgets/Nomenclature";
+import { UserRoles, getUserRole } from "@entities/user";
+import { Container, Typography } from "@shared/ui";
+import { NomenclaturesList, NomenclaturesListForSeller } from "@widgets/Nomenclature";
+import { getCurrentTradePoint } from "@entities/TradePoint";
+import { Substrate } from "@shared/ui/Primitives/Container/Container";
 import cls from "./MainPage.module.scss";
-import { getCurrentTradePoint } from "../../../entities/TradePoint/model/selectors/tradePointSelectors";
-import { Substrate } from "../../../shared/ui/Primitives/Container/Container";
 
 const MainPage = () => {
   const userRole = useSelector(getUserRole);
@@ -35,9 +35,10 @@ const MainPage = () => {
   );
   return (
     <Container>
-      { userRole === UserRoles.BUYER 
-        ? renderBuyer 
-        : renderSeller}
+      {/* { userRole === UserRoles.BUYER */}
+      {/*  ? renderBuyer */}
+      {/*  : renderSeller} */}
+      <NomenclaturesList />
     </Container>
   );
 };

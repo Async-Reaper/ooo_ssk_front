@@ -1,9 +1,9 @@
 .primary {
-    color: var(--color-black-dark);
+    color: var(--color-gray-primary);
     transition: all .3s;
 
     &:hover {
-        color: var(--color-tiffany-blue);
+        color: var(--color-black);
     }
 }
 

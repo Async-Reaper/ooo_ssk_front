@@ -31,15 +31,15 @@ const Component = () => {
   const documentGUID = params.get("documentGUID")?.toString() || null;
   const currentSellerOrder = useSelector(getCurrentSellerOrders);
 
-  useEffect(() => {
-    if (documentGUID !== undefined && documentGUID !== null) {
-      const paramsRequest = {
-        user_guid: user?.userGUID!,
-        document_guid: documentGUID,
-      };
-      dispatch(fetchGetSellerData(paramsRequest));
-    }
-  }, [dispatch, user, documentGUID]);
+  // useEffect(() => {
+  //   if (documentGUID !== undefined && documentGUID !== null) {
+  //     const paramsRequest = {
+  //       user_guid: user?.userGUID!,
+  //       document_guid: documentGUID,
+  //     };
+  //     dispatch(fetchGetSellerData(paramsRequest));
+  //   }
+  // }, [dispatch, user, documentGUID]);
 
   const handleRouteMain = () => {
     const httpQuery = new URLSearchParams(location.search);
@@ -59,7 +59,7 @@ const Component = () => {
     >
          
       <VStack gap="16" align="center" justify="center">
-        <SelectSellerOrder />
+        {/*<SelectSellerOrder />*/}
         { currentSellerOrder !== undefined && currentSellerOrder !== null
           ? (
             <>

@@ -9,13 +9,14 @@
     .groups{
         position: absolute;
         z-index: 1000;
-        margin: 10px 0 0 -80px;
     }
 
-    .assort{
+    .assort {
+        color: var(--color-gray-primary);
+
         &:hover{
-            transition: .3s;
-            color: var(--color-tiffany-blue);
+            transition: ease-in-out .3s;
+            color: var(--color-black);
         }
     }
 }

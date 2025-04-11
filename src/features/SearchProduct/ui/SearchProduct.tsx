@@ -1,15 +1,15 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useAppDispatch } from "../../../shared/hooks";
-import { Input } from "../../../shared/ui/Input/Input";
-import { searchProductActions, searchProductReducer } from "../model/slice/searchProductSlice";
-import cls from "./SearchProduct.module.scss";
-import { getRouteMain, getRouteOrders } from "../../../shared/const/router";
+import { useAppDispatch } from "@shared/hooks";
+import { Input } from "@shared/ui/Input/Input";
+import { getRouteMain, getRouteOrders } from "@shared/const/router";
+import { DynamicModuleLoader, ReducersList } from "@shared/libs/component";
+import { AppImage } from "@shared/ui";
+import { Conditions } from "@shared/libs/conditions/conditions";
 import { getSearchValue } from "..";
-import { DynamicModuleLoader, ReducersList } from "../../../shared/libs/component";
-import { AppImage } from "../../../shared/ui";
-import { Conditions } from "../../../shared/libs/conditions/conditions";
+import cls from "./SearchProduct.module.scss";
+import { searchProductActions, searchProductReducer } from "../model/slice/searchProductSlice";
 
 const reducer : ReducersList = {
   search: searchProductReducer,

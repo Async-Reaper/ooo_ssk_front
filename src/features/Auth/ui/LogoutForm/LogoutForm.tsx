@@ -4,6 +4,8 @@ import { Button, Typography } from "@shared/ui";
 import { Modal } from "@shared/ui/Modal/Modal";
 import { logoutUser } from "../../model/services/logoutUser";
 import cls from "./LogoutForm.module.scss";
+import { useNavigate } from "react-router-dom";
+import { getRouteLogin } from "@shared/const/router";
 
 interface LogoutFormProps {
   isOpen: boolean;
@@ -12,13 +14,15 @@ interface LogoutFormProps {
 
 const Component = ({ isOpen, onClose }: LogoutFormProps) => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const onLogoutUser = useCallback(async () => {
-    const response = await dispatch(logoutUser());
-    if (response.meta.requestStatus === "fulfilled") {
-      onClose();
-    }
-    window.location.reload();
+    // const response = await dispatch(logoutUser());
+    // if (response.meta.requestStatus === "fulfilled") {
+    //   onClose();
+    // }
+    // window.location.reload();
+    navigate(getRouteLogin());
   }, [dispatch, onClose]);
    
   return (
@@ -31,12 +35,12 @@ const Component = ({ isOpen, onClose }: LogoutFormProps) => {
           Вы действительно хотите выйти?
         </Typography>
         <div className={cls.logout__form__buttons}>
-          <Button onClick={onLogoutUser} fullWidth>
+          <Button onClick={onLogoutUser} fullWidth background="beet-pink">
             <Typography variant="h4">
               Выйти
             </Typography>
           </Button>
-          <Button onClick={onClose} fullWidth background="tiffany-blue">
+          <Button onClick={onClose} fullWidth variant="outlined">
             <Typography variant="h4">
               Остаться
             </Typography>

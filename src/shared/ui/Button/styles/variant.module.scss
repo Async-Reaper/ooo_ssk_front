@@ -9,22 +9,17 @@
     }
 
     &--contained {
-        background-color: var(--color-beet-pink);
         transition: all .3s;
         color: var(--color-white-bg);
-
-        &:hover {
-            background: var(--color-red-primary);
-        }
     }
 
     &--outlined {
         background-color: var(--color-white-bg);
-        border: 2px solid var(--color-tiffany-blue);
+        border: 2px solid var(--color-gray-primary);
         transition: all .3s;
 
         &:hover {
-            background: #d8feff;
+            background: var(--color-gray-secondary);
         }
     }
 

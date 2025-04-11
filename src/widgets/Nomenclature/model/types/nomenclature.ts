@@ -21,7 +21,7 @@ export interface INomenclature {
   pictures: INomenclaturePicture[];
   path?: string;
   additional_information : INomenclatureInformation;
-  status: StatusNomenclatureType;
+  status?: StatusNomenclatureType;
 }
 
 interface INomenclatureInformation {

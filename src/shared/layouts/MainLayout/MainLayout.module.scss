@@ -6,8 +6,6 @@
     margin: 0 auto;
     
     // min-height: 100vh;
-    max-width: $xl;
-
     .header {
         width: 100%;
         height: max-content;
@@ -34,48 +32,5 @@
         top: var(--header-size);
         left: 0;
         right: 0;
-    }
-}
-
-.decoractions{
-    position: absolute;
-    text-align: center;
-    min-width: 100vw;
-    min-height: 100vh;
-    z-index: -10;
-
-    .lwave{
-        position: fixed;
-        bottom:0;
-        left:0;
-        width: min-content;
-        height: 90vh;
-    }
-
-    .rwave{
-        position: fixed;
-        top:0;
-        right:0;
-        width: min-content;
-        height: 70vh;
-    }
-
-    .lwave, .rwave{
-        display: none;
-
-        @include tablets{
-            display: flex;
-        }
-    }
-
-    .mwave{
-        position: fixed;
-        top:0;
-        left:0;
-        height: 20vh;
-
-        @include tablets{
-            display: none;
-        }
     }
 }

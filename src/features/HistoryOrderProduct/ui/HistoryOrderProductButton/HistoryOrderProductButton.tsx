@@ -1,7 +1,7 @@
 import React from "react";
-import { useModal } from "../../../../shared/hooks";
-import { Conditions } from "../../../../shared/libs/conditions/conditions";
-import { Typography } from "../../../../shared/ui";
+import { useModal } from "@shared/hooks";
+import { Conditions } from "@shared/libs/conditions/conditions";
+import { Typography } from "@shared/ui";
 import { HistoryOrderProductModal } from "../HistoryOrderProductModal/HistoryOrderProductModal";
 import cls from "./HistoryOrderProductButton.module.scss";
 

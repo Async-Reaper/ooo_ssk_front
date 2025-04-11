@@ -9,3 +9,4 @@ export * from "./model/selectors/nomenclaturesListSelectors";
 export * from "./model/slice/nomenclaturesListSlice";
 export type { NomenclaturesListSchema, NomenclatureListData } from "./model/types/nomenclaturesList";
 export type { NomenclaturesWhiteListSchema, INomenclaturesWhiteList } from "./model/types/nomenclaturesWhiteList";
+export { useAlertsInfo } from "./model/libs/hooks/useAlertsInfo";

@@ -1,7 +1,7 @@
-@import "//src/app/styles/normalize";
-@import "//src/app/styles/fonts.scss";
-@import "//src/app/styles/globals";
-@import "//src/styles/mixins";
+@import "@app/styles/normalize";
+@import "@app/styles/fonts.scss";
+@import "@app/styles/globals";
+@import "@styles/mixins";
 
 .login_page {
     width: 100vw;
@@ -23,5 +23,21 @@
         width: 100%;
         margin: 0 auto;
         top: 10vh;
+    }
+
+    .animation__wrapper {
+        display: none;
+        margin-top: auto;
+
+        @include laptop {
+            display: block;
+        }
+
+        .animation__dot {
+            background: var(--color-gray-primary);
+            width: 5px;
+            height: 5px;
+            flex-shrink: 0;
+        }
     }
 }
