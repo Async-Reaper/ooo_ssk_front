@@ -17,8 +17,8 @@ const generateCirclesData = (count: number): { x: number; y: number; dx: number;
     circles.push({
       x: getRandomValue(0, window.innerWidth),
       y: getRandomValue(10, 320),
-      dx: getRandomValue(-1, 1),
-      dy: getRandomValue(-1, 1),
+      dx: getRandomValue(-0.1, 0.1),
+      dy: getRandomValue(-0.1, 0.1),
       radius: getRandomValue(1, 3),
     });
   }
@@ -32,7 +32,7 @@ const LoginPage = () => {
   const [circles, setCircles] = useState<{ x: number; y: number; dx: number; dy: number; radius: number }[]>([]);
   const [isMouseInside, setIsMouseInside] = useState<boolean>(false);
   const [mousePosition, setMousePosition] = useState<{ x: number } | null>(null);
-  
+
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const { clientX, clientY } = e;
     const rect = e.currentTarget.getBoundingClientRect();
@@ -76,7 +76,7 @@ const LoginPage = () => {
   useEffect(() => {
     setCircles(generateCirclesData(Math.floor(100)));
   }, []);
-  
+
   useEffect(() => {
     if (inited && auth) {
       if (auth.role === UserRoles.BUYER) {
@@ -88,7 +88,6 @@ const LoginPage = () => {
   }, [auth, navigate]);
 
   return (
-
     <div className={cls.login_page}>
       <div className={cls.login__form__wrapper}>
         <AuthForm />
@@ -99,22 +98,11 @@ const LoginPage = () => {
       >
         <Stage width={window.innerWidth} height={320}>
           <Layer>
-            {/* {isMouseInside */}
-            {/*  && circles.map((circle1, index1) => circles */}
-            {/*    .filter((circle2, index2) => index1 < index2) */}
-            {/*    .map((circle2, index2) => ( */}
-            {/*      <Line */}
-            {/*        key={`${index1}-${index2}`} */}
-            {/*        points={[circle1.x, circle1.y, circle2.x, circle2.y]} */}
-            {/*        stroke="rgba(255, 255, 255, 0.3)" */}
-            {/*        strokeWidth={1} */}
-            {/*      /> */}
-            {/*    )))} */}
             {(mousePosition)
               && circles
                 .filter(
-                  (circle) => circle.x >= mousePosition.x - 150 // Левая граница
-                    && circle.x <= mousePosition.x + 150, // Правая граница
+                  (circle) => circle.x >= mousePosition.x - 300 // Левая граница
+                    && circle.x <= mousePosition.x + 300, // Правая граница
                 )
                 .map((circle1, index1) => circles
                   .filter(
@@ -126,7 +114,7 @@ const LoginPage = () => {
                     <Line
                       key={`${index1}-${index2}`}
                       points={[circle1.x, circle1.y, circle2.x, circle2.y]}
-                      stroke="rgba(255, 255, 255, 0.3)"
+                      stroke="gray"
                       strokeWidth={1}
                     />
                   )))}
