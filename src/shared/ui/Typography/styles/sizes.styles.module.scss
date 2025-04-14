@@ -2,8 +2,8 @@
 
 &.variant {
     &--h1 {
-        @include adaptive("font-size", 24, 22);
-        @include adaptive("line-height", 44, 32);
+        @include adaptive("font-size", 55, 35);
+        @include adaptive("line-height", 57, 37);
 
         font-weight: 500;
 
@@ -13,7 +13,7 @@
     }
 
     &--h2 {
-        @include adaptive("font-size", 22, 21);
+        @include adaptive("font-size", 35, 25);
         @include adaptive("line-height", 38, 28);
 
         font-weight: 500;
@@ -24,8 +24,8 @@
     }
 
     &--h3 {
-        @include adaptive("font-size", 18, 14);
-        @include adaptive("line-height", 28, 22);
+        @include adaptive("font-size", 25, 16);
+        @include adaptive("line-height", 28, 19);
 
         font-weight: 500;
 
@@ -35,8 +35,8 @@
     }
 
     &--h4 {
-        @include adaptive("font-size", 16, 12);
-        @include adaptive("line-height", 30, 18);
+        @include adaptive("font-size", 18, 14);
+        @include adaptive("line-height", 21, 18);
 
         font-weight: 500;
 

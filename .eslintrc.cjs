@@ -64,6 +64,7 @@ module.exports = {
     "react/react-in-jsx-scope": "off",
     "react/function-component-definition": "off",
     "react/require-default-props": "off",
+    "react/ no-array-index-key": "off",
     "react/jsx-props-no-spreading": "off",
     "react/jsx-indent": ["error", 2],
     "react/jsx-indent-props": ["error", "first"],

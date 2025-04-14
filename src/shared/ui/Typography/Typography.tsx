@@ -30,6 +30,7 @@ interface TypographyProps {
   font?: Font;
   uppercase?: boolean;
 }
+
 const Component = (props: TypographyProps) => {
   const {
     className,

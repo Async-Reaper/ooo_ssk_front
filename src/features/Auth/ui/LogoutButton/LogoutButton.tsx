@@ -9,7 +9,7 @@ const Component = () => {
   return (
     <>
       <Button variant="text" onClick={open}>
-        <Typography variant="h3">
+        <Typography variant="h4" color="gray-primary">
           Выйти
         </Typography>
       </Button>

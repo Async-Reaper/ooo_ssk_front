@@ -2,10 +2,10 @@ import React, { useCallback } from "react";
 import { useAppDispatch } from "@shared/hooks";
 import { Button, Typography } from "@shared/ui";
 import { Modal } from "@shared/ui/Modal/Modal";
-import { logoutUser } from "../../model/services/logoutUser";
-import cls from "./LogoutForm.module.scss";
 import { useNavigate } from "react-router-dom";
 import { getRouteLogin } from "@shared/const/router";
+// import { logoutUser } from "../../model/services/logoutUser";
+import cls from "./LogoutForm.module.scss";
 
 interface LogoutFormProps {
   isOpen: boolean;
@@ -23,12 +23,14 @@ const Component = ({ isOpen, onClose }: LogoutFormProps) => {
     // }
     // window.location.reload();
     navigate(getRouteLogin());
+    localStorage.removeItem("isModalSocialView");
   }, [dispatch, onClose]);
    
   return (
     <Modal
       isOpen={isOpen}
       onClose={onClose}
+      size="slider"
     >
       <div className={cls.logout__form__wrapper}>
         <Typography align="center" variant="h3">

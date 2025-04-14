@@ -1,4 +1,4 @@
-import { type ReactNode } from "react";
+import React, { type ReactNode } from "react";
 
 import { classNames, Mods } from "@shared/libs/classNames/classNames";
 import { useViewModal } from "@shared/ui/Modal/useView";

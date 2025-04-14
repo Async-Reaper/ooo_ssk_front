@@ -1,23 +1,23 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getUserAuthData } from "../../../../entities/user";
-import { getCurrentTradePoint } from "../../../../entities/TradePoint";
-import { CreateOrderButton, createOrderReducer } from "../../../../features/CreateOrder";
-import { favoriteReducer, fetchFavoriteProduct, getFavoriteData } from "../../../../entities/FavoriteProducts";
-import { useAppDispatch } from "../../../../shared/hooks";
-import { DynamicModuleLoader, ReducersList } from "../../../../shared/libs/component";
-import { basketReducer, fetchBasketProductWithContract, getBasketData } from "../../../../entities/BasketEntitie";
-import { BasketProductsList } from "../BasketProductsList/BasketProductsList";
-import cls from "./Basket.module.scss";
-import { Substrate } from "../../../../shared/ui/Primitives/Container/Container";
+import { getUserAuthData } from "@entities/user";
+import { getCurrentTradePoint } from "@entities/TradePoint";
+import { CreateOrderButton, createOrderReducer } from "@features/CreateOrder";
+import { favoriteReducer, fetchFavoriteProduct, getFavoriteData } from "@entities/FavoriteProducts";
+import { useAppDispatch } from "@shared/hooks";
+import { DynamicModuleLoader, ReducersList } from "@shared/libs/component";
+import { basketReducer, fetchBasketProductWithContract, getBasketData } from "@entities/BasketEntitie";
+import { Substrate } from "@shared/ui/Primitives/Container/Container";
 import {
   Button, HStack, Input, Typography, VStack, 
-} from "../../../../shared/ui";
-import { DeleteFromBasketAllProducts } from "../../../../features/DeleteFromBasket";
-import { getSumBasketOrder } from "../../../SumBasket/model/selectors/basketSumSelectors";
-import { getRouteMain } from "../../../../shared/const/router";
-import { searchProductActions } from "../../../../features/SearchProduct";
+} from "@shared/ui";
+import { DeleteFromBasketAllProducts } from "@features/DeleteFromBasket";
+import { getSumBasketOrder } from "@widgets/SumBasket";
+import { getRouteMain } from "@shared/const/router";
+import { searchProductActions } from "@features/SearchProduct";
+import cls from "./Basket.module.scss";
+import { BasketProductsList } from "../BasketProductsList/BasketProductsList";
 
 const reducers: ReducersList = {
   createOrderForm: createOrderReducer,
@@ -101,7 +101,7 @@ const Component = () => {
          
       <div className={cls.basket__wrapper}>
             
-        <Typography variant="h2" bold align="center">
+        <Typography variant="h3" bold align="center">
           Корзина
           <br />
           Сумма заказа 
@@ -123,7 +123,7 @@ const Component = () => {
 
               <HStack className={cls.com_wrap} gap="16" justify="center">
                 <Button variant="outlined" onClick={handleRouteMain}>
-                  <Typography variant="h4">
+                  <Typography variant="h5">
                     Вернуться к оформлению заказа
                   </Typography>
                 </Button>

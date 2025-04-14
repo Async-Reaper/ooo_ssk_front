@@ -45,13 +45,13 @@ const Component: React.FC = () => {
     <div className={cls.navigation}>
 
       {userRole === UserRoles.BUYER && (
-        <AppLink to={getRouteHistory()}>
-          <Typography align="center" variant="h3">История заказов</Typography>
-        </AppLink>
+        <div onClick={() => handleClickLink(getRouteHistory())}>
+          <Typography align="center" variant="h4">История заказов</Typography>
+        </div>
       )}
       <div>
         <div onClick={() => setBlockVisible(!blockVisible)}>
-          <Typography className={cls.assort} variant="h3">Ассортимент</Typography>
+          <Typography className={cls.assort} variant="h4">Ассортимент</Typography>
         </div>
         {blockVisible
           && (
@@ -64,11 +64,11 @@ const Component: React.FC = () => {
 
       <>
         <AppLink to={getRouteBrands()}>
-          <Typography className={cls.assort} variant="h3">Бренды</Typography>
+          <Typography className={cls.assort} variant="h4">Бренды</Typography>
         </AppLink>
         {(userRole === UserRoles.BUYER && (
           <AppLink to={getRouteFavorites()}>
-            <Typography className={cls.assort} variant="h3">Избранные</Typography>
+            <Typography className={cls.assort} variant="h4">Избранные</Typography>
           </AppLink>
         ))}
       </>

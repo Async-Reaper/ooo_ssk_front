@@ -1,21 +1,20 @@
+import React from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { getUserAuthData } from "../../../../entities/user";
-import { useAppDispatch } from "../../../../shared/hooks";
-import { DynamicModuleLoader, ReducersList } from "../../../../shared/libs/component";
+import { getUserAuthData } from "@entities/user";
+import { useAppDispatch } from "@shared/hooks";
+import { DynamicModuleLoader, ReducersList } from "@shared/libs/component";
+import { getSellerDataReducer } from "@features/GetSellerData";
+import { OrderHeader } from "@widgets/OrderHeader";
+import { Button, Typography, VStack } from "@shared/ui";
+import { getCurrentSellerOrders } from "@entities/SellerOrders";
+import { DeleteFromSellerDataButton, deleteFromSellerDataReducer } from "@features/DeleteFromSellerData";
+
+import { Substrate } from "@shared/ui/Primitives/Container/Container";
+import { searchProductActions } from "@features/SearchProduct";
+import { getRouteMain } from "@shared/const/router";
+import { addToSellerDataReducer } from "@features/AddToSellerData";
 import { BasketProductsListFromSeller } from "../BasketProductsListFromSeller/BasketProductsListFromSeller";
-import { fetchGetSellerData } from "../../../../features/GetSellerData/model/services/fetchGetSellerData";
-import { getSellerDataReducer } from "../../../../features/GetSellerData/model/slice/getSellerDataSlice";
-import { OrderHeader } from "../../../../widgets/OrderHeader";
-import { Button, Typography, VStack } from "../../../../shared/ui";
-import { SelectSellerOrder, getCurrentSellerOrders } from "../../../../entities/SellerOrders";
-import { DeleteFromSellerDataButton } from "../../../../features/DeleteFromSellerData/ui/DeleteFromSellerData/DeleteFromSellerData";
-import { deleteFromSellerDataReducer } from "../../../../features/DeleteFromSellerData/model/slice/deleteFromSellerDataSlice";
-import { Substrate } from "../../../../shared/ui/Primitives/Container/Container";
-import { searchProductActions } from "../../../../features/SearchProduct";
-import { getRouteMain } from "../../../../shared/const/router";
-import { addToSellerDataReducer } from "../../../../features/AddToSellerData";
 
 const reducers: ReducersList = {
   getSellerData: getSellerDataReducer,
@@ -59,7 +58,7 @@ const Component = () => {
     >
          
       <VStack gap="16" align="center" justify="center">
-        {/*<SelectSellerOrder />*/}
+        {/* <SelectSellerOrder /> */}
         { currentSellerOrder !== undefined && currentSellerOrder !== null
           ? (
             <>
@@ -67,7 +66,7 @@ const Component = () => {
                 SellerOrder={currentSellerOrder!}
               />
               <Button onClick={handleRouteMain}>
-                <Typography variant="h4">
+                <Typography variant="h3">
                   Добавить товары в заказ
                 </Typography>
               </Button>

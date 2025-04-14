@@ -11,6 +11,7 @@ type ButtonBC = "gray-primary" | "gray-secondary" | "gray-light" | "violet-prima
 interface ButtonProps {
   variant?: "text" | "contained" | "outlined" | "login_special"| "round_logout" | "comparate_button" | "transpar";
   fullWidth?: boolean;
+  className?: string;
   maxWidth?: boolean;
   color?: DesignSystemColors;
   background?: ButtonBC;
@@ -24,6 +25,7 @@ interface ButtonProps {
 const Component = (props: ButtonProps) => {
   const {
     variant = "contained",
+    className,
     fullWidth = false,
     color,
     children, 
@@ -41,17 +43,19 @@ const Component = (props: ButtonProps) => {
     [styles.max__width]: maxWidth,
   };
 
-  const add = [
+  const classes = [
     styles[`variant--${variant}`],
     styles[`color--${color}`],
     styles[`size--${size}`],
     styles[`background--${background}`],
   ];
 
+  if (className) classes.push(className);
+
   return (
     <button
       disabled={disabled}   
-      className={classNames(styles.button, mods, add)}
+      className={classNames(styles.button, mods, classes)}
       onClick={onClick}
     >
       {children}

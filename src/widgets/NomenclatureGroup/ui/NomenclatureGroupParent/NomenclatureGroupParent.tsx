@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { NomenclatureGroupType } from "../../../../features/NomenclatureGroupSelect";
-import { Typography } from "../../../../shared/ui";
-import { NomenclatureGroupChild } from "../NomenclatureGroupChild/NomenclatureGroupChild";
+import { NomenclatureGroupType } from "@features/NomenclatureGroupSelect";
+import { Typography } from "@shared/ui";
+import { getRouteMain } from "@shared/const/router";
+import { getSidebarCollapsed, uiActions } from "@features/UI";
+import { useAppDispatch } from "@shared/hooks";
+import { searchProductActions } from "@features/SearchProduct";
 import cls from "./NomenclatureGroupParent.module.scss";
-import { getRouteMain } from "../../../../shared/const/router";
-import { getSidebarCollapsed, uiActions } from "../../../../features/UI";
-import { useAppDispatch } from "../../../../shared/hooks";
-import { searchProductActions } from "../../../../features/SearchProduct";
+import { NomenclatureGroupChild } from "../NomenclatureGroupChild/NomenclatureGroupChild";
 
 interface nomenclatureGroupParentProps {
   fullname?: string;
@@ -56,7 +56,7 @@ const Component = ({
   return (
     <>
       <div className={cls.group_wrap} onClick={onOpenSelect}>
-        <Typography variant="h3">{fullname}</Typography>
+        <Typography variant="h4">{fullname}</Typography>
       </div>
       {showChild
          && (

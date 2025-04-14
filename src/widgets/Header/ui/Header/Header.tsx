@@ -2,27 +2,19 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { BasketLink, BasketPlate, BasketPlateFromSeller } from "@features/BasketLink";
 import { SearchProduct } from "@features/SearchProduct";
-import {
-  AppImage, AppLink, Container, HStack, Typography,
-} from "@shared/ui";
+import { Container, HStack, Typography } from "@shared/ui";
 import { SelectTradePoint } from "@entities/TradePoint";
 import { SidebarButton } from "@widgets/Sidebar";
-import { getRouteMain, getRouteOrders } from "@shared/const/router";
-import {
-  UserRoles, getUserAuthData, getUserRole,
-} from "@entities/user";
+import { getUserAuthData, getUserRole, UserRoles } from "@entities/user";
 import { SumBasketData } from "@widgets/SumBasket";
 import { useMediaQuery } from "@shared/hooks";
 import { DebtsPlate } from "@features/Debts";
+import { OrderHeader } from "@widgets/OrderHeader";
 import cls from "./Header.module.scss";
 import { Navigation } from "../Navigation/Navigation";
 
 const Component = () => {
   const userRole = useSelector(getUserRole);
-  let routeMain = getRouteMain();
-  if (userRole === UserRoles.SELLER) {
-    routeMain = getRouteOrders();
-  }
 
   const mobileWidthMediaQuery1 = useMediaQuery("(max-width: 770px)");
   const mobileWidthMediaQuery2 = useMediaQuery("(max-width: 500px)");
@@ -48,7 +40,7 @@ const Component = () => {
             <div onMouseEnter={() => setPlate(true)}>
               <HStack className={cls.basket_wrap} align="center" justify="center" gap="16">
 
-                {/* <SumBasketData /> */}
+                <SumBasketData /> 
 
                 <BasketLink />
 
@@ -82,7 +74,7 @@ const Component = () => {
 
             )}
 
-          <Typography className={cls.hello_text} variant="h2" align="center" bold>
+          <Typography className={cls.hello_text} variant="h3" align="center" bold>
             Добро пожаловать,
             {" "}
             {mobileWidthMediaQuery2 && (<br />)}
@@ -97,7 +89,7 @@ const Component = () => {
                 <DebtsPlate />
               </>
             )}
-          {/* {userRole === UserRoles.SELLER && <OrderHeader />} */}
+          {userRole === UserRoles.SELLER && <OrderHeader />} 
         </div>
       </div>
     </Container>

@@ -3,27 +3,71 @@
         color: inherit;
     }
 
-    &--neutral-text {
-        color: var(--color-white-bg);
+    &--gray-primary {
+        color: #757575;
     }
 
-    &--primary-text {
-        color: var(--color-black);
+    &--gray-secondary {
+        color: #EEE5E9;
     }
 
-    &--grey-text {
-        color: var(--color-gray-secondary);
+    &--gray-light {
+        color: #b8b8b8;
     }
 
-    &--grey-light {
-        color: var(--color-black-light);
+    &--violet-primary {
+        color: #9b53c8;
+    }
+
+    &--violet-secondary {
+        color: #7a29ac66;
+    }
+
+    &--white-bg {
+        color: #fff;
+    }
+
+    &--black {
+        color: #14151b;
+    }
+
+    &--red-primary {
+        color: #d69999;
+    }
+
+    &--red-secondary {
+        color: #e3c1c1ff;
+    }
+
+    &--tiffany {
+        color: #0FA5A7;
+    }
+
+    &--beet {
+        color: #9E0348;
+    }
+
+    &--beige {
+        color: #faecdf;
+    }
+
+    &--brown {
+        color: #b88867;
     }
 
     &--green {
-        color: #00ae4d;
+        color: #008124;
     }
 
     &--red {
-        color: #ae000e;
+        color: #A70707;
+    }
+
+    &--green-primary {
+        color: #AFFC38;
+    }
+
+    &--yellow-primary {
+        color: #F6FD41;
     }
 }

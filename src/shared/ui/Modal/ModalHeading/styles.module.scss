@@ -1,9 +1,16 @@
 .heading {
+    height: 100%;
+    text-align: center;
+
+    .logo {
+        max-width: 150px;
+    }
+
     .modalClose {
         position: absolute;
+        z-index: 3;
         top: 22px;
         right: 22px;
         cursor: pointer;
-        transform: rotate(45deg);
     }
 }

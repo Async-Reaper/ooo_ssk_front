@@ -1,3 +1,4 @@
+export { AnimationDots } from "./AnimationDots/AnimationDots";
 export { AppImage } from "./AppImage/AppImage";
 export { AppLink } from "./AppLink/AppLink";
 export { Button } from "./Button/Button";

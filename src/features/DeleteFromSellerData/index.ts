@@ -3,3 +3,4 @@ export { deleteFromSellerDataActions, deleteFromSellerDataReducer } from "./mode
 export type { DeleteFromSellerDataSchema } from "./model/types/deleteFromSellerData";
 export * from "./model/selectors/deleteFromSellerDataSelectors";
 export { fetchDeleteFromSellerData } from "./model/services/fetchDeleteFromSellerData";
+export { DeleteFromSellerDataButton } from "./ui/DeleteFromSellerData/DeleteFromSellerData";

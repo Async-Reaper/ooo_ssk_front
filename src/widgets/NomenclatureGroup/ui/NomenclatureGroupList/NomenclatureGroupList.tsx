@@ -1,17 +1,17 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../../../../shared/hooks";
-import { DynamicModuleLoader, ReducersList } from "../../../../shared/libs/component";
+import { useAppDispatch } from "@shared/hooks";
+import { DynamicModuleLoader, ReducersList } from "@shared/libs/component";
+import { Typography } from "@shared/ui";
+import { getRouteMain } from "@shared/const/router";
+import { getSidebarCollapsed, uiActions } from "@features/UI";
+import { searchProductActions } from "@features/SearchProduct";
 import { getNomenclatureGroupData } from "../../model/selectors/nomenclatureGroupSelectors";
 import { fetchNomenclatureGroup } from "../../model/services/fetchNomenclatureGroup";
 import { nomenclatureGroupReducer } from "../../model/slice/nomenclatureGroupSlice";
 import { NomenclatureGroupParent } from "../NomenclatureGroupParent/NomenclatureGroupParent";
 import cls from "./NomenclatureGroupList.module.scss";
-import { Typography } from "../../../../shared/ui";
-import { getRouteMain } from "../../../../shared/const/router";
-import { getSidebarCollapsed, uiActions } from "../../../../features/UI";
-import { searchProductActions } from "../../../../features/SearchProduct";
 
 const reducers: ReducersList = {
   nomenclatureGroupList: nomenclatureGroupReducer,
@@ -58,7 +58,7 @@ const Component: React.FC<ChildComponentProps> = ({ blockVisible, onVisibleChang
 
         <div className={cls.group_wrap}>
           <div onClick={handleBlockVisibleClick}>
-            <Typography variant="h3">Весь ассортимент</Typography>
+            <Typography variant="h4">Весь ассортимент</Typography>
           </div>
         </div>
 

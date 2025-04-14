@@ -1,16 +1,12 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { UserRoles, getUserRole } from "@entities/user";
 import { LogoutButton } from "@features/Auth";
-import { Container, Typography } from "@shared/ui";
+import { Typography } from "@shared/ui";
 import cls from "./Footer.module.scss";
-import { getCurrentTradePoint } from "@entities/TradePoint";
-import { Conditions } from "../../../shared/libs/conditions/conditions";
 
 const Component = () => {
-  const currentTradePoint = useSelector(getCurrentTradePoint);
-  const currentRole = useSelector(getUserRole);
-   
+  // const currentTradePoint = useSelector(getCurrentTradePoint);
+  // const currentRole = useSelector(getUserRole);
+  console.log();
   return (
     <>
       {/* { (currentRole === UserRoles.SELLER) */}
@@ -45,11 +41,11 @@ const Component = () => {
         </Typography>
       </div>
       <div className={cls.footer}>
-        <Typography className={cls.text} variant="h3" color="neutral-text">
+        <Typography className={cls.text} variant="h4" color="white-bg">
           Контакты торгового представителя
           {" "}
         </Typography>
-        <Typography className={cls.text} variant="h3" color="neutral-text">
+        <Typography className={cls.text} variant="h4" color="white-bg">
           Медведева КН 89133333742
         </Typography>
       </div>

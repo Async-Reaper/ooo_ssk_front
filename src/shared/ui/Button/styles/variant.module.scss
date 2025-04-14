@@ -14,13 +14,8 @@
     }
 
     &--outlined {
-        background-color: var(--color-white-bg);
         border: 2px solid var(--color-gray-primary);
         transition: all .3s;
-
-        &:hover {
-            background: var(--color-gray-secondary);
-        }
     }
 
     &--login_special {

@@ -1,17 +1,17 @@
 import React, { useCallback, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { ReducersList, DynamicModuleLoader } from "../../../shared/libs/component";
+import { ReducersList, DynamicModuleLoader } from "@shared/libs/component";
 import {
   AppImage, HStack, Typography, VStack, 
-} from "../../../shared/ui";
-import { useAppDispatch } from "../../../shared/hooks";
+} from "@shared/ui";
+import { useAppDispatch } from "@shared/hooks";
+import { __API__ } from "@shared/protocols/api";
+import { getRouteMain } from "@shared/const/router";
 import { fetchBrandsList } from "../model/brandsListService";
 import { brandsListReducer } from "../model/brandsListSlice";
 import { getBrandsListData } from "../model/brandsListSelectors";
-import { __API__ } from "../../../shared/protocols/api";
 import cls from "./BrandsLIst.module.scss";
-import { getRouteMain } from "../../../shared/const/router";
 
 const reducers:ReducersList = {
   brandsList: brandsListReducer,

@@ -1,0 +1,17 @@
+@import "@styles/mixins";
+
+.animation__wrapper {
+  display: none;
+  margin-top: auto;
+
+  @include laptop {
+    display: block;
+  }
+
+  .animation__dot {
+    background: var(--color-gray-primary);
+    width: 5px;
+    height: 5px;
+    flex-shrink: 0;
+  }
+}

@@ -95,12 +95,12 @@ const Component = ({
 
         <div className={cls.nomenclature__description}>
           <div className={cls.name}>
-            <Typography variant="h3">
+            <Typography variant="h4">
               {nomenclatureData?.short_name}
             </Typography>
           </div>
           <div className={cls.info}>
-            <Typography variant="h4">
+            <Typography variant="h5">
               {nomenclatureData?.additional_information?.price}
               {" "}
               ₽
@@ -110,7 +110,7 @@ const Component = ({
               {nomenclatureData?.measurement}
             </Typography>
             <div className={cls.expiration_date}>
-              <Typography variant="h4">
+              <Typography variant="h5">
                 Срок годности:
                 {" "}
                 {nomenclatureData?.expiration_date}
@@ -119,7 +119,7 @@ const Component = ({
               </Typography>
             </div>
             <div className={cls.measurement}>
-              <Typography variant="h4">
+              <Typography variant="h5">
                 {nomenclatureData?.measurement}
               </Typography>
             </div>
