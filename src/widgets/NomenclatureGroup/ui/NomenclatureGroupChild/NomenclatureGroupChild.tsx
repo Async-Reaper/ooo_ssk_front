@@ -1,12 +1,12 @@
 import React, { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { Typography } from "@shared/ui";
+import { getRouteMain } from "@shared/const/router";
+import { getSidebarCollapsed, uiActions } from "@features/UI";
+import { useAppDispatch } from "@shared/hooks";
+import { searchProductActions } from "@features/SearchProduct";
 import cls from "./NomenclatureGroupChild.module.scss";
-import { Typography } from "../../../../shared/ui";
-import { getRouteMain } from "../../../../shared/const/router";
-import { getSidebarCollapsed, uiActions } from "../../../../features/UI";
-import { useAppDispatch } from "../../../../shared/hooks";
-import { searchProductActions } from "../../../../features/SearchProduct";
 
 interface nomenclatureGroupChildProps {
   fullname?: string; 

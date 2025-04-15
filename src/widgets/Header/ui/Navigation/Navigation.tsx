@@ -43,25 +43,17 @@ const Component: React.FC = () => {
 
   return (
     <div className={cls.navigation}>
-
-      {userRole === UserRoles.BUYER && (
-        <div onClick={() => handleClickLink(getRouteHistory())}>
-          <Typography align="center" variant="h4">История заказов</Typography>
-        </div>
-      )}
       <div>
-        <div onClick={() => setBlockVisible(!blockVisible)}>
-          <Typography className={cls.assort} variant="h4">Ассортимент</Typography>
+        <div className={cls.select__button} onClick={() => setBlockVisible(!blockVisible)}>
+          <Typography className={cls.assort} variant="h4">Весь ассортимент компании</Typography>
         </div>
         {blockVisible
           && (
             <div className={cls.groups} ref={blockRef}>
               <GroupList blockVisible={blockVisible} onVisibleChange={handleVisibleChange} />
             </div>
-
           )}
       </div>
-
       <>
         <AppLink to={getRouteBrands()}>
           <Typography className={cls.assort} variant="h4">Бренды</Typography>
@@ -72,6 +64,11 @@ const Component: React.FC = () => {
           </AppLink>
         ))}
       </>
+      {userRole === UserRoles.BUYER && (
+        <div className={cls.history__link} onClick={() => handleClickLink(getRouteHistory())}>
+          <Typography align="center" variant="h4">История заказов</Typography>
+        </div>
+      )}
     </div>
   );
 };

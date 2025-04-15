@@ -1,21 +1,21 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { getUserAuthData } from "../../user";
-import { DynamicModuleLoader, ReducersList } from "../../../shared/libs/component";
-import { useAppDispatch } from "../../../shared/hooks";
-import cls from "./FavoriteProductsMenu.module.scss";
-import { __API__ } from "../../../shared/protocols/api";
-import { getCurrentTradePoint } from "../../TradePoint";
-import { favoriteReducer } from "../model/slice/favoriteSlice";
-import { NomenclatureCard } from "../../../widgets/Nomenclature";
+import { getUserAuthData } from "@entities/user";
+import { DynamicModuleLoader, ReducersList } from "@shared/libs/component";
+import { useAppDispatch } from "@shared/hooks";
+import { getCurrentTradePoint } from "@entities/TradePoint";
+import { favoriteReducer } from "@entities/FavoriteProducts";
+import { NomenclatureCard } from "@widgets/Nomenclature";
+import { sumBasketReducer } from "@widgets/SumBasket";
+import { deleteFromFavoriteReducer } from "@features/DeleteFromFavorite";
+import { Typography, VStack } from "@shared/ui";
+import { Substrate } from "@shared/ui/Primitives/Container/Container";
 import {
   basketReducer, fetchBasketProductWithContract, getBasketData, getBasketIsLoading, 
-} from "../../BasketEntitie";
-import { sumBasketReducer } from "../../../widgets/SumBasket";
-import { deleteFromFavoriteReducer } from "../../../features/DeleteFromFavorite";
-import { fetchFavoriteProduct, getFavoriteData, getFavoriteIsLoading } from "..";
-import { Typography } from "../../../shared/ui";
-import { Substrate } from "../../../shared/ui/Primitives/Container/Container";
+} from "@entities/BasketEntitie";
+import { getFavoriteData, getFavoriteIsLoading } from "../model/selectors/favoriteSelectors";
+import { fetchFavoriteProduct } from "../model/services/fetchFavoriteProduct";
+import cls from "./FavoriteProductsMenu.module.scss";
 
 const reducers: ReducersList = {
   favoriteList: favoriteReducer,
@@ -54,20 +54,22 @@ const Component = (() => {
         <div className={cls.title_text}>
           <Typography variant="h2" align="center">Избранные продукты</Typography> 
         </div>
-        <Substrate>  
-          {favoriteData?.map((elem) => (
-            <NomenclatureCard
-              key={elem.product_guid}
-              // nomenclature={elem}
-              guid={elem.product_guid}
-              isWithGuid
-              basketList={basketProductsList}
-              favoriteList={[{
-                user_guid: userInfo?.userGUID!,
-                product_guid: elem.product_guid,
-              }]}
-            />
-          ))}
+        <Substrate>
+          <VStack gap="16" max align="center" justify="center">
+            {favoriteData?.map((elem) => (
+              <NomenclatureCard
+                key={elem.product_guid}
+                // nomenclature={elem}
+                guid={elem.product_guid}
+                isWithGuid
+                basketList={basketProductsList}
+                favoriteList={[{
+                  user_guid: userInfo?.userGUID!,
+                  product_guid: elem.product_guid,
+                }]}
+              />
+            ))}
+          </VStack>
         </Substrate> 
       </div>
     </DynamicModuleLoader>

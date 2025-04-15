@@ -1,13 +1,18 @@
 @import "@app/styles/mixins";
 
 .nomenclature__wrapper {
-  @include flex-space;
+  @include flex-column;
+  align-items: center;
   gap: 20px;
   position: relative;
   padding: 25px;
   border-radius: var(--border-radius-xxl);
   background: var(--color-white-bg);
   width: 100%;
+
+  @include laptop {
+    @include flex-row;
+  }
 
   .nomenclature__image {
     display: grid;
@@ -18,16 +23,14 @@
     overflow: hidden;
     justify-content: center;
 
-
     img {
       width: inherit;
       height: inherit;
-      object-fit: cover;
+      object-fit: contain;
     }
 
     @include tablets {
       width: 170px;
-      min-width: 170px;
       height: 130px;
     }
   }
@@ -46,13 +49,22 @@
       border: 1px solid var(--color-gray-primary);
     }
 
-    .measurement {
+    .nomenclature__other {
+      @include flex-row;
+      align-items: center;
+      gap: 15px;
       margin-left: auto;
     }
 
     .info {
       @include flex-row;
+      flex-wrap: wrap;
+      align-items: center;
       gap: 15px;
+
+      @include laptop {
+        flex-wrap: nowrap;
+      }
     }
   }
 
@@ -62,9 +74,10 @@
     place-items: center;
     gap: 10px;
     min-width: 150px;
+    width: 100%;
     font-size: 25px;
 
-    @include tablets {
+    @include laptop {
       width: 20%;
       min-width: 200px;
     }

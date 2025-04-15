@@ -8,10 +8,7 @@ import { favoriteReducer, fetchFavoriteProduct, getFavoriteData } from "@entitie
 import { useAppDispatch } from "@shared/hooks";
 import { DynamicModuleLoader, ReducersList } from "@shared/libs/component";
 import { basketReducer, fetchBasketProductWithContract, getBasketData } from "@entities/BasketEntitie";
-import { Substrate } from "@shared/ui/Primitives/Container/Container";
-import {
-  Button, HStack, Input, Typography, VStack, 
-} from "@shared/ui";
+import { Input, Typography } from "@shared/ui";
 import { DeleteFromBasketAllProducts } from "@features/DeleteFromBasket";
 import { getSumBasketOrder } from "@widgets/SumBasket";
 import { getRouteMain } from "@shared/const/router";
@@ -98,53 +95,38 @@ const Component = () => {
       removeAfterUnmount
       reducers={reducers}
     >
-         
       <div className={cls.basket__wrapper}>
-            
-        <Typography variant="h3" bold align="center">
-          Корзина
-          <br />
-          Сумма заказа 
+        {basketProducts?.length! > 0 && (
+          <div className={cls.button__continue__order} onClick={handleRouteMain}>
+            <Typography variant="h3">
+              Продолжить наполнение заказа
+            </Typography>
+          </div>
+        )}
+        <Typography variant="h4" bold align="center">
+          Корзина:
           {" "}
           {`${formattedNumber} ₽`}
         </Typography>
-
-        {basketProducts?.length! > 0 && (
-          <>
-            <input
-              className={cls.input_date}
-              id="dateShipment"
-              type="date"
-              value={dateShipment}
-              min={getDate()}
-              onChange={(e) => handleShipmentChange(e.target.value)}
-            />
-            <VStack gap="16" align="center" justify="center" max>
-
-              <HStack className={cls.com_wrap} gap="16" justify="center">
-                <Button variant="outlined" onClick={handleRouteMain}>
-                  <Typography variant="h5">
-                    Вернуться к оформлению заказа
-                  </Typography>
-                </Button>
-                <CreateOrderButton dataCreateOrder={dataCreateOrder} />
-
-              </HStack>
-
-              <Input value={comment} placeholder="Комментарий" onChange={handleCommentChange} className={cls.commentary} />
-
-            </VStack>
-          </>
-        )}
-        <Substrate>
-          <DeleteFromBasketAllProducts 
+        <div className={cls.basket__list__wrapper}>
+          <DeleteFromBasketAllProducts
             basketProductsList={basketProducts!}
+          />
+          <input
+            className={cls.input_date}
+            id="dateShipment"
+            type="date"
+            value={dateShipment}
+            min={getDate()}
+            onChange={(e) => handleShipmentChange(e.target.value)}
           />
           <BasketProductsList
             basketProductsList={basketProducts!}
             favoriteProductsList={favoriteProductsList!}
           />
-        </Substrate>
+        </div>
+        <Input value={comment} placeholder="Комментарий" onChange={handleCommentChange} className={cls.commentary} />
+        <CreateOrderButton dataCreateOrder={dataCreateOrder} />
       </div>
     </DynamicModuleLoader>
   );

@@ -54,7 +54,7 @@ const Component = ({ dataCreateOrder }: CreateOrderButtonProps) => {
   }, [dispatch, dataCreateOrder, open]);
   return (
     <DynamicModuleLoader reducers={reducers}>
-      <Button onClick={onHandleCreateOrder}>
+      <Button onClick={onHandleCreateOrder} variant="contained">
         <Typography variant="h4">
           Оформить заказ
         </Typography>

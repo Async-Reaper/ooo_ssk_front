@@ -11,7 +11,7 @@
     "lint:scss": "npx stylelint \"**/*.scss\"",
     "lint:scss:fix": "npx stylelint \"**/*.scss\" --fix",
     "icons:optimise": "yarn svgo -f src/shared/libs/icons/__sources --recursive",
-    "icons:transpile": "yarn svgr src/shared/libs/icons/__sources -d ./src/shared/libs/icons/__generated --config-file src/shared/libs/icons/__svgr/configs/svgr.universal.cjs --typescript",
+    "icons:transpile": "yarn svgr src/shared/libs/icons/__sources -d src/shared/libs/icons/__generated --config-file src/shared/libs/icons/__svgr/configs/svgr.universal.js --typescript",
     "icons": "yarn icons:optimise && yarn icons:transpile",
     "preview": "vite preview",
     "prepare": "husky install"
@@ -23,6 +23,7 @@
     "delaunator": "^5.0.1",
     "framer-motion": "^10.16.4",
     "konva": "^9.3.20",
+    "lodash": "^4.17.21",
     "node": "^20.7.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

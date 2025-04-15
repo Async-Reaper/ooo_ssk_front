@@ -1,4 +1,4 @@
-import {
+import React, {
   type ImgHTMLAttributes,
   memo,
   type ReactElement,

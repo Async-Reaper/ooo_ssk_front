@@ -1,4 +1,4 @@
-import { type ReactNode } from "react";
+import React, { type ReactNode } from "react";
 
 import { classNames } from "@shared/libs/classNames/classNames";
 import cls from "./styles.module.scss";
@@ -8,13 +8,13 @@ interface ContainerProps {
   children: ReactNode;
 }
 export const Container = ({ children, className }: ContainerProps) => (
-  <section className={classNames(cls.container, {}, [className])}>
+  <div className={classNames(cls.container, {}, [className])}>
     {children}
-  </section>
+  </div>
 );
 
 export const Substrate = ({ children, className }: ContainerProps) => (
-  <section className={classNames(cls.substrate, {}, [className])}>
+  <div className={classNames(cls.substrate, {}, [className])}>
     {children}
-  </section>
+  </div>
 );

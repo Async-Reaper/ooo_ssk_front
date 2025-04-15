@@ -1,18 +1,19 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { AppImage, Button, Input } from "../../../../shared/ui";
+import { Button, Input } from "@shared/ui";
 
-import { getCurrentTradePoint } from "../../../../entities/TradePoint";
-import { IBasket } from "../../../../entities/BasketEntitie";
-import { UserDataType } from "../../../../entities/user";
-import { useAppDispatch } from "../../../../shared/hooks";
-import { addToBasketActions, fetchAddToBasket } from "../../../../features/AddToBasket";
-import { deleteFromBasketActions, fetchDeleteFromBasket } from "../../../../features/DeleteFromBasket";
+import { getCurrentTradePoint } from "@entities/TradePoint";
+import { IBasket } from "@entities/BasketEntitie";
+import { UserDataType } from "@entities/user";
+import { useAppDispatch } from "@shared/hooks";
+import { addToBasketActions, fetchAddToBasket } from "@features/AddToBasket";
+import { deleteFromBasketActions, fetchDeleteFromBasket } from "@features/DeleteFromBasket";
+import { IAlert } from "@entities/Alerts";
+import { fetchSumBasketByParams } from "@widgets/SumBasket";
+import { Icon } from "@shared/libs/icons";
 import { INomenclature } from "../../model/types/nomenclature";
 import cls from "./NomenclatureCount.module.scss";
 import { useAlertsInfo } from "../../model/libs/hooks/useAlertsInfo";
-import { IAlert } from "../../../../entities/Alerts";
-import { fetchSumBasketByParams } from "../../../../widgets/SumBasket";
 
 interface NomenclatureCountProps {
   countValue?: number;
@@ -111,45 +112,42 @@ const Component = ({
     basketList?.map((basket) => (basket.product_guid === nomenclatureData?.guid)
             && setCountToBasket(basket.count));
   }, [basketList, nomenclatureData, setCountToBasket]);
-  return (  
+  
+  return (
+    <div className={cls.count}>
+      <Button
+        variant="comparate_button"
+        disabled={countToBasket === 0 || !currentTradePoint?.guid}
+        size="xs"
+        fullWidth
+        onClick={onHandleMinusToBasket}
+      >
+        <div className={cls.control_count}>
+          <Icon name="minus" size={30} />
+        </div>
+      </Button>
 
-    <div>
-      <div className={cls.count}>
-        <Button
-          variant="comparate_button"
-          disabled={countToBasket === 0 || !currentTradePoint?.guid}
-          size="xs"
-          fullWidth
-          onClick={onHandleMinusToBasket}
-        >
-          <div className={cls.control_count}>
-            <AppImage src="/common/minus.svg" />
-          </div>
-        </Button>
-
-        <Input
-          type="number" 
-          value={countToBasket === 0
-            ? ""
-            : countToBasket}
-          onChange={onHandleInputCount}
-          className={cls.input_count}
-          placeholder="0"
-        />
+      <Input
+        type="number" 
+        value={countToBasket === 0
+          ? ""
+          : countToBasket}
+        onChange={onHandleInputCount}
+        className={cls.input_count}
+        placeholder="0"
+      />
             
-        <Button
-          variant="comparate_button" 
-          disabled={!currentTradePoint?.guid}
-          size="xs"
-          fullWidth
-          onClick={onHandleAddToBasket}
-        >
-          <div className={cls.control_count}>
-            <AppImage src="/common/plus.svg" />
-          </div>
-        </Button>
-         
-      </div>
+      <Button
+        variant="comparate_button" 
+        disabled={!currentTradePoint?.guid}
+        size="xs"
+        fullWidth
+        onClick={onHandleAddToBasket}
+      >
+        <div className={cls.control_count}>
+          <Icon name="plus" size={30} />
+        </div>
+      </Button>
 
       {/* <div className={cls.price_object}>
             <Typography align="center" variant="h6">
@@ -157,7 +155,6 @@ const Component = ({
             </Typography>
          </div> */}
     </div>
-
   );
 };
 

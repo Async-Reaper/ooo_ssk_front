@@ -1,5 +1,5 @@
-import { type ReactNode } from "react";
-import { classNames, type Mods } from "../../../../libs/classNames/classNames";
+import React, { type ReactNode } from "react";
+import { classNames, type Mods } from "@shared/libs/classNames/classNames";
 
 import cls from "./styles.module.scss";
 

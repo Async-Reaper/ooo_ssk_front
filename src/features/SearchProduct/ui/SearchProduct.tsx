@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "@shared/hooks";
@@ -7,7 +7,7 @@ import { getRouteMain, getRouteOrders } from "@shared/const/router";
 import { DynamicModuleLoader, ReducersList } from "@shared/libs/component";
 import { AppImage } from "@shared/ui";
 import { Conditions } from "@shared/libs/conditions/conditions";
-import { getSearchValue } from "..";
+import { getSearchValue } from "../model/selectors/searchProductSelectors";
 import cls from "./SearchProduct.module.scss";
 import { searchProductActions, searchProductReducer } from "../model/slice/searchProductSlice";
 
@@ -19,7 +19,7 @@ const Component = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const valueSearch = useSelector(getSearchValue);
-  // const [searchTerm, setSearchTerm] = useState(valueSearch);
+  const [searchTerm, setSearchTerm] = useState(valueSearch);
 
   const handleSearch = (value: string) => {
     dispatch(searchProductActions.setSearchValue(value));
@@ -30,15 +30,15 @@ const Component = () => {
         : undefined,
       search: `${httpQuery}`,
     });
-    // setSearchTerm(value);
+    setSearchTerm(value);
   };
    
-  // useEffect(() => {
-  //    const delayDebounceFn = setTimeout(() => {
-  //       dispatch(searchProductActions.setSearchValue(searchTerm));
-  //    }, 500);
-  //    return () => clearTimeout(delayDebounceFn);
-  // }, [searchTerm]);
+  useEffect(() => {
+    const delayDebounceFn = setTimeout(() => {
+      dispatch(searchProductActions.setSearchValue(searchTerm));
+    }, 500);
+    return () => clearTimeout(delayDebounceFn);
+  }, [searchTerm]);
 
   return (
     <DynamicModuleLoader reducers={reducer}>
@@ -46,12 +46,12 @@ const Component = () => {
         <div className={cls.search_object}>
           <Input
             className={cls.input}
-            placeholder="Поиск товара"
+            placeholder="Введите наименование"
             value={valueSearch}
             onChange={handleSearch}
           />
 
-          <AppImage className={cls.glass} width={23} src="./common/magnifying-glass.webp" /> 
+          <AppImage className={cls.glass} width={23} src="/common/magnifying-glass.webp" />
         </div>
       </Conditions>
     </DynamicModuleLoader>

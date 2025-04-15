@@ -13,12 +13,12 @@ const Component = () => {
 
   return (
     <div className={cls.sidebarButton__wrapper}>
-      <button 
+      <div
         className={cls.sidebarButton}
         onClick={onChangeCollapsedSidebar}
       >
-        <Icon name="burger" size={30} />
-      </button>
+        <Icon name="burger" size={30} color="green-primary" />
+      </div>
     </div>
   );
 };

@@ -4,7 +4,7 @@ import { type UISchema } from "../types/UISchema";
 
 const initialState: UISchema = {
   scroll: {},
-  sidebarCollapsed: true,
+  sidebarCollapsed: false,
 };
 
 export const uiSlice = createSlice({

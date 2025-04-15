@@ -1,15 +1,16 @@
-import { memo } from "react";
+import React, { memo } from "react";
 import { useSelector } from "react-redux";
-import { getSidebarCollapsed, uiActions } from "../../../../features/UI";
-import { useAppDispatch } from "../../../../shared/hooks";
-import { Icon } from "../../../../shared/libs/icons";
-import { classNames, Mods } from "../../../../shared/libs/classNames/classNames";
-import cls from "./Sidebar.module.scss";
+import { getSidebarCollapsed, uiActions } from "@features/UI";
+import { useAppDispatch } from "@shared/hooks";
+import { Icon } from "@shared/libs/icons";
+import { classNames, Mods } from "@shared/libs/classNames/classNames";
+import { AppImage, AppLink } from "@shared/ui";
+import { getRouteMain, getRouteOrders } from "@shared/const/router";
+import { UserRoles, getUserRole } from "@entities/user";
+import { LogoutButton } from "@features/Auth";
+import { SearchProduct } from "@features/SearchProduct";
 import { SidebarNavigation } from "../SidebarNavigation/SidebarNavigation";
-import { AppImage, AppLink } from "../../../../shared/ui";
-import { getRouteMain, getRouteOrders } from "../../../../shared/const/router";
-import { UserRoles, getUserRole } from "../../../../entities/user";
-import { LogoutButton } from "../../../../features/Auth";
+import cls from "./Sidebar.module.scss";
 
 interface SidebarProps {
   className?: string;
@@ -35,24 +36,23 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
       className={classNames(cls.sidebar, mods, [className])}
     >
       <div className={cls.sidebar__wrap}>
-
         <div className={cls.sidebar__head}>
           <div className={cls.close__button} onClick={onChangeCollapsedSidebar}>
-            <Icon name="close" size={30} />
+            <Icon name="close" size={50} color="gray-primary" />
           </div>
         </div>
         <div className={cls.sidebar__logo} onClick={onChangeCollapsedSidebar}>
           <AppLink to={routeMain}>
-            <AppImage className={cls.logo} src="/common/logo.svg" />
+            <AppImage className={cls.logo} src="/common/logo.png" />
           </AppLink>
         </div>
-
+        <div className={cls.search__product__wrapper}>
+          <SearchProduct />
+        </div>
         <SidebarNavigation />
         <div className={cls.logout_btn} onClick={onChangeCollapsedSidebar}>
           <LogoutButton />
         </div>
-
-        <AppImage className={cls.sidebar_wave} src="/common/sidebar_wave.svg" />
       </div>
     </aside>
   );

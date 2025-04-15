@@ -1,26 +1,13 @@
 @import "@app/styles/mixins";
 
 .sidebarButton__wrapper {
-    background: #feead976;
-    width: min-content;
-    border-radius: 60px;
-    transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
 
-    &:hover{
-        transition: 0.5s ease-in-out;
-        background: #feead9c2;
-    }
+  @include laptop {
+    display: none;
+  }
 
-    .sidebarButton{
-        width: 45px;
-        height: 45px;
-        display: grid;
-        align-content: center;
-        justify-items: center;
-    }
-
-    /* Скрываем отображение кнопки */
-    @include laptop {
-        display: none;
-    }
+  path {
+    fill: var(--color-green-primary);
+  }
 }

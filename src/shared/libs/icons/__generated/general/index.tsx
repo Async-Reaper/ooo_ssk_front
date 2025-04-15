@@ -13,6 +13,7 @@ import {InstagramIcon as instagram} from './Instagram';
 import {LightningIcon as lightning} from './Lightning';
 import {LockIcon as lock} from './Lock';
 import {LogoutIcon as logout} from './Logout';
+import {MinusIcon as minus} from './Minus';
 import {NoteIcon as note} from './Note';
 import {NotificationIcon as notification} from './Notification';
 import {PauseIcon as pause} from './Pause';
@@ -50,6 +51,7 @@ export type IconName =
   | 'lightning'
   | 'lock'
   | 'logout'
+  | 'minus'
   | 'note'
   | 'notification'
   | 'pause'
@@ -89,6 +91,7 @@ export const iconSet: {
   lightning,
   lock,
   logout,
+  minus,
   note,
   notification,
   pause,

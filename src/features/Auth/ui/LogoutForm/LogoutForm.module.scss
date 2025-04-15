@@ -1,13 +1,18 @@
 .logout__form__wrapper {
-    display: grid;
-    align-items: center;
-    gap: 20px;
-    height: 100%;
-    width: 100%;
+  display: grid;
+  align-items: center;
+  gap: 20px;
+  height: 100%;
+  width: 100%;
+  color: var(--color-white-bg);
 
-    .logout__form__buttons {
-        display: flex;
-        align-items: center;
-        gap: 30px;
-    }
+  .logout__form__buttons {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .button__cancel {
+    color: var(--color-white-bg);
+  }
 }

@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { useAppDispatch } from "../../../../shared/hooks";
-import { getDebtsData, getDebtsIsLoading } from "../../model/selectors/debtsSelectors";
-import { getCurrentTradePoint, tradePointReducer } from "../../../../entities/TradePoint";
-import { fetchDebts } from "../../model/services/fetchDebts";
-import { DynamicModuleLoader, ReducersList } from "../../../../shared/libs/component";
-import { debtsReducer } from "../../model/slice/debtsSlice";
+import { useAppDispatch } from "@shared/hooks";
+import { getCurrentTradePoint, tradePointReducer } from "@entities/TradePoint";
+import { DynamicModuleLoader, ReducersList } from "@shared/libs/component";
+import { HStack, Typography, VStack } from "@shared/ui";
+import { Conditions } from "@shared/libs/conditions/conditions";
+import { classNames } from "@shared/libs/classNames/classNames";
 import cls from "./DebtsPlate.module.scss";
-import { HStack, Typography, VStack } from "../../../../shared/ui";
-import { Conditions } from "../../../../shared/libs/conditions/conditions";
-import { classNames } from "../../../../shared/libs/classNames/classNames";
+import { debtsReducer } from "../../model/slice/debtsSlice";
+import { fetchDebts } from "../../model/services/fetchDebts";
+import { getDebtsData, getDebtsIsLoading } from "../../model/selectors/debtsSelectors";
 
 const reducers: ReducersList = {
   debts: debtsReducer,
@@ -34,17 +34,18 @@ const Component = () => {
 
   return (
     <DynamicModuleLoader reducers={reducers}>
-         
-      <Conditions condition={currentTradePoint !== undefined}>
+      <Conditions condition={currentTradePoint}>
         <div
           className={debtsData?.totalDebts! > 0
             ? cls.red
             : cls.debt_btn}
           onClick={() => setShow(!show)}
         >
-          <Typography variant="h3">
+          <Typography variant="h4">
             Сумма долга:
             {" "}
+          </Typography>
+          <Typography variant="h4" bold>
             {debtsData?.totalDebts}
           </Typography>
         </div>

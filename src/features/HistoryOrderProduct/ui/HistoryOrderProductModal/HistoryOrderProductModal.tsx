@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal } from "../../../../shared/ui/Modal/Modal";
+import { Modal } from "@shared/ui/Modal/Modal";
 import { HistoryOrderProductList } from "../HistoryOrderProductList/HistoryOrderProductList";
 
 interface HistoryOrderProductModalProps {

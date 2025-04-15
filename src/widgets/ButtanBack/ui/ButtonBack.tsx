@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../../../shared/hooks";
-import { Button, Typography } from "../../../shared/ui";
-import { getRouteHistory } from "../../../shared/const/router";
+import { useAppDispatch } from "@shared/hooks";
+import { Button, Typography } from "@shared/ui";
+import { getRouteHistory } from "@shared/const/router";
 
 const Component = (() => {
   const dispatch = useAppDispatch();

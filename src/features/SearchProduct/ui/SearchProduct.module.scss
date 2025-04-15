@@ -1,16 +1,18 @@
-.input{
-    border-radius: 15px;
-    width: 100%;
+.input {
+  border-radius: 15px;
+  width: 100%;
+  border: 3px solid var(--color-green-primary);
 }
 
-.search_object{
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
-    width: 100%;
+.search_object {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  width: 100%;
+  min-width: 250px;
 
-    .glass{
-        position: relative;
-        margin: 0 0 0 -35px;
-    }
+  .glass {
+    position: relative;
+    margin: 0 0 0 -35px;
+  }
 }

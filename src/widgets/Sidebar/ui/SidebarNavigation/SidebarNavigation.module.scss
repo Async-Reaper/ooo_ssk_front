@@ -1,33 +1,29 @@
-@import "../../../../app/styles/mixins";
+@import "@app/styles/mixins";
 
 .navigation {
-    @include flex-center;
-    
-    flex-direction: column;
-    gap: 10px;
+  @include flex-center;
+  flex-direction: column;
+  gap: 30px;
+  margin: 0 auto;
+  width: max-content;
+  z-index: 99999;
+  cursor: pointer;
+  user-select: none;
+  touch-action: manipulation;
+
+  .bar_text {
+    font-weight: 600;
+  }
+
+  .link__underline {
     width: 100%;
-    z-index: 99999;
-    cursor: pointer;
-    user-select: none;
-    touch-action: manipulation;
-
-    .bar_text{
-        font-weight: 600;
-    }
-}
-
-.navigation:active {
-    outline: none;
-}
-
-.red_line, .blue_line{
-    height: 3px;
-    width: 90%;
-    border-radius: var(--border-radius-over);
-    background-color: var(--color-beet-pink);
+    margin: 0 auto;
+    height: 2px;
     border: none;
-}
+    background: var(--color-green-primary);
+  }
 
-.blue_line{
-    background-color: var(--color-tiffany-blue);
+  &:active {
+    outline: none;
+  }
 }

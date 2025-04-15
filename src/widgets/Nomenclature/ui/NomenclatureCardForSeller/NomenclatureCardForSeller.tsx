@@ -1,17 +1,17 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { AppImage, Typography, VStack } from "../../../../shared/ui";
-import { DynamicModuleLoader, ReducersList } from "../../../../shared/libs/component";
-import { HistoryOrderProductButton } from "../../../../features/HistoryOrderProduct";
-import { getCurrentTradePoint } from "../../../../entities/TradePoint";
-import { useAppDispatch } from "../../../../shared/hooks";
-import { __API__ } from "../../../../shared/protocols/api";
+import { AppImage, Typography, VStack } from "@shared/ui";
+import { DynamicModuleLoader, ReducersList } from "@shared/libs/component";
+import { HistoryOrderProductButton } from "@features/HistoryOrderProduct";
+import { getCurrentTradePoint } from "@entities/TradePoint";
+import { useAppDispatch } from "@shared/hooks";
+import { __API__ } from "@shared/protocols/api";
+import { DeleteFromSellerDataProductButton } from "@features/DeleteFromSellerData";
 import { nomenclatureReducer } from "../../model/slice/nomenclatureSlice";
 import { INomenclature } from "../../model/types/nomenclature";
 import { fetchNomenclatureById } from "../../model/services/fetchNomenclatureById";
-import cls from "./NomenclatureCardForSeller.module.scss";
+import cls from "../NomenclatureCard/NomenclatureCard.module.scss";
 import { NomenclatureCountForSeller } from "../NomenclatureCountForSeller/NomenclatureCountForSeller";
-import { DeleteFromSellerDataProductButton } from "../../../../features/DeleteFromSellerData";
 
 interface NomenclatureCardForSellerProps {
   count?: number;

@@ -6,7 +6,7 @@
     padding: 30px 0 0;
 
     .page {
-        border-radius: 30px;
+        border-radius: 5px;
         cursor: pointer;
         width: 30px;
         height: 30px;
@@ -14,7 +14,7 @@
         align-items: center;
         justify-content: center;
         transition: all .3s;
-        background: #8f8f8f;
+        background: var(--color-gray-primary);
         filter: brightness(120%);
         color: var(--color-white-bg);
         
@@ -23,7 +23,8 @@
         }
 
         &.active {
-            background: var(--color-tiffany-blue);
+            color: var(--color-black);
+            background: var(--color-gradient-primary);
         }
     }
 }

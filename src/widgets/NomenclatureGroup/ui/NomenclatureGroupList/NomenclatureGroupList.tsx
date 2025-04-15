@@ -26,7 +26,6 @@ const Component: React.FC<ChildComponentProps> = ({ blockVisible, onVisibleChang
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const isShowSidebar = useSelector(getSidebarCollapsed);
-  // get actualiti date with currentDate
   const currentGroups = useSelector(getNomenclatureGroupData);
   // const isLoading = useSelector(getNomenclatureGroupIsLoading);
   useEffect(() => {

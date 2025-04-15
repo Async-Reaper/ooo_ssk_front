@@ -1,4 +1,4 @@
-@import "../../../../app/styles/mixins";
+@import "@app/styles/mixins";
 
 .nomenclature__wrapper {
     display: flex;
@@ -32,7 +32,7 @@
         img {
             width: inherit;
             height: inherit;
-            object-fit: cover;
+            object-fit: contain;
         }
 
         @include tablets {

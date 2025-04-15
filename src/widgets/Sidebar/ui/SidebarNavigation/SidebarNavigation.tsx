@@ -1,15 +1,13 @@
 import React, { useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Typography } from "../../../../shared/ui";
-import {
-  getRouteBrands, getRouteFavorites, getRouteHistory, 
-} from "../../../../shared/const/router";
-import { UserRoles, getUserAuthData } from "../../../../entities/user";
+import { Typography } from "@shared/ui";
+import { UserRoles, getUserAuthData } from "@entities/user";
+import { GroupList } from "@widgets/NomenclatureGroup";
+import { useAppDispatch } from "@shared/hooks";
+import { uiActions } from "@features/UI";
 import cls from "./SidebarNavigation.module.scss";
-import { GroupList } from "../../../../widgets/NomenclatureGroup/ui/NomenclatureGroupList/NomenclatureGroupList";
-import { useAppDispatch } from "../../../../shared/hooks";
-import { uiActions } from "../../../../features/UI";
+import { links } from "../../model/data/links";
 
 const Component = () => {
   const navigate = useNavigate();
@@ -18,6 +16,7 @@ const Component = () => {
   const userRole = useSelector(getUserAuthData)?.role;
   const blockRef = useRef<HTMLDivElement>(null);
   const [blockVisible, setBlockVisible] = useState(false);
+  
   const handleVisibleChange = (newState: boolean) => {
     setBlockVisible(newState);
   };
@@ -32,52 +31,26 @@ const Component = () => {
 
   return (
     <div className={cls.navigation}>
-
-      <hr className={cls.blue_line} />
-
       <div onClick={() => setBlockVisible(!blockVisible)}>
-        <Typography className={cls.bar_text} variant="h1">Ассортимент</Typography>
+        <Typography className={cls.bar_text} variant="h3">Ассортимент</Typography>
       </div>
       {blockVisible
-               && (
-                 <div className={cls.groups} ref={blockRef}>
-                   <GroupList blockVisible={blockVisible} onVisibleChange={handleVisibleChange} />
-                 </div>
-               )}
-
-      <hr className={cls.red_line} />
-
+        && (
+          <div className={cls.groups} ref={blockRef}>
+            <GroupList blockVisible={blockVisible} onVisibleChange={handleVisibleChange}/>
+          </div>
+        )}
+      <hr className={cls.link__underline}/>
       {userRole === UserRoles.BUYER && (
-        <>
-          <div onClick={() => {
-            onHandleRoutePage(getRouteBrands());
-          }}
-          >
-            <Typography className={cls.bar_text} variant="h1">Бренды</Typography>
-          </div>
-
-          <hr className={cls.blue_line} />
-
-          <div onClick={() => {
-            onHandleRoutePage(getRouteHistory());
-          }}
-          >
-            <Typography className={cls.bar_text} variant="h1">История заказов</Typography>
-          </div>
-
-          <hr className={cls.red_line} />
-
-          <div onClick={() => {
-            onHandleRoutePage(getRouteFavorites());
-          }}
-          >
-            <Typography className={cls.bar_text} variant="h1">Избранные</Typography>
-          </div>
-
-          <hr className={cls.blue_line} />
-        </>
+        links.map((link) => (
+          <>
+            <div key={link.id} onClick={() => onHandleRoutePage(link.path)}>
+              <Typography className={cls.bar_text} variant="h3">{link.name}</Typography>
+            </div>
+            <hr className={cls.link__underline}/>
+          </>
+        ))
       )}
-         
     </div>
   );
 };

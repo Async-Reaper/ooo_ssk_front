@@ -1,16 +1,16 @@
 import React, { useCallback, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { Button } from "../../../../shared/ui";
-import { getUserAuthData } from "../../../../entities/user";
-import { IBasket } from "../../../../entities/BasketEntitie";
-import { getCurrentTradePoint } from "../../../../entities/TradePoint";
-import { deleteFromBasketActions, fetchDeleteFromBasket } from "../../../../features/DeleteFromBasket";
-import { useAppDispatch } from "../../../../shared/hooks";
+import { Button, Typography } from "@shared/ui";
+import { getUserAuthData } from "@entities/user";
+import { IBasket } from "@entities/BasketEntitie";
+import { getCurrentTradePoint } from "@entities/TradePoint";
+import { useAppDispatch } from "@shared/hooks";
+import { fetchSumBasketByParams, GetСurrentBasketSum, selectSumBasketReducer } from "@widgets/SumBasket";
+import { DynamicModuleLoader } from "@shared/libs/component";
+
 import { IDeleteFromBasket } from "../../model/types/deleteFromBasket";
-import { fetchSumBasketByParams } from "../../../../widgets/SumBasket/model/services/fetchSumBasket";
-import { selectSumBasketReducer } from "../../../../widgets/SumBasket/model/slice/stateBasketSlice";
-import { DynamicModuleLoader } from "../../../../shared/libs/component";
-import { GetСurrentBasketSum } from "../../../../widgets/SumBasket";
+import { deleteFromBasketActions } from "../../model/slice/deleteFromBasketSlice";
+import { fetchDeleteFromBasket } from "../../model/services/fetchDeleteFromBasket";
 
 const reducers = {
   CurrentSumBusket: selectSumBasketReducer,
@@ -24,6 +24,7 @@ const Component = ({ basketProductsList }: DeleteFromBasketAllProductsProps) => 
   const currentTradePoint = useSelector(getCurrentTradePoint);
   const user = useSelector(getUserAuthData);
   const dispatch = useAppDispatch();
+  
   const onHandleDeleteProductFromBasket = useCallback(async () => {
     basketProductsList!.forEach(async (product) => {
       const paramsSend: IDeleteFromBasket = { 
@@ -47,16 +48,15 @@ const Component = ({ basketProductsList }: DeleteFromBasketAllProductsProps) => 
    
   return (
     <DynamicModuleLoader reducers={reducers}>
-
-      <>
-        {basketProductsList?.length
-          ? (
-            <Button onClick={onHandleDeleteProductFromBasket}>
+      {basketProductsList?.length
+        ? (
+          <Button onClick={onHandleDeleteProductFromBasket} variant="contained">
+            <Typography variant="h4" bold align="center">
               Очистить корзину
-            </Button>
-          )
-          : ""}
-      </>
+            </Typography>
+          </Button>
+        )
+        : ""}
     </DynamicModuleLoader>
   );
 };

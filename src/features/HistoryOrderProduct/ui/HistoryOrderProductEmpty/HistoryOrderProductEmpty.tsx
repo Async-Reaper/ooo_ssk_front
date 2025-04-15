@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { getHistoryOrderProductMessage } from "../..";
-import { Typography } from "../../../../shared/ui";
+import { Typography } from "@shared/ui";
+import { getHistoryOrderProductMessage } from "../../model/selectors/historyOrderProductSelectors";
 import cls from "./HistoryOrderProductEmpty.module.scss";
 
 const Component = () => {

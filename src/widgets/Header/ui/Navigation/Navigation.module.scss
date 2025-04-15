@@ -1,22 +1,35 @@
 .navigation {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: max-content;
-    gap: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+  width: 100%;
+
+  .select__button {
+    cursor: pointer;
+  }
+
+  .groups {
+    position: absolute;
+    z-index: 1000;
+  }
+
+  .assort {
+    color: var(--color-gray-primary);
+
+    &:hover {
+      transition: ease-in-out .3s;
+      color: var(--color-black);
+    }
+  }
+
+  .history__link {
+    color: var(--color-gray-primary);
+    transition: ease-in-out .2s;
     cursor: pointer;
 
-    .groups{
-        position: absolute;
-        z-index: 1000;
+    &:hover {
+      color: var(--color-black);
     }
-
-    .assort {
-        color: var(--color-gray-primary);
-
-        &:hover{
-            transition: ease-in-out .3s;
-            color: var(--color-black);
-        }
-    }
+  }
 }

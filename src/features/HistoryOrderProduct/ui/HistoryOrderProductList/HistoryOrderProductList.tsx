@@ -2,9 +2,11 @@ import React, { useEffect } from "react";
 import { DynamicModuleLoader, ReducersList } from "@shared/libs/component";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getCurrentTradePoint } from "../../../../entities/TradePoint";
-import { useAppDispatch } from "../../../../shared/hooks";
-import { Conditions } from "../../../../shared/libs/conditions/conditions";
+import { getCurrentTradePoint } from "@entities/TradePoint";
+import { useAppDispatch } from "@shared/hooks";
+import { Conditions } from "@shared/libs/conditions/conditions";
+import { getRouteHistoryId } from "@shared/const/router";
+import { Typography } from "@shared/ui";
 import { fetchHistoryOrderProduct } from "../../model/services/fetchHistoryOrderProduct";
 import { historyOrderProductReducer } from "../../model/slice/historyOrderProductSlice";
 import { getHistoryOrderProductData } from "../../model/selectors/historyOrderProductSelectors";
@@ -12,8 +14,6 @@ import {
   HistoryOrderProductEmpty,
 } from "../HistoryOrderProductEmpty/HistoryOrderProductEmpty";
 import cls from "./HistoryOrderProductList.module.scss";
-import { getRouteHistoryId } from "../../../../shared/const/router";
-import { Typography } from "../../../../shared/ui";
 
 interface HistoryOrderProductListProps {
   productId: string;

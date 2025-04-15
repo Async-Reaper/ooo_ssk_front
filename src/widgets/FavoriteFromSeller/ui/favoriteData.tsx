@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { getUserAuthData } from "../../../entities/user";
+import { getUserAuthData } from "@entities/user";
+import { DynamicModuleLoader, ReducersList } from "@shared/libs/component";
+import { useAppDispatch } from "@shared/hooks";
+import { __API__ } from "@shared/protocols/api";
 import { favoriteReducer, getFavoriteData } from "..";
 import { fetchFavoriteById } from "../models/services/fetchFavoriteById";
-import { DynamicModuleLoader, ReducersList } from "../../../shared/libs/component";
-import { useAppDispatch } from "../../../shared/hooks";
 import cls from "./favorite.module.scss";
-import { __API__ } from "../../../shared/protocols/api";
 // import { NomenclatureCount } from "../../Nomenclature/ui/NomenclatureCount/NomenclatureCount";
 import { FavoriteButton } from "./favoriteButton_Add";
 import { NomenclatureFavorite } from "../../Nomenclature/ui/NomenclatureFavorite/NomenclatureFavorite";
 
 "./favoriteButton_Add";
-// import "../../../../public/common/icon_favorite.png" as icon
 
 const reducers: ReducersList = {
   favoriteSchem: favoriteReducer,
@@ -38,7 +37,6 @@ const Component = (() => {
       reducers={reducers}
     >
       <button className={cls.button_favorite} onClick={showFunc}>
-        <img src="../../../../public/common/icon_favorite.png" alt="food_pattern" width="70%" />
         Избранные
       </button>
       {isShowFavorite 
