@@ -81,7 +81,7 @@ const Component = ({
         </div>
         <div className={cls.nomenclature__description}>
           <div className={cls.name}>
-            <Typography variant="h3">
+            <Typography variant="h4">
               {nomenclatureData?.short_name}
             </Typography>
           </div>
@@ -95,14 +95,15 @@ const Component = ({
               {" "}
               {nomenclatureData?.measurement}
             </Typography>
-                  
-            <Typography variant="h4">
-              Срок годности:
-              {" "}
-              {nomenclatureData?.expiration_date}
-              {" "}
-              дней
-            </Typography>
+            <div className={cls.expiration_date}>
+              <Typography variant="h5">
+                Срок годности:
+                {" "}
+                {nomenclatureData?.expiration_date}
+                {" "}
+                дней
+              </Typography>
+            </div>
           </div>
           {
             nomenclatureData && currentTradePoint && <HistoryOrderProductButton productId={nomenclatureData!.guid} />

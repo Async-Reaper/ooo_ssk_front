@@ -11,7 +11,7 @@ interface Props {
 const Component = ({ children, onClose }: Props) => (
   <div className={cls.heading}>
     <div className={cls.logo__wrapper}>
-      <AppImage src="/common/logo_snek.png" className={cls.logo} />
+      <AppImage src="/common/logo.png" className={cls.logo} />
     </div>
     <div className={cls.modalClose} onClick={onClose}>
       <Icon name="close" size={40} color="red" />

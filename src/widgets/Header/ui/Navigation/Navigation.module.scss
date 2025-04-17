@@ -11,6 +11,8 @@
 
   .groups {
     position: absolute;
+    background: var(--color-white-bg);
+    border-radius: 0 0 15px 15px;
     z-index: 1000;
   }
 

@@ -42,7 +42,6 @@ const Component: React.FC<ChildComponentProps> = ({ blockVisible, onVisibleChang
       search: `${httpQuery}`,
     });
     onVisibleChange(!blockVisible);
-    !isShowSidebar && dispatch(uiActions.setSidebarCollapsed(true));
   };
 
   return (

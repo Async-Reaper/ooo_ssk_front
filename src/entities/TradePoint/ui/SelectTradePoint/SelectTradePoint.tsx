@@ -8,6 +8,7 @@ import { DynamicModuleLoader, ReducersList } from "@shared/libs/component";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { Skeleton } from "@shared/ui/Skeleton";
 import { getUserAuthData } from "@entities/user";
+import { fetchFavoriteProduct } from "@entities/FavoriteProducts";
 import { fetchTradePoints } from "../../model/services/fetchTradePoints";
 import { tradePointActions, tradePointReducer } from "../../model/slice/tradePointSlice";
 import {
@@ -16,7 +17,6 @@ import {
   getTradePoints,
 } from "../../model/selectors/tradePointSelectors";
 import cls from "./SelectTradePoint.module.scss";
-import { fetchFavoriteProduct } from "../../../../entities/FavoriteProducts/model/services/fetchFavoriteProduct";
 
 const reducers: ReducersList = {
   tradePointForm: tradePointReducer,
@@ -50,8 +50,8 @@ const Component = () => {
     navigate({
       search: `${httpQuery}`,
     });
-    onSetIsExpanded();
-  }, [tradePoints, dispatch, navigate, currentTradePoint, onSetIsExpanded]);
+    setIsExpanded(false);
+  }, [tradePoints, dispatch, navigate, currentTradePoint, setIsExpanded]);
 
   useEffect(() => {
     // eslint-disable-next-line array-callback-return
@@ -80,10 +80,6 @@ const Component = () => {
     };
 
     document.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
   }, []);
 
   return (
@@ -96,7 +92,7 @@ const Component = () => {
           ? <Skeleton width="250px" height="50px" border="10px" />
           : (
             <div className={cls.select__wrapper}>
-              <div className={cls.select__default} onClick={onSetIsExpanded}>
+              <div ref={blockRef} className={cls.select__default} onClick={onSetIsExpanded}>
                 <Typography className={cls.tr_point} align="center" variant="h4">
                   {currentTradePoint?.fullname
                     ? currentTradePoint.fullname
@@ -111,7 +107,7 @@ const Component = () => {
                   </Typography>
                 </div>
               </div>
-              <div className={cls.select__list} aria-expanded={isExpanded} ref={blockRef}>
+              <div className={cls.select__list} aria-expanded={isExpanded}>
                 {tradePoints?.map((select) => (
                   <div
                     className={cls.select__item}

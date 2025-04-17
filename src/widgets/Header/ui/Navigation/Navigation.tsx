@@ -15,8 +15,8 @@ const Component: React.FC = () => {
   const blockRef = useRef<HTMLDivElement>(null);
   const [blockVisible, setBlockVisible] = useState(false);
 
-  const handleVisibleChange = (newState: boolean) => {
-    setBlockVisible(newState);
+  const handleVisibleChange = () => {
+    setBlockVisible(!blockVisible);
   };
 
   const handleClickLink = (route: string) => {
@@ -35,21 +35,17 @@ const Component: React.FC = () => {
     };
 
     document.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
   }, []);
 
   return (
     <div className={cls.navigation}>
       <div>
-        <div className={cls.select__button} onClick={() => setBlockVisible(!blockVisible)}>
+        <div ref={blockRef} className={cls.select__button} onClick={handleVisibleChange}>
           <Typography className={cls.assort} variant="h4">Весь ассортимент компании</Typography>
         </div>
         {blockVisible
           && (
-            <div className={cls.groups} ref={blockRef}>
+            <div className={cls.groups}>
               <GroupList blockVisible={blockVisible} onVisibleChange={handleVisibleChange} />
             </div>
           )}

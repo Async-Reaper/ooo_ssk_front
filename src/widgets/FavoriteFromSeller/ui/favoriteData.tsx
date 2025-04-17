@@ -11,8 +11,6 @@ import cls from "./favorite.module.scss";
 import { FavoriteButton } from "./favoriteButton_Add";
 import { NomenclatureFavorite } from "../../Nomenclature/ui/NomenclatureFavorite/NomenclatureFavorite";
 
-"./favoriteButton_Add";
-
 const reducers: ReducersList = {
   favoriteSchem: favoriteReducer,
 };
@@ -21,7 +19,8 @@ const Component = (() => {
   const favoriteData = useSelector(getFavoriteData);
   const userInfo = useSelector(getUserAuthData);
   const dispatch = useAppDispatch();
-  const [isShowFavorite, SetShowFavorite] = useState(false);
+  const [isShowFavorite, setIsShowFavorite] = useState(false);
+
   useEffect(() => {
     if (isShowFavorite) {
       dispatch(fetchFavoriteById(userInfo?.userGUID!));
@@ -29,7 +28,7 @@ const Component = (() => {
   }, [dispatch, userInfo, isShowFavorite]);
 
   const showFunc = () => {
-    SetShowFavorite(!isShowFavorite);
+    setIsShowFavorite(!isShowFavorite);
   };
 
   return (

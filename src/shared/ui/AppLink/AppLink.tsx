@@ -1,10 +1,10 @@
-import { memo, type ReactNode } from "react";
+import React, { memo, type ReactNode } from "react";
 import { type LinkProps, NavLink } from "react-router-dom";
 
 import { classNames } from "@shared/libs/classNames/classNames";
 import cls from "./AppLink.module.scss";
 
-export type AppLinkVariant = "primary" | "blue";
+export type AppLinkVariant = "primary" | "secondary";
 
 interface AppLinkProps extends LinkProps {
   className?: string;

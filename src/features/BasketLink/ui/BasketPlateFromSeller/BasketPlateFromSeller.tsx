@@ -1,26 +1,23 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { Conditions } from "../../../../shared/libs/conditions/conditions";
-// import { Skeleton } from "../../../../shared/ui/Skeleton";
-import cls from "./BasketPlateFromSeller.module.scss";
+import { Conditions } from "@shared/libs/conditions/conditions";
 import {
   HStack, Loader, Typography, VStack,
-} from "../../../../shared/ui";
-import { DynamicModuleLoader, ReducersList } from "../../../../shared/libs/component";
-import { SumBasketData } from "../../../../widgets/SumBasket/ui/SumBasket";
-import { useAppDispatch } from "../../../../shared/hooks";
-import { getUserAuthData } from "../../../../entities/user";
-import { classNames } from "../../../../shared/libs/classNames/classNames";
-import { getRouteBasket } from "../../../../shared/const/router";
-import { getSellerData, getSellerDataIsLoading } from "../../../../features/GetSellerData/model/selectors/getSellerDataSelectors";
-import { fetchGetSellerData } from "../../../../features/GetSellerData/model/services/fetchGetSellerData";
-import { getCurrentSellerOrders, sellerDataReducer } from "../../../../entities/SellerOrders";
-import { getSellerDataReducer } from "../../../../features/GetSellerData/model/slice/getSellerDataSlice";
-import { deleteFromSellerDataReducer } from "../../../../features/DeleteFromSellerData/model/slice/deleteFromSellerDataSlice";
-import { nomenclaturesWhiteListReducer } from "../../../../widgets/Nomenclature/model/slice/nomenclaturesWhiteListSlice";
-import { getNomenclaturesWhiteList } from "../../../../widgets/Nomenclature/model/selectors/nomenclaturesWhiteList";
-import { fetchNomenclaturesWhiteList } from "../../../../widgets/Nomenclature/model/services/fetchNomenclaturesWhiteList";
-import { addToSellerDataReducer } from "../../../../features/AddToSellerData";
+} from "@shared/ui";
+import { DynamicModuleLoader, ReducersList } from "@shared/libs/component";
+import { SumBasketData } from "@widgets/SumBasket";
+import { useAppDispatch } from "@shared/hooks";
+import { getUserAuthData } from "@entities/user";
+import { classNames } from "@shared/libs/classNames/classNames";
+import {
+  getSellerData, getSellerDataIsLoading, fetchGetSellerData, getSellerDataReducer, 
+} from "@features/GetSellerData";
+import { getCurrentSellerOrders, sellerDataReducer } from "@entities/SellerOrders";
+import { deleteFromSellerDataReducer } from "@features/DeleteFromSellerData";
+import { nomenclaturesWhiteListReducer, getNomenclaturesWhiteList, fetchNomenclaturesWhiteList } from "@widgets/Nomenclature";
+
+import { addToSellerDataReducer } from "@features/AddToSellerData";
+import cls from "../BasketPlate/BasketPlate.module.scss";
 
 const reducers: ReducersList = {
   getSellerData: getSellerDataReducer,
@@ -35,7 +32,6 @@ const Component = () => {
 
   const sellerData = useSelector(getSellerData);
   const sellerIsLoading = useSelector(getSellerDataIsLoading);
-  // const orderProducts = sellerData?.document_data.products;
 
   const currentSellerOrder = useSelector(getCurrentSellerOrders);
   const orderProducts = currentSellerOrder?.document_data.products;
@@ -64,12 +60,12 @@ const Component = () => {
   return (
     <DynamicModuleLoader reducers={reducers}>
 
-      <Conditions condition={location.pathname === getRouteBasket() && sellerIsLoading}>
+      <Conditions condition={sellerIsLoading}>
         <div className={cls.plate_object}>
           <Loader />
         </div>
       </Conditions>
-      <Conditions condition={location.pathname === getRouteBasket() && orderProducts?.length}>
+      <Conditions condition={orderProducts?.length}>
         <div className={cls.plate_object}>
           <VStack align="center" gap="4" max>
             {/* заголовок таблицы */}

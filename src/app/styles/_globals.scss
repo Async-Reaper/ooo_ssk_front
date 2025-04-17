@@ -183,17 +183,3 @@ input {
     border: 0;
     padding: 0;
 }
-
-body::-webkit-scrollbar {
-    width: 0;
-}
-
-body::-webkit-scrollbar-track {
-    background: var(--color-white-bg);
-    width: 0;
-}
-
-body::-webkit-scrollbar-thumb {
-    background: var(--color-tiffany-blue);
-    border-radius: 10px;
-}

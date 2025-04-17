@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Typography } from "../../../shared/ui";
-import { DynamicModuleLoader, ReducersList } from "../../../shared/libs/component";
+import { Typography } from "@shared/ui";
+import { DynamicModuleLoader, ReducersList } from "@shared/libs/component";
 import cls from "./NomenclatureGroupSelect.module.scss";
 import { NomenclatureGroupType } from "../model/types/nomenclatureGroup";
 import { nomenclatureGroupReducer } from "../model/slice/nomenclatureGroupSlice";

@@ -14,6 +14,14 @@ export const SocialModal = React.memo(({ isOpen, onClose }: SocialModalProps) =>
     onClose();
   };
   
+  const openTG = () => {
+    window.open("https://t.me/cck_snack");
+  };
+
+  const openVK = () => {
+    window.open("https://vk.com/cck_nvkz_snacks");
+  };
+  
   return (
     <Modal
       isOpen={isOpen}
@@ -31,12 +39,12 @@ export const SocialModal = React.memo(({ isOpen, onClose }: SocialModalProps) =>
           Скорее подписывайтесь
         </Typography>
         <div className={cls.button__group}>
-          <Button variant="outlined" className={cls.button__tg} size="xl">
+          <Button variant="outlined" className={cls.button__tg} size="xl" onClick={openTG}>
             <Typography variant="h4" bold>
               Телеграмм
             </Typography>
           </Button>
-          <Button variant="outlined" className={cls.button__vk} size="xl">
+          <Button variant="outlined" className={cls.button__vk} size="xl" onClick={openVK}>
             <Typography variant="h4" color="green-primary" bold>
               Группа ВК
             </Typography>

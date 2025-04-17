@@ -47,7 +47,6 @@ const Component = ({
         pathname: getRouteMain(),
         search: `${httpQuery}`,
       });
-      !isShowSidebar && dispatch(uiActions.setSidebarCollapsed(true));
       onVisibleChange(!blockVisible);
       dispatch(searchProductActions.setSearchValue(""));
     }

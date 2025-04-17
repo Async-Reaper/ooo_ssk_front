@@ -43,9 +43,6 @@ const Component = () => {
       reducers={reducers}
     >
       <VStack gap="16" align="center" max>
-        <div className={cls.title_text}>
-          <Typography variant="h2">Бренды</Typography> 
-        </div>
         <HStack className={cls.brandslist__wrapper} gap="8"> 
           {brandsList?.map((brand) => (
                

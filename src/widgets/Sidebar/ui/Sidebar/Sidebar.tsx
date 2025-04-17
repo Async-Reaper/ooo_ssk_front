@@ -21,9 +21,10 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
   const isCollapsed = useSelector(getSidebarCollapsed);
   const userRole = useSelector(getUserRole);
   let routeMain = getRouteMain();
+
   if (userRole === UserRoles.SELLER) {
     routeMain = getRouteOrders();
-  } 
+  }
 
   const mods: Mods = { [cls.collapsed]: isCollapsed };
 

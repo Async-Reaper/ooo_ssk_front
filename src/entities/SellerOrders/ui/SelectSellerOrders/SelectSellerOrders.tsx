@@ -3,11 +3,12 @@ import React, {
 } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { DynamicModuleLoader, ReducersList } from "../../../../shared/libs/component";
-import { Skeleton } from "../../../../shared/ui/Skeleton";
-import { getUserAuthData } from "../../../../entities/user";
-import { useAppDispatch } from "../../../../shared/hooks";
-import { Typography } from "../../../../shared/ui";
+import { DynamicModuleLoader, ReducersList } from "@shared/libs/component";
+import { Skeleton } from "@shared/ui/Skeleton";
+import { getUserAuthData } from "@entities/user";
+import { useAppDispatch } from "@shared/hooks";
+import { Typography } from "@shared/ui";
+import { selectSumBasketActions, selectSumBasketReducer } from "@widgets/SumBasket";
 import { fetchSellerData } from "../../model/services/fetchSellerOrders";
 import { sellerDataActions, sellerDataReducer } from "../../model/slice/sellerOrdersSlice";
 import {
@@ -16,7 +17,6 @@ import {
   getSellerOrders,
 } from "../../model/selectors/sellerOrdersSelectors";
 import cls from "./SelectSellerOrders.module.scss";
-import { selectSumBasketActions, selectSumBasketReducer } from "../../../../widgets/SumBasket/model/slice/stateBasketSlice";
 
 const reducers: ReducersList = {
   sellerOrdersForm: sellerDataReducer,

@@ -1,18 +1,19 @@
 import React, { useCallback, useState } from "react";
 import {
-  AppImage, Button, Input,
-} from "../../../../shared/ui";
-import { useAppDispatch } from "../../../../shared/hooks";
-import { INomenclature } from "../../model/types/nomenclature";
-import { fetchGetSellerData } from "../../../../features/GetSellerData/model/services/fetchGetSellerData";
-import cls from "./NomenclatureCountForSeller.module.scss";
-import { fetchAddToSellerData } from "../../../../features/AddToSellerData";
-import { getSellerDataActions } from "../../../../features/GetSellerData/model/slice/getSellerDataSlice";
+  Button, Input,
+} from "@shared/ui";
+import { useAppDispatch } from "@shared/hooks";
+import { fetchGetSellerData, getSellerDataActions } from "@features/GetSellerData";
+import { fetchAddToSellerData } from "@features/AddToSellerData";
+
+import { IAlert } from "@entities/Alerts";
+import { selectSumBasketReducer } from "@widgets/SumBasket";
+import { DynamicModuleLoader, ReducersList } from "@shared/libs/component";
+import { sellerDataReducer } from "@entities/SellerOrders";
+import { Icon } from "@shared/libs/icons";
 import { useAlertsInfo } from "../../model/libs/hooks/useAlertsInfo";
-import { IAlert } from "../../../../entities/Alerts";
-import { selectSumBasketReducer } from "../../../SumBasket/model/slice/stateBasketSlice";
-import { DynamicModuleLoader, ReducersList } from "../../../../shared/libs/component";
-import { sellerDataReducer } from "../../../../entities/SellerOrders";
+import { INomenclature } from "../../model/types/nomenclature";
+import cls from "../NomenclatureCount/NomenclatureCount.module.scss";
 
 interface NomenclatureCountForSellerProps {
   countValue?: number;
@@ -170,48 +171,46 @@ const Component = ({
   return (
     <DynamicModuleLoader
       reducers={reducers}
-    > 
-      <div>
-        <div className={cls.count}>
-          <Button
-            variant="comparate_button"
-            disabled={isShow}
-            size="xs"
-            fullWidth
-            onClick={onHandleMinusToBasket}
-          >
-            <div className={cls.control_count}>
-              <AppImage src="/common/minus.svg" />
-            </div>
-          </Button>
-          <Input
-            type="number" 
-            value={countToBasket === 0
-              ? ""
-              : countToBasket}
-            onChange={onHandleAddOrRemoveSellerData}
-            placeholder="0"
-            disabled={isShow}
-            className={cls.input_count}
-          />
-          <Button
-            disabled={isShow} 
-            variant="comparate_button"
-            size="xs"
-            fullWidth
-            onClick={onHandleAddToBasket}
-          >
-            <div className={cls.control_count}>
-              <AppImage src="/common/plus.svg" />
-            </div>
-          </Button>
-        </div>
-        {/* <div className={cls.price_object}>
+    >
+      <div className={cls.count}>
+        <Button
+          variant="comparate_button"
+          disabled={isShow}
+          size="xs"
+          fullWidth
+          onClick={onHandleMinusToBasket}
+        >
+          <div className={cls.control_count}>
+            <Icon name="minus" size={30}/>
+          </div>
+        </Button>
+        <Input
+          type="number"
+          value={countToBasket === 0
+            ? ""
+            : countToBasket}
+          onChange={onHandleAddOrRemoveSellerData}
+          placeholder="0"
+          disabled={isShow}
+          className={cls.input_count}
+        />
+        <Button
+          disabled={isShow} 
+          variant="comparate_button"
+          size="xs"
+          fullWidth
+          onClick={onHandleAddToBasket}
+        >
+          <div className={cls.control_count}>
+            <Icon name="plus" size={30}/>
+          </div>
+        </Button>
+      </div>
+      {/* <div className={cls.price_object}>
                <Typography align="center" variant="h6">
                   {countToBasket !== 0 && `${formattedPrice} / ${nomenclatureData?.measurement}`}                  
                </Typography>
             </div> */}
-      </div>
     </DynamicModuleLoader>
   );
 };
