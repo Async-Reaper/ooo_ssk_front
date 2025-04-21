@@ -5,7 +5,7 @@ import { useAppDispatch } from "@shared/hooks";
 import { DynamicModuleLoader, ReducersList } from "@shared/libs/component";
 import { Typography } from "@shared/ui";
 import { getRouteMain } from "@shared/const/router";
-import { getSidebarCollapsed, uiActions } from "@features/UI";
+import { getSidebarCollapsed } from "@features/UI";
 import { searchProductActions } from "@features/SearchProduct";
 import { getNomenclatureGroupData } from "../../model/selectors/nomenclatureGroupSelectors";
 import { fetchNomenclatureGroup } from "../../model/services/fetchNomenclatureGroup";
@@ -28,6 +28,7 @@ const Component: React.FC<ChildComponentProps> = ({ blockVisible, onVisibleChang
   const isShowSidebar = useSelector(getSidebarCollapsed);
   const currentGroups = useSelector(getNomenclatureGroupData);
   // const isLoading = useSelector(getNomenclatureGroupIsLoading);
+
   useEffect(() => {
     dispatch(fetchNomenclatureGroup());
   }, [dispatch]);

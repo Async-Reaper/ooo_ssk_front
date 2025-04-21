@@ -3,13 +3,17 @@ import { Button, Typography } from "@shared/ui";
 import { useModal } from "@shared/hooks";
 import { LogoutForm } from "../LogoutForm/LogoutForm";
 
-const Component = () => {
-  const { isOpen, open, close } = useModal();
+interface LogoutButtonProps {
+  variant?: "text" | "contained";
+}
 
+const Component = ({ variant = "text" }: LogoutButtonProps) => {
+  const { isOpen, open, close } = useModal();
+  
   return (
     <>
-      <Button variant="text" onClick={open}>
-        <Typography variant="h4" color="gray-primary">
+      <Button variant={variant} onClick={open}>
+        <Typography variant="h4">
           Выйти
         </Typography>
       </Button>

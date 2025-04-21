@@ -17,6 +17,7 @@ type Props = {
   autofocus?: boolean;
   readonly?: boolean;
   variant?: DesignSystemUiColors;
+  fullWidth?: boolean;
 } & HTMLInputProps;
 
 export const Input = React.memo((props: Props) => {
@@ -30,6 +31,7 @@ export const Input = React.memo((props: Props) => {
     autofocus,
     readonly,
     variant = "neutral",
+    fullWidth = false,
     ...otherProps
   } = props;
 
@@ -38,11 +40,15 @@ export const Input = React.memo((props: Props) => {
   const onChangeHandler = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     onChange?.(e.target.value);
   }, [onChange]);
+  
+  const mods = {
+    [cls.fullWidth]: fullWidth,
+  };
 
   const classes = [className, cls[`variant--${variant}`]];
 
   return (
-    <div className={classNames(cls.input_wrapper, {}, classes)}>
+    <div className={classNames(cls.input_wrapper, mods, classes)}>
       {label && <div className={cls.label}>{label}</div>}
       <input
         ref={ref}

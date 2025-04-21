@@ -1,129 +1,134 @@
 &.color {
-    &--gray-primary {
-        color: var(--color-gray-primary);
-    }
+  &--gray-primary {
+    color: var(--color-gray-primary);
+  }
 
-    &--gray-secondary {
-        color: var(--color-gray-secondary);
-    }
+  &--gray-secondary {
+    color: var(--color-gray-secondary);
+  }
 
-    &--gray-light {
-        color: var(--color-gray-light);
-    }
+  &--gray-light {
+    color: var(--color-gray-light);
+  }
 
-    &--violet-primary {
-        color: var(--color-violet-primary);
-    }
+  &--violet-primary {
+    color: var(--color-violet-primary);
+  }
 
-    &--violet-secondary {
-        color: var(--color-violet-secondary);
-    }
+  &--violet-secondary {
+    color: var(--color-violet-secondary);
+  }
 
-    &--white-bg {
-        color: var(--color-white-bg);
-    }
+  &--white-bg {
+    color: var(--color-white-bg);
+  }
 
-    &--black {
-        color: var(--color-black);
-    }
+  &--black {
+    color: var(--color-black);
+  }
 
-    &--red-primary {
-        color: var(--color-red-primary);
-    }
+  &--red-primary {
+    color: var(--color-red-primary);
+  }
 
-    &--red-secondary {
-        color: var(--color-red-secondary);
-    }
+  &--red-secondary {
+    color: var(--color-red-secondary);
+  }
 
-    &--tiffany-blue {
-        color: var(--color-tiffany-blue);
-    }
+  &--tiffany-blue {
+    color: var(--color-tiffany-blue);
+  }
 
-    &--beet-pink {
-        color: var(--color-beet-pink);
-    }
+  &--beet-pink {
+    color: var(--color-beet-pink);
+  }
 
-    &--beige {
-        color: var(--color-beige);
-    }
+  &--beige {
+    color: var(--color-beige);
+  }
 
-    &--brown {
-        color: var(--color-brown);
-    }
+  &--brown {
+    color: var(--color-brown);
+  }
 
-    &--green {
-        color: var(--color-green);
-    }
+  &--green {
+    color: var(--color-green);
+  }
 
-    &--red {
-        color: var(--color-red);
-    }
+  &--red {
+    color: var(--color-red);
+  }
 
 }
 
 &.background {
-    &--gray-primary {
-        background: var(--color-gray-primary);
-    }
+  &--gray-primary {
+    background: var(--color-gray-primary);
 
-    &--gray-secondary {
-        background: var(--color-gray-secondary);
+    &:hover {
+      background: var(--color-gray-secondary);
+      color: var(--color-black);
     }
+  }
 
-    &--gray-light {
-        background: var(--color-gray-light);
-    }
+  &--gray-secondary {
+    background: var(--color-gray-secondary);
+  }
 
-    &--violet-primary {
-        background: var(--color-violet-primary);
-    }
+  &--gray-light {
+    background: var(--color-gray-light);
+  }
 
-    &--violet-secondary {
-        background: var(--color-violet-secondary);
-    }
+  &--violet-primary {
+    background: var(--color-violet-primary);
+  }
 
-    &--white-bg {
-        background: var(--color-white-bg);
-    }
-    
-    &--black {
-        background: var(--color-black);
-    }
+  &--violet-secondary {
+    background: var(--color-violet-secondary);
+  }
 
-    &--red-primary {
-        background: var(--color-red-primary);
-    }
+  &--white-bg {
+    background: var(--color-white-bg);
+  }
 
-    &--red-secondary {
-        background: var(--color-red-secondary);
-    }
+  &--black {
+    background: var(--color-black);
+  }
 
-    &--tiffany-blue {
-        background: var(--color-tiffany-blue);
-    }
+  &--red-primary {
+    background: var(--color-red-primary);
+  }
 
-    &--beet-pink {
-        background: var(--color-beet-pink);
+  &--red-secondary {
+    background: var(--color-red-secondary);
+  }
 
-        &:hover {
-            background: var(--color-red-primary);
-        }
-    }
+  &--tiffany-blue {
+    background: var(--color-tiffany-blue);
+  }
 
-    &--beige {
-        background: var(--color-beige);
-    }
-    
-    &--brown {
-        background: var(--color-brown);
-    }
+  &--beet-pink {
+    background: var(--color-beet-pink);
 
-    &--green {
-        background: var(--color-green);
+    &:hover {
+      background: var(--color-red-primary);
     }
+  }
 
-    &--red {
-        background: var(--color-red);
-    }
+  &--beige {
+    background: var(--color-beige);
+  }
+
+  &--brown {
+    background: var(--color-brown);
+  }
+
+  &--green {
+    background: var(--color-green);
+  }
+
+  &--red {
+    background: var(--color-red);
+  }
 
 }

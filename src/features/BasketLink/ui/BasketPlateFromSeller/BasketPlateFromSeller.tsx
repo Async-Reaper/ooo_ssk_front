@@ -99,7 +99,7 @@ const Component = () => {
             {/* заголовок таблицы */}
 
             {/* содержимое */}
-            <Conditions condition={!sellerIsLoading}>
+
               {orderProducts?.map((product) => (
                 <HStack className={cls.plate_row} max key={product?.product_guid}>
                   <div className={classNames(cls.name, {}, [cls.plate_column])}>
@@ -142,7 +142,7 @@ const Component = () => {
                   <SumBasketData />
                 </Typography>
               </div>
-            </Conditions>
+
           </VStack>
         </div>
       </Conditions>

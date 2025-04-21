@@ -12,6 +12,10 @@
 
     @import './styles/colors.styles.module';
 
+    &.fullWidth {
+        width: 100%;
+    }
+
     .label {
         display: flex;
         align-items: center;

@@ -1,9 +1,8 @@
 import React, { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
 import { Typography } from "@shared/ui";
 import { getRouteMain } from "@shared/const/router";
-import { getSidebarCollapsed, uiActions } from "@features/UI";
+import { uiActions } from "@features/UI";
 import { useAppDispatch } from "@shared/hooks";
 import { searchProductActions } from "@features/SearchProduct";
 import cls from "./NomenclatureGroupChild.module.scss";
@@ -19,7 +18,6 @@ const Component = ({
 } : nomenclatureGroupChildProps) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const isShowSidebar = useSelector(getSidebarCollapsed);
 
   const handleParent = useCallback(() => {
     const httpQuery = new URLSearchParams(location.search);
@@ -30,6 +28,7 @@ const Component = ({
       search: `${httpQuery}`,
     });
     dispatch(searchProductActions.setSearchValue(""));
+    dispatch(uiActions.setSidebarCollapsed(false));
   }, []);
   return (
 

@@ -22,11 +22,11 @@ const Component = () => {
   };
 
   const onHandleRoutePage = (link : string) => {
-    dispatch(uiActions.setSidebarCollapsed(true));
     navigate({
       pathname: link,
       search: `${httpQuery}`,
     });
+    dispatch(uiActions.setSidebarCollapsed(false));
   };
 
   return (

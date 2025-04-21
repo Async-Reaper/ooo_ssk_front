@@ -1,29 +1,23 @@
-@import "/src/app/styles/normalize";
-@import "/src/app/styles/fonts";
-@import "/src/app/styles/mixins";
+@import "@app/styles/normalize";
+@import "@app/styles/fonts";
+@import "@app/styles/mixins";
 
 .auth_wrapper {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    gap: 15px;
-    width: 70%;
-    background-color: var(--color-white-bg);
-    padding: 15px;
-    border-radius: var(--border-radius-xxl);
-    
-    @include phones-xs {
-        width: 90%;
-            
-    }
+  @include flex-column;
+  align-items: center;
+  gap: 15px;
+  max-width: 350px;
+  width: 100%;
+  padding: 30px;
+  background-color: var(--color-white-bg);
+  border-radius: var(--border-radius-xxl);
 
-    .auth_inp{
-        width: 80%;
-    }
-}
+  .download__link {
+    color: var(--color-gray-primary);
+    transition: ease-in-out .2s;
 
-button{
-    width: 30%;
-    height: 40px;
-    margin: 10px 15px;
+    &:hover {
+      color: var(--color-black);
+    }
+  }
 }

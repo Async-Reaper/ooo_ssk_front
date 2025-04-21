@@ -39,20 +39,20 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
       <div className={cls.sidebar__wrap}>
         <div className={cls.sidebar__head}>
           <div className={cls.close__button} onClick={onChangeCollapsedSidebar}>
-            <Icon name="close" size={50} color="gray-primary" />
+            <Icon name="close" size={50} color="gray-primary"/>
+          </div>
+          <div className={cls.sidebar__logo} onClick={onChangeCollapsedSidebar}>
+            <AppLink to={routeMain}>
+              <AppImage className={cls.logo} src="/common/logo-secondary.png"/>
+            </AppLink>
           </div>
         </div>
-        <div className={cls.sidebar__logo} onClick={onChangeCollapsedSidebar}>
-          <AppLink to={routeMain}>
-            <AppImage className={cls.logo} src="/common/logo.png" />
-          </AppLink>
-        </div>
         <div className={cls.search__product__wrapper}>
-          <SearchProduct />
+          <SearchProduct/>
         </div>
-        <SidebarNavigation />
+        <SidebarNavigation/>
         <div className={cls.logout_btn} onClick={onChangeCollapsedSidebar}>
-          <LogoutButton />
+          <LogoutButton variant="contained" />
         </div>
       </div>
     </aside>

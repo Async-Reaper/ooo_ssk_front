@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
 import { NomenclatureGroupType } from "@features/NomenclatureGroupSelect";
 import { Typography } from "@shared/ui";
 import { getRouteMain } from "@shared/const/router";
-import { getSidebarCollapsed, uiActions } from "@features/UI";
 import { useAppDispatch } from "@shared/hooks";
 import { searchProductActions } from "@features/SearchProduct";
 import cls from "./NomenclatureGroupParent.module.scss";
@@ -26,8 +24,6 @@ const Component = ({
   onVisibleChange,
 } : nomenclatureGroupParentProps) => {
   const [showChild, setShowChild] = useState(false);
-
-  const isShowSidebar = useSelector(getSidebarCollapsed);
 
   const handleBlockVisibleClick = () => {
     onVisibleChange(!blockVisible);
