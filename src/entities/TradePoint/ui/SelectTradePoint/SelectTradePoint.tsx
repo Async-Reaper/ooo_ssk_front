@@ -92,7 +92,7 @@ const Component = () => {
           ? <Skeleton width="250px" height="50px" border="10px" />
           : (
             <div className={cls.select__wrapper}>
-              <div ref={blockRef} className={cls.select__default} onClick={onSetIsExpanded}>
+              <div className={cls.select__default} onClick={onSetIsExpanded}>
                 <Typography className={cls.tr_point} align="center" variant="h4">
                   {currentTradePoint?.fullname
                     ? currentTradePoint.fullname

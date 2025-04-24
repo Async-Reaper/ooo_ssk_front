@@ -8,4 +8,5 @@ export interface AuthSchema {
   isSuccess: boolean;
   error?: IResponseError;
   JWT?: string;
+  matrix?: string[];
 }

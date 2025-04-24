@@ -9,6 +9,7 @@ export const authUser = createAsyncThunk<any, AuthTypes, ThunkConfig<any>>(
     const { extra, rejectWithValue } = thunkApi;
     try {
       const response = await extra.api.post("/api/service/user/authentication", data);
+      localStorage.setItem("matrix", JSON.stringify(response.data.matrix));
       return response.data;
     } catch (e) {
       if (axios.isAxiosError(e)) {

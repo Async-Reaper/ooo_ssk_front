@@ -16,7 +16,7 @@ import { Navigation } from "../Navigation/Navigation";
 const Component = () => {
   const userRole = useSelector(getUserRole);
 
-  const mobileWidthMediaQuery1 = useMediaQuery("(max-width: 770px)");
+  const tabletsWidthMediaQuery = useMediaQuery("(max-width: 770px)");
   const mobileWidthMediaQuery2 = useMediaQuery("(max-width: 500px)");
   const userInfo = useSelector(getUserAuthData);
   const [plate, setPlate] = useState(false);
@@ -58,7 +58,7 @@ const Component = () => {
                 </div>
               )}
 
-          {!mobileWidthMediaQuery1
+          {!tabletsWidthMediaQuery
               && (
                 <div className={cls.search__product__wrapper}>
                   <SearchProduct />

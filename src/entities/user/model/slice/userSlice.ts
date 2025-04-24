@@ -15,6 +15,7 @@ const userSlice = createSlice({
   reducers: {
     logout(state) {
       state.data = undefined;
+      localStorage.removeItem("matrix");
       setCookie("access_token", "");
     },
   },

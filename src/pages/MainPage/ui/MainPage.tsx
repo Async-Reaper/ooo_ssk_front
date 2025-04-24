@@ -37,7 +37,7 @@ const MainPage = () => {
       </Substrate>
     </div>
   );
-
+  
   useEffect(() => {
     if (!localStorage.getItem("isModalSocialView")) {
       open();

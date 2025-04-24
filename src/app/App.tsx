@@ -10,6 +10,7 @@ import { getUserAuthData, getUserInited, initUserAuthData } from "@entities/user
 import { useAppDispatch } from "@shared/hooks";
 import { PageLoader } from "@shared/ui";
 import { useNavigate } from "react-router-dom";
+import { getCookie } from "@shared/libs/cookie";
 
 function App() {
   const inited = useSelector(getUserInited);
@@ -18,7 +19,9 @@ function App() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(initUserAuthData());
+    if (getCookie("access_token") !== "") {
+      dispatch(initUserAuthData());
+    }
   }, [dispatch]);
 
   useEffect(() => {

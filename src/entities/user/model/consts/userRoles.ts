@@ -1,4 +1,4 @@
 export enum UserRoles {
-  SELLER = "representative",
-  BUYER = "buyer",
+  SELLER = "Seller",
+  BUYER = "Shop",
 }

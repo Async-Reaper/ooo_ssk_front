@@ -15,7 +15,7 @@
     width: 100%;
     background: var(--color-gray-primary);
 
-    @include tablets {
+    @include laptop {
       background: linear-gradient(91.65deg, #AFFC38 2.43%, #F6FD41 100%);
     }
   }
@@ -48,7 +48,7 @@
   .navigation__wrapper {
     display: none;
 
-    @include tablets {
+    @include laptop {
       display: flex;
       margin: 0 0 0 10px;
       width: 70%;
@@ -58,7 +58,7 @@
   .navigation__wrapper_seller {
     display: none;
 
-    @include tablets {
+    @include laptop {
       display: flex;
       margin: 0 0 0 20px;
     }
@@ -69,7 +69,7 @@
     cursor: pointer;
     margin: 0 0 0 -10px;
 
-    @include tablets {
+    @include laptop {
       display: none;
     }
   }

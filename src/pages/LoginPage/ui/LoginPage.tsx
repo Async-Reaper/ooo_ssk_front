@@ -27,7 +27,7 @@ const LoginPage = () => {
       <div className={cls.login__form__wrapper}>
         <AuthForm />
       </div>
-      <AnimationDots />
+      {/* <AnimationDots /> */}
     </div>
   );
 };

@@ -40,8 +40,21 @@ const Component: React.FC = () => {
   return (
     <div className={cls.navigation}>
       <div>
+        {(userRole === UserRoles.BUYER && (
+          <div ref={blockRef} className={cls.select__button} onClick={handleVisibleChange}>
+            <Typography className={cls.assort} variant="h4">Матрица</Typography>
+          </div>
+        ))}
+        {blockVisible
+          && (
+            <div className={cls.groups}>
+              <GroupList blockVisible={blockVisible} onVisibleChange={handleVisibleChange} />
+            </div>
+          )}
+      </div>
+      <div>
         <div ref={blockRef} className={cls.select__button} onClick={handleVisibleChange}>
-          <Typography className={cls.assort} variant="h4">Весь ассортимент компании</Typography>
+          <Typography className={cls.assort} variant="h4">Ассортимент</Typography>
         </div>
         {blockVisible
           && (

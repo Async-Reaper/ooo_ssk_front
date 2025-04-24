@@ -14,7 +14,7 @@ const Component = () => {
   let routeBasket = getRouteBasket();
   const userRole = useSelector(getUserRole);
   const count = useSelector(getBasketData);
-  const isColorGray = useMediaQuery("(min-width: 770px)");
+  const isColorGray = useMediaQuery("(min-width: 1024px)");
   
   const dispatch = useAppDispatch();
 

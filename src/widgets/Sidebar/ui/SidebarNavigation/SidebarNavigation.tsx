@@ -31,6 +31,18 @@ const Component = () => {
 
   return (
     <div className={cls.navigation}>
+      {(userRole === UserRoles.BUYER && (
+        <div onClick={() => setBlockVisible(!blockVisible)}>
+          <Typography className={cls.bar_text} variant="h3">Матрица</Typography>
+        </div>
+      ))}
+      {blockVisible
+        && (
+          <div className={cls.groups} ref={blockRef}>
+            <GroupList blockVisible={blockVisible} onVisibleChange={handleVisibleChange}/>
+          </div>
+        )}
+      <hr className={cls.link__underline}/>
       <div onClick={() => setBlockVisible(!blockVisible)}>
         <Typography className={cls.bar_text} variant="h3">Ассортимент</Typography>
       </div>
