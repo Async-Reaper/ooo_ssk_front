@@ -1,22 +1,28 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { UserRoles, getUserRole } from "@entities/user";
 import {
   getRouteBrands, getRouteFavorites, getRouteHistory,
 } from "@shared/const/router";
-import { UserRoles, getUserRole } from "@entities/user";
 import { AppLink, Typography } from "@shared/ui";
-import { GroupList } from "@widgets/NomenclatureGroup";
+import { GroupList, GroupListMatrix } from "@widgets/NomenclatureGroup";
+import React, { useEffect, useRef, useState } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import cls from "./Navigation.module.scss";
 
 const Component: React.FC = () => {
   const userRole = useSelector(getUserRole);
   const navigate = useNavigate();
-  const blockRef = useRef<HTMLDivElement>(null);
-  const [blockVisible, setBlockVisible] = useState(false);
 
-  const handleVisibleChange = () => {
-    setBlockVisible(!blockVisible);
+  const blockRef = useRef<HTMLDivElement>(null);
+  const [blockVisibleMatrix, setBlockVisibleMatrix] = useState(false);
+  const [blockVisibleAssort, setBlockVisibleAssort] = useState(false);
+
+  const handleVisibleChangeMatrix = () => {   
+    setBlockVisibleMatrix(!blockVisibleMatrix);
+  };
+
+  const handleVisibleChangeAssort = () => {
+    setBlockVisibleAssort(!blockVisibleAssort);
   };
 
   const handleClickLink = (route: string) => {
@@ -30,7 +36,8 @@ const Component: React.FC = () => {
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (blockRef.current && !blockRef.current.contains(event.target as Node)) {
-        setBlockVisible(false);
+        setBlockVisibleMatrix(false);
+        setBlockVisibleAssort(false);
       }
     };
 
@@ -39,40 +46,41 @@ const Component: React.FC = () => {
 
   return (
     <div className={cls.navigation}>
+      {/* <Conditions condition={userRole === UserRoles.SELLER && }>
+
+      </Conditions> */}
       <div>
-        {(userRole === UserRoles.BUYER && (
-          <div ref={blockRef} className={cls.select__button} onClick={handleVisibleChange}>
-            <Typography className={cls.assort} variant="h4">Матрица</Typography>
-          </div>
-        ))}
-        {blockVisible
+        <div className={cls.select__button} onClick={handleVisibleChangeMatrix}>
+          <Typography className={cls.assort} variant="h4">Матрица</Typography>
+        </div>
+        {blockVisibleMatrix
           && (
-            <div className={cls.groups}>
-              <GroupList blockVisible={blockVisible} onVisibleChange={handleVisibleChange} />
+            <div ref={blockRef} className={cls.groups}>
+              <GroupListMatrix blockVisible={blockVisibleMatrix} onVisibleChange={handleVisibleChangeMatrix} />
             </div>
           )}
       </div>
       <div>
-        <div ref={blockRef} className={cls.select__button} onClick={handleVisibleChange}>
+        <div ref={blockRef} className={cls.select__button} onClick={handleVisibleChangeAssort}>
           <Typography className={cls.assort} variant="h4">Ассортимент</Typography>
         </div>
-        {blockVisible
+        {blockVisibleAssort
           && (
             <div className={cls.groups}>
-              <GroupList blockVisible={blockVisible} onVisibleChange={handleVisibleChange} />
+              <GroupList blockVisible={blockVisibleAssort} onVisibleChange={handleVisibleChangeAssort} />
             </div>
           )}
       </div>
-      <>
-        <AppLink to={getRouteBrands()}>
-          <Typography className={cls.assort} variant="h4">Бренды</Typography>
-        </AppLink>
-        {(userRole === UserRoles.BUYER && (
+      {(userRole === UserRoles.BUYER && (
+        <>
+          <AppLink to={getRouteBrands()}>
+            <Typography className={cls.assort} variant="h4">Бренды</Typography>
+          </AppLink>
           <AppLink to={getRouteFavorites()}>
             <Typography className={cls.assort} variant="h4">Избранные</Typography>
           </AppLink>
-        ))}
-      </>
+        </>
+      ))}
       {userRole === UserRoles.BUYER && (
         <div className={cls.history__link} onClick={() => handleClickLink(getRouteHistory())}>
           <Typography align="center" variant="h4">История заказов</Typography>

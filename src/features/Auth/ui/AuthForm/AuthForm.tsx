@@ -1,15 +1,17 @@
 import React, { useCallback, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
-  Button, Input, Typography,
+  Button, Input, Loader, Typography,
 } from "@shared/ui";
 import { DynamicModuleLoader, ReducersList } from "@shared/libs/component";
 import { useAppDispatch } from "@shared/hooks";
 import { initUserAuthData, UserRoles } from "@entities/user";
 import { useAlertsInfo } from "@widgets/Nomenclature";
+import { useSelector } from "react-redux";
 import { authUser } from "../../model/services/authUser";
 import { authReducer } from "../../model/slice/authSlice";
 import cls from "./AuthForm.module.scss";
+import { getAuthIsLoading } from "../../model/selectors/authSelectors";
 
 const reducers: ReducersList = {
   authForm: authReducer,
@@ -21,7 +23,8 @@ const Component = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const alertBox = useAlertsInfo();
-
+  const isLoading = useSelector(getAuthIsLoading);
+  
   const onHandleAuth = useCallback(async () => {
     const responseLogin = await dispatch(authUser({ login, password }));
     const responseUser = await dispatch(initUserAuthData());
@@ -68,15 +71,21 @@ const Component = () => {
         <Typography variant="h2">Вход</Typography>
         <Input value={login} onChange={setLogin} placeholder="Имя" fullWidth />
         <Input type="password" value={password} onChange={setPassword} placeholder="Пароль" fullWidth />
-        <Button
-          size="login"
-          variant="login_special"
-          disabled={disabled}
-          onClick={onHandleAuth}
-          background="gray-primary"
-        >
-          Авторизоваться
-        </Button>
+        {
+          isLoading
+            ? <Loader /> 
+            : (
+              <Button
+                size="login"
+                variant="login_special"
+                disabled={disabled}
+                onClick={onHandleAuth}
+                background="gray-primary"
+              >
+                Авторизоваться
+              </Button>
+            )
+        }
         <a href="/CCK.arm.apk" download className={cls.download__link}>
           <Typography variant="h4">
             Скачать мобильное приложение

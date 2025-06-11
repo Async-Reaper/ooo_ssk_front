@@ -1,4 +1,4 @@
-import React, { type ReactNode } from "react";
+import { type ReactNode } from "react";
 
 import { classNames } from "@shared/libs/classNames/classNames";
 import cls from "./styles.module.scss";

@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { getSidebarCollapsed, uiActions } from "@features/UI";
 import { useAppDispatch } from "@shared/hooks";
@@ -16,7 +16,7 @@ interface SidebarProps {
   className?: string;
 }
 
-export const Sidebar = memo(({ className }: SidebarProps) => {
+export const Sidebar = React.memo(({ className }: SidebarProps) => {
   const dispatch = useAppDispatch();
   const isCollapsed = useSelector(getSidebarCollapsed);
   const userRole = useSelector(getUserRole);

@@ -1,25 +1,51 @@
-import React, { useCallback } from "react";
+import { getCurrentTradePoint } from "@entities/TradePoint";
+import { getUserAuthData } from "@entities/user";
+import { addToBasketActions, addToBasketReducer, fetchAddToBasket } from "@features/AddToBasket";
+import { useAppDispatch } from "@shared/hooks";
+import { Button, Typography } from "@shared/ui";
+import { getNomenclatureByIdList, nomenclatureReducer } from "@widgets/Nomenclature";
+import { useAlertsInfo } from "@widgets/Nomenclature/model/libs/hooks/useAlertsInfo";
+import React, { useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { useAppDispatch } from "../../../../shared/hooks";
-import { getCurrentTradePoint } from "../../../../entities/TradePoint";
-import { getUserAuthData } from "../../../../entities/user";
-import { Button, Typography } from "../../../../shared/ui";
-import { fetchAddToBasket } from "../../../../features/AddToBasket";
 import {
   getOrdersHistoryProductsData,
 } from "../../model/selectors/orderProductsHistoryListSelectors";
-import { getNomenclatureByIdList } from "../../../../widgets/Nomenclature";
-import { useAlertsInfo } from "../../../../widgets/Nomenclature/model/libs/hooks/useAlertsInfo";
+import { basketReducer, fetchBasketProductWithContract, getBasketData } from "@entities/BasketEntitie";
+import { orderProductHistoryListReducer } from "../../model/slice/orderProductHistoryListSlice";
+import { DynamicModuleLoader, ReducersList } from "@shared/libs/component";
+
+const reducers: ReducersList = {
+  orderProductHistoryList: orderProductHistoryListReducer,
+  nomenclaturesList: nomenclatureReducer,
+  addToBasketForm: addToBasketReducer,
+  basketList: basketReducer,
+};
 
 const Component = () => {
   const dispatch = useAppDispatch();
   const alertInfo = useAlertsInfo();
-
+  const basketProducts = useSelector(getBasketData);
   const currentTradePoint = useSelector(getCurrentTradePoint);
   const user = useSelector(getUserAuthData);
   const orderHistoryListData = useSelector(getOrdersHistoryProductsData);
-
+  const [isDisabled, setIsDisabled] = useState(false);
   const nomenclatureList = useSelector(getNomenclatureByIdList);
+
+  useEffect(() => {
+    dispatch(fetchBasketProductWithContract({ userGuid: user!.userGUID, contractGuid: currentTradePoint!.guid }));
+    
+    basketProducts?.map(productBasket => {
+      const thisProduct = orderHistoryListData?.find((productHistory) => productBasket.product_guid === productHistory.product_guid)
+
+      if (thisProduct) {
+        setIsDisabled(true);
+      } else {
+        setIsDisabled(false);
+      }
+    })
+    console.log(basketProducts)
+  }, [dispatch, orderHistoryListData, setIsDisabled])
+  
 
   const onAddOrderToBasket = useCallback(() => {
     // eslint-disable-next-line array-callback-return
@@ -34,7 +60,15 @@ const Component = () => {
             count: order.count,
             contract_guid: currentTradePoint!.guid,
             user_guid: user!.userGUID,
+          }));
+          dispatch(addToBasketActions.addToBasket({
+            product_guid: order.product_guid,
+            user_guid: user!.userGUID,
+            contract_guid: currentTradePoint!.guid,
+            count: order.count,
           }));     
+          
+          setIsDisabled(true)
         } else {
           alertInfo.onOpenAlert({
             id: 1,
@@ -45,14 +79,27 @@ const Component = () => {
         }
       }
     });
-  }, [dispatch, orderHistoryListData, user, currentTradePoint]);
+  }, [dispatch, orderHistoryListData, nomenclatureList, user, currentTradePoint]);
+
+  useEffect(() => {
+
+  }, [])
 
   return (
-    <Button onClick={onAddOrderToBasket}>
-      <Typography variant="h3">
-        Добавить заказ в корзину
-      </Typography>
-    </Button>
+    <DynamicModuleLoader
+      removeAfterUnmount
+      reducers={reducers}
+    >
+      <Button disabled={isDisabled} onClick={onAddOrderToBasket}>
+        <Typography variant="h3">
+          {
+            isDisabled 
+            ? "Заказ добавлен в корзину"
+            : "Добавить заказ в корзину"
+          }
+        </Typography>
+      </Button>
+    </DynamicModuleLoader>
   );
 };
 

@@ -1,9 +1,8 @@
-import React from "react";
-import {
-  AppLink, Container, Typography, VStack, 
-} from "@shared/ui";
-import { SelectDate, HistoryOrdersList } from "@features/HistoryOrders";
+import { HistoryOrdersList, SelectDate } from "@features/HistoryOrders";
 import { getRouteMain } from "@shared/const/router";
+import {
+  AppLink, Container, Typography, VStack,
+} from "@shared/ui";
 import cls from "./HistoryPage.module.scss";
 
 const HistoryPage = () => (

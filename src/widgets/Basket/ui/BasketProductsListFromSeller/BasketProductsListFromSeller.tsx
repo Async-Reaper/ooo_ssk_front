@@ -1,9 +1,9 @@
 import React from "react";
-import { NomenclatureCardForSeller } from "../../../Nomenclature";
-import { VStack } from "../../../../shared/ui";
-import { Conditions } from "../../../../shared/libs/conditions/conditions";
+import { VStack } from "@shared/ui";
+import { Conditions } from "@shared/libs/conditions/conditions";
+import { Product } from "@features/GetSellerData";
+import { NomenclatureCardForSeller } from "@widgets/Nomenclature";
 import { BasketEmpty } from "../BasketEmpty/BasketEmpty";
-import { Product } from "../../../../features/GetSellerData/model/types/getSellerData";
 
 interface BasketProductsListProps {
   basketProductsList?: Product[],
@@ -19,8 +19,8 @@ const Component = ({
       <BasketEmpty />
     </Conditions>
     <Conditions condition={basketProductsList?.length}>
-      {basketProductsList?.map((basketProduct) => (
-        <VStack gap="8" key={basketProduct.product_guid}>
+      <VStack gap="8">
+        {basketProductsList?.map((basketProduct) => (
           <NomenclatureCardForSeller
             key={basketProduct.product_guid}
             guid={basketProduct.product_guid!}
@@ -31,8 +31,8 @@ const Component = ({
             price={basketProduct.price}
             isBasket
           />
-        </VStack>
-      ))}
+        ))}
+      </VStack>
     </Conditions>
   </>
 );

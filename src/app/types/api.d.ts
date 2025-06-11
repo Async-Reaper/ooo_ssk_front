@@ -17,6 +17,7 @@ interface IFilterNomenclatures {
   isOnlyMatrix?: boolean;
   contractGuid?: string;
   titleProduct?: string;
+  matrixGUID?: string[];
 }
 
 interface IPaginationParams<T> extends IFilterNomenclatures{

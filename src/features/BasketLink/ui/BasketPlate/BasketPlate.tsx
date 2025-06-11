@@ -33,7 +33,7 @@ const Component = () => {
   const user = useSelector(getUserAuthData);
 
   useEffect(() => {
-    if (basketProducts === undefined && basketIsLoading === false && currentTradePoint) {
+    if (basketProducts?.length === 0 && basketIsLoading === false && currentTradePoint) {
       dispatch(fetchBasketProductWithContract({ userGuid: user!.userGUID, contractGuid: currentTradePoint.guid }));
     }
   }, [user, currentTradePoint]);

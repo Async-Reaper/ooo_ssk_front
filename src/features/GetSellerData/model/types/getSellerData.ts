@@ -17,10 +17,10 @@ export interface DocumentData {
 }
  
 export interface Product {
-  product_guid?: string
-  amount?: number
-  count?: number
-  price?: number
+  product_guid: string
+  amount: number
+  count: number
+  price: number
 }
 
 export interface DocumentHeader {

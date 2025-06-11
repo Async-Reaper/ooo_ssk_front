@@ -22,7 +22,6 @@ const Component = () => {
               ? getRouteMain()
               : getRouteOrders()
           }
-          variant="blue"
         >
           главную страницу
 

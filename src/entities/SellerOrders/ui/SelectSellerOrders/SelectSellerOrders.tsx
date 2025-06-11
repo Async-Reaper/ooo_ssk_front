@@ -19,7 +19,7 @@ import {
 import cls from "./SelectSellerOrders.module.scss";
 
 const reducers: ReducersList = {
-  sellerOrdersForm: sellerDataReducer,
+  sellerOrders: sellerDataReducer,
   CurrentSumBusket: selectSumBasketReducer,
 };
 
@@ -39,7 +39,7 @@ const Component = () => {
   };
 
   useEffect(() => {
-    if (userId !== undefined && userId !== null) {
+    if (userId) {
       dispatch(fetchSellerData(userId!.userGUID));
     }
   }, [dispatch, userId, params]);
@@ -65,7 +65,7 @@ const Component = () => {
     });
   }, [sellerOrders, dispatch]);
 
-  const calculateAmount = (products: any[]) => products.reduce((amount: number, product: any) => amount + (product.count || 0) * (product.price || 0), 0);
+  const calculateAmount = (products: any[]) => products.reduce((amount: number, product: any) => amount += (product.count) * (product.price), 0);
 
   useEffect(() => {
     if (currentSellerOrder) {
@@ -97,9 +97,9 @@ const Component = () => {
         isLoading
           ? <Skeleton width="250px" height="50px" border="10px" />
           : (
-            <div className={cls.select__wrapper}>
-              <div className={cls.select__default} onClick={onSetIsExpanded}>
-                {currentSellerOrder !== undefined && currentSellerOrder !== null
+            <div className={cls.select__wrapper} >
+              <div className={cls.select__default} onClick={onSetIsExpanded} ref={blockRef}>
+                {currentSellerOrder
                   ? (
                     <>
                       <Typography variant="h5">
@@ -113,13 +113,13 @@ const Component = () => {
                       <Typography variant="h5">
                         Сумма:
                         {" "}
-                        {currentSellerOrder.document_data.document_header?.amount}
+                        {currentSellerOrder.document_data.document_header?.amount?.toFixed(2)}
                         {" ₽"}
                       </Typography>
                     </>
                   )
                   : sellerOrders?.length && "Выберите документ" 
-                           || !sellerOrders?.length && "Документов в корзине нету"}
+                  || !sellerOrders?.length && "Документов в корзине нету"}
                 <div className={isExpanded
                   ? cls.up
                   : cls.down}
@@ -129,7 +129,7 @@ const Component = () => {
                   </Typography>
                 </div>
               </div>
-              <div className={cls.select__list} aria-expanded={isExpanded} ref={blockRef}>
+              <div className={cls.select__list} aria-expanded={isExpanded} >
                 {sellerOrders?.map((select) => (
                   <div
                     className={cls.select__item}
@@ -147,7 +147,7 @@ const Component = () => {
                     <Typography variant="h4">
                       {" "}
                       Сумма:
-                      {select.document_data.document_header?.amount}
+                      {select.document_data.document_header?.amount?.toFixed(2)}
                       {" ₽"}
                     </Typography>
                   </div>

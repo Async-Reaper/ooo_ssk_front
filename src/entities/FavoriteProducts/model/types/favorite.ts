@@ -12,5 +12,5 @@ export interface FavoriteSchema {
 
 export interface SendData{
   userGuid: string;
-  contractGuid: string;
+  contractGuid: string | null;
 }

@@ -1,8 +1,7 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { Container } from "@shared/ui";
 import { UserRoles, getUserAuthData } from "@entities/user";
-import { BasketFromSeller, Basket } from "@widgets/Basket";
+import { Container } from "@shared/ui";
+import { Basket, BasketFromSeller } from "@widgets/Basket";
+import { useSelector } from "react-redux";
 
 const BasketPage = () => {
   const user = useSelector(getUserAuthData);

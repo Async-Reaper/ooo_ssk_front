@@ -1,21 +1,21 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useAppDispatch } from "../../../../shared/hooks";
-import { getUserisLoading, getUserAuthData } from "../../../../entities/user";
-import { getOrdersProductsData, getOrdersProductsIsLoading } from "../../../OrderProducts/model/selectors/orderProductsListSelectors";
-import { getOrdersHeaderIsLoading, getOrderHeaderData, orderHeaderReducer } from "../../../../widgets/OrderHeader";
-import { fetchAddToSellerData } from "../..";
-import { fetchGetSellerData } from "../../../../features/GetSellerData/model/services/fetchGetSellerData";
-import { fetchOrderProductList } from "../../../../features/OrderProducts/model/services/fetchOrderProductList";
-import { Conditions } from "../../../../shared/libs/conditions/conditions";
-import { VStack } from "../../../../shared/ui";
-import { NomenclatureCardForSeller } from "../../../../widgets/Nomenclature";
-import { DynamicModuleLoader, ReducersList } from "../../../../shared/libs/component";
-import { getSellerDataReducer } from "../../../../features/GetSellerData/model/slice/getSellerDataSlice";
-import { orderProductListReducer } from "../../../../features/OrderProducts/model/slice/orderProductListSlice";
+import { useAppDispatch } from "@shared/hooks";
+import { getUserisLoading, getUserAuthData } from "@entities/user";
+import { getOrdersHeaderIsLoading, getOrderHeaderData, orderHeaderReducer } from "@widgets/OrderHeader";
+import { fetchGetSellerData } from "@features/GetSellerData/model/services/fetchGetSellerData";
+import { fetchOrderProductList } from "@features/OrderProducts/model/services/fetchOrderProductList";
+import { Conditions } from "@shared/libs/conditions/conditions";
+import { VStack } from "@shared/ui";
+import { NomenclatureCardForSeller } from "@widgets/Nomenclature";
+import { DynamicModuleLoader, ReducersList } from "@shared/libs/component";
+import { getSellerDataReducer } from "@features/GetSellerData/model/slice/getSellerDataSlice";
+import { orderProductListReducer } from "@features/OrderProducts/model/slice/orderProductListSlice";
+import { IGetSellerData } from "@features/GetSellerData/model/types/getSellerData";
+import { fetchOrderHeader } from "@widgets/OrderHeader/model/services/fetchOrderHeader";
 import cls from "../../../OrderProducts/ui/OrderProductsList/OrderProductsList.module.scss";
-import { IGetSellerData } from "../../../../features/GetSellerData/model/types/getSellerData";
-import { fetchOrderHeader } from "../../../../widgets/OrderHeader/model/services/fetchOrderHeader";
+import { fetchAddToSellerData } from "../..";
+import { getOrdersProductsData, getOrdersProductsIsLoading } from "../../../OrderProducts/model/selectors/orderProductsListSelectors";
 
 const reducers: ReducersList = {
   orderProductList: orderProductListReducer,

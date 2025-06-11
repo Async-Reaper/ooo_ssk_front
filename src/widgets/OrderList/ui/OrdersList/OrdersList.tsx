@@ -1,21 +1,20 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { getUserOrders, initUserAuthData } from "../../../../entities/user";
+import { getUserOrders, initUserAuthData } from "@entities/user";
+import { useAppDispatch } from "@shared/hooks";
+import { VStack } from "@shared/ui";
+import { Conditions } from "@shared/libs/conditions/conditions";
 import { OrderCardParent } from "../OrderCardParent/OrderCardParent";
-import { useAppDispatch } from "../../../../shared/hooks";
-import { selectSumBasketActions } from "../../../../widgets/SumBasket/model/slice/stateBasketSlice";
-import { VStack } from "../../../../shared/ui";
-import { Conditions } from "../../../../shared/libs/conditions/conditions";
 import { OrdersListEmpty } from "../OrderListEmpty/OrderListEmpty";
 
 const Component = () => {
-  // get actualiti date with currentDate
   const dispatch = useAppDispatch();
   const currentOrdersList = useSelector(getUserOrders);
+
   useEffect(() => {
-    dispatch(selectSumBasketActions.setSumBasket(0));
     dispatch(initUserAuthData());
   }, []);
+
   return (
     <>
       <Conditions condition={!currentOrdersList?.length}>

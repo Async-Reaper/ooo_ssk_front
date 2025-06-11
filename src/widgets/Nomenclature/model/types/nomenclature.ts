@@ -27,7 +27,7 @@ export interface INomenclature {
 interface INomenclatureInformation {
   product_guid: string;
   remains: number;
-  count: number;
+  cost: number;
   price: number;
 }
 

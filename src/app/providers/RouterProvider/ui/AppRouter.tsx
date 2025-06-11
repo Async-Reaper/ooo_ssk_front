@@ -1,8 +1,7 @@
-import React, { memo, Suspense, useCallback } from "react";
+import { memo, Suspense, useCallback } from "react";
 import { AppRoutesProps } from "@shared/types/router";
 import { Route, Routes } from "react-router-dom";
 import { PageLoader } from "@shared/ui";
-import { NoAuth } from "./NoAuth";
 import { routeConfig } from "../config/configRouter";
 
 const AppRouter = () => {
@@ -15,9 +14,10 @@ const AppRouter = () => {
       <Route
         key={route.path}
         path={route.path}
-        element={route.authOnly
-          ? <NoAuth>{element}</NoAuth>
-          : element}
+        element={element}
+        // element={route.authOnly
+        //   ? <NoAuth>{element}</NoAuth>
+        //   : element}
       />
     );
   }, []);

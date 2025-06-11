@@ -11,9 +11,6 @@ export default ({ mode }: any) => {
     define: {
       "process.env": env,
     },
-    server: {
-      hmr: true,
-    },
     resolve: {
       alias: [
         {

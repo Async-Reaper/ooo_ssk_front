@@ -5,7 +5,7 @@ import { IBasketData } from "../types/basket";
 
 interface BasketProductWithContract {
   userGuid: string;
-  contractGuid: string;
+  contractGuid: string | null;
 }
 
 export const fetchBasketProductWithContract = createAsyncThunk<IBasketData, BasketProductWithContract, ThunkConfig<any>>(

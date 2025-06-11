@@ -1,25 +1,27 @@
+import { favoriteReducer, fetchFavoriteProduct, getFavoriteData } from "@entities/FavoriteProducts";
+import { getCurrentTradePoint } from "@entities/TradePoint";
+import { getUserAuthData } from "@entities/user";
+import { useAppDispatch } from "@shared/hooks";
+import { DynamicModuleLoader, ReducersList } from "@shared/libs/component";
+import { Conditions } from "@shared/libs/conditions/conditions";
+import { VStack } from "@shared/ui";
+import { NomenclatureCard } from "@widgets/Nomenclature";
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import cls from "./OrderProductsHistoryList.module.scss";
-import { NomenclatureCard } from "../../../../widgets/Nomenclature";
-import { Conditions } from "../../../../shared/libs/conditions/conditions";
-import { DynamicModuleLoader, ReducersList } from "../../../../shared/libs/component";
-import { favoriteReducer, fetchFavoriteProduct, getFavoriteData } from "../../../../entities/FavoriteProducts";
-import { useAppDispatch } from "../../../../shared/hooks";
-import { getUserAuthData } from "../../../../entities/user";
-import { VStack } from "../../../../shared/ui";
-import {
-  fetchOrderProductHistoryList,
-} from "../../model/services/fetchOrderProductHistoryList";
+import { useParams, useSearchParams } from "react-router-dom";
+import { basketReducer } from "@entities/BasketEntitie";
 import {
   getOrdersHistoryProductsData,
 } from "../../model/selectors/orderProductsHistoryListSelectors";
+import {
+  fetchOrderProductHistoryList,
+} from "../../model/services/fetchOrderProductHistoryList";
 import { orderProductHistoryListReducer } from "../../model/slice/orderProductHistoryListSlice";
-import { getCurrentTradePoint } from "../../../../../src/entities/TradePoint";
+import cls from "./OrderProductsHistoryList.module.scss";
 
 const reducers: ReducersList = {
   orderProductHistoryList: orderProductHistoryListReducer,
+  basketList: basketReducer,
   favoriteList: favoriteReducer,
 };
 
@@ -30,13 +32,14 @@ const Component = () => {
   const tradePoint = useSelector(getCurrentTradePoint);
   const dispatch = useAppDispatch();
   const params = useParams<{id: string}>();
-
+  const [search] = useSearchParams();
+  
   useEffect(() => {
     dispatch(fetchOrderProductHistoryList(params.id!));
   }, [dispatch, params]);
 
   useEffect(() => {
-    dispatch(fetchFavoriteProduct({ userGuid: user?.userGUID!, contractGuid: tradePoint?.guid! }));
+    dispatch(fetchFavoriteProduct({ userGuid: user?.userGUID!, contractGuid: tradePoint?.guid! || search.get("contractGUID") }));
   }, [dispatch, user]);
 
   return (

@@ -19,6 +19,7 @@ module.exports = {
     "react-hooks",
   ],
   rules: {
+    "array-callback-return": "off",
     "dot-notation": "off",
     // semi: ["error", "always", { omitLastInOneLineBlock: false }],
     "default-case": "off",
@@ -54,7 +55,9 @@ module.exports = {
     "import/no-extraneous-dependencies": ["off", { bundledDependencies: false }],
     "multiline-ternary": ["error", "always"],
     "no-shadow": "off",
+    "no-nested-ternary": "off",
     "@typescript-eslint/no-shadow": "warn",
+    // "array-callback-return": "off",
     "no-restricted-globals": "off",
     "no-restricted-syntax": "off",
     "no-unused-expressions": "off",

@@ -1,12 +1,12 @@
-import { useSelector } from "react-redux";
-import { getUserRole, UserRoles } from "@entities/user";
-import { Container, Typography } from "@shared/ui";
-import { NomenclaturesList, NomenclaturesListForSeller } from "@widgets/Nomenclature";
 import { getCurrentTradePoint } from "@entities/TradePoint";
-import { Substrate } from "@shared/ui/Primitives/Container/Container";
-import React, { useEffect } from "react";
+import { getUserRole, UserRoles } from "@entities/user";
 import { SocialModal } from "@features/SocialModal";
 import { useModal } from "@shared/hooks";
+import { Container, Typography } from "@shared/ui";
+import { Substrate } from "@shared/ui/Primitives/Container/Container";
+import { NomenclaturesList, NomenclaturesListForSeller } from "@widgets/Nomenclature";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import cls from "./MainPage.module.scss";
 
 const MainPage = () => {

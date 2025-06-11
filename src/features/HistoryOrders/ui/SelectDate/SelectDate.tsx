@@ -5,12 +5,12 @@ import { getCurrentTradePoint } from "@entities/TradePoint";
 import { useAppDispatch } from "@shared/hooks";
 import { ReducersList, DynamicModuleLoader } from "@shared/libs/component";
 import { fetchHistoryOrders } from "../../model/services/fetchHistoryOrders";
-import { selectDateActions, sellerDataReducer } from "../../model/slice/selectDataSlice";
+import { selectDateActions, selectDateReducer } from "../../model/slice/selectDataSlice";
 import { getSelectDate } from "../../model/selectors/historyOrdersSelectors";
 import cls from "./SelectDate.module.scss";
 
 const reducers: ReducersList = {
-  selectDate: sellerDataReducer,
+  selectDate: selectDateReducer,
 };
 
 const Component = () => {

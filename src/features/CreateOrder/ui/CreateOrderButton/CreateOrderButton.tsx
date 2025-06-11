@@ -2,13 +2,15 @@ import React, { useCallback } from "react";
 import { Button, Typography } from "@shared/ui";
 import { useAppDispatch, useModal } from "@shared/hooks";
 import { deleteFromBasketActions, fetchDeleteFromBasket } from "@features/DeleteFromBasket";
-import { ICreateOrder } from "../../model/types/createOrder";
-import { fetchCreateOrder } from "../../model/services/fetchCreateOrder";
+import { useAlertsInfo } from "@widgets/Nomenclature/model/libs/hooks/useAlertsInfo";
+import {
+  selectSumBasketActions, selectSumBasketReducer, fetchSumBasketByParams, sumBasketReducer, 
+} from "@widgets/SumBasket";
+import { DynamicModuleLoader, ReducersList } from "@shared/libs/component";
+
 import { CreateOrderModal } from "../CreateOrderModal/CreateOrderModal";
-import { useAlertsInfo } from "../../../../widgets/Nomenclature/model/libs/hooks/useAlertsInfo";
-import { selectSumBasketActions, selectSumBasketReducer } from "../../../../widgets/SumBasket/model/slice/stateBasketSlice";
-import { DynamicModuleLoader, ReducersList } from "../../../../shared/libs/component";
-import { fetchSumBasketByParams, sumBasketReducer } from "../../../../widgets/SumBasket";
+import { fetchCreateOrder } from "../../model/services/fetchCreateOrder";
+import { ICreateOrder } from "../../model/types/createOrder";
 
 interface CreateOrderButtonProps {
   dataCreateOrder: ICreateOrder
@@ -24,6 +26,7 @@ const Component = ({ dataCreateOrder }: CreateOrderButtonProps) => {
   const alertBox = useAlertsInfo();
    
   const { isOpen, open, close } = useModal();
+  
   const onHandleDeleteProductFromBasket = useCallback(() => {
     dataCreateOrder.products.map(async (product) => {
       await dispatch(fetchDeleteFromBasket({ 
@@ -52,6 +55,7 @@ const Component = ({ dataCreateOrder }: CreateOrderButtonProps) => {
       open();
     }
   }, [dispatch, dataCreateOrder, open]);
+
   return (
     <DynamicModuleLoader reducers={reducers}>
       <Button onClick={onHandleCreateOrder} variant="contained">

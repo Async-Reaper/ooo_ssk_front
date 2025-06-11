@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography } from "../../../../shared/ui";
+import { Typography } from "@shared/ui";
 import cls from "./OrderListEmpty.module.scss";
 
 const Component = () => (

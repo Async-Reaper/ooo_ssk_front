@@ -1,10 +1,9 @@
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { AuthForm } from "@features/Auth";
-import { useSelector } from "react-redux";
 import { getUserAuthData, getUserInited, UserRoles } from "@entities/user";
+import { AuthForm } from "@features/Auth";
 import { getRouteMain, getRouteOrders } from "@shared/const/router";
-import { AnimationDots } from "@shared/ui";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import cls from "./LoginPage.module.scss";
 
 const LoginPage = () => {

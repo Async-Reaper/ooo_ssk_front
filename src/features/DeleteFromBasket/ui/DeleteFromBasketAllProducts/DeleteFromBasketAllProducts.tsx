@@ -5,7 +5,7 @@ import { getUserAuthData } from "@entities/user";
 import { IBasket } from "@entities/BasketEntitie";
 import { getCurrentTradePoint } from "@entities/TradePoint";
 import { useAppDispatch } from "@shared/hooks";
-import { fetchSumBasketByParams, GetСurrentBasketSum, selectSumBasketReducer } from "@widgets/SumBasket";
+import { fetchSumBasketByParams, getСurrentBasketSum, selectSumBasketReducer } from "@widgets/SumBasket";
 import { DynamicModuleLoader } from "@shared/libs/component";
 
 import { IDeleteFromBasket } from "../../model/types/deleteFromBasket";
@@ -40,7 +40,7 @@ const Component = ({ basketProductsList }: DeleteFromBasketAllProductsProps) => 
     });
   }, [dispatch, basketProductsList, user, currentTradePoint]);
    
-  const currentBasketSum = useSelector(GetСurrentBasketSum); 
+  const currentBasketSum = useSelector(getСurrentBasketSum); 
 
   useEffect(() => {
     dispatch(fetchSumBasketByParams({ userGuid: user!.userGUID, contractGuid: currentTradePoint?.guid! }));

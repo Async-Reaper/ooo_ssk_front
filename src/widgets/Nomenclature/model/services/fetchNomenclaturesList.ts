@@ -17,6 +17,18 @@ export const fetchNomenclaturesList = createAsyncThunk<NomenclatureListData, IFi
           is_discount: filter.isDiscount,
           contract_guid: filter.contractGuid,
           title_products: filter.titleProduct,
+          matrix: filter.matrixGUID,
+        },
+        paramsSerializer: (params) => {
+          const searchParams = new URLSearchParams();
+          Object.entries(params).forEach(([key, value]) => {
+            if (Array.isArray(value)) {
+              value.forEach((v) => searchParams.append(key, v));
+            } else if (value !== undefined && value !== null && value !== "") {
+              searchParams.append(key, value);
+            }
+          });
+          return searchParams.toString();
         },
         headers: {
           access_token: getCookie("access_token"),

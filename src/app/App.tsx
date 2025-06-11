@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import AppRouter from "@app/providers/RouterProvider";
 import { MainLayout } from "@shared/layouts/MainLayout/MainLayout";
 import { Header } from "@widgets/Header";
@@ -8,9 +8,7 @@ import { SmoothTransition } from "@shared/ui/SmoothTransition";
 import { useSelector } from "react-redux";
 import { getUserAuthData, getUserInited, initUserAuthData } from "@entities/user";
 import { useAppDispatch } from "@shared/hooks";
-import { PageLoader } from "@shared/ui";
 import { useNavigate } from "react-router-dom";
-import { getCookie } from "@shared/libs/cookie";
 
 function App() {
   const inited = useSelector(getUserInited);
@@ -19,9 +17,7 @@ function App() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (getCookie("access_token") !== "") {
-      dispatch(initUserAuthData());
-    }
+    dispatch(initUserAuthData());
   }, [dispatch]);
 
   useEffect(() => {
@@ -29,10 +25,6 @@ function App() {
       navigate("/login");
     }
   }, [auth, navigate]);
-
-  if (!inited) {
-    return <PageLoader />;
-  }
 
   return (
     <Suspense fallback={<h1>Loading...</h1>}>

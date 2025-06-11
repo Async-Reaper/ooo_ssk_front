@@ -20,6 +20,18 @@
     }
   }
 
+  .orders__link__wrapper {
+    background: var(--color-gray-primary);
+    padding: 25px;
+    width: 100vw;
+
+    .orders__link {
+      display: block;
+      width: max-content;
+      margin: 0 auto;
+    }
+  }
+
   .header__bottom {
     display: grid;
     grid-template-columns: 1fr;

@@ -1,21 +1,21 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { Button, Typography } from "../../../../shared/ui";
-import { useAppDispatch, useModal } from "../../../../shared/hooks";
-import { DynamicModuleLoader, ReducersList } from "../../../../shared/libs/component";
-import { IApprovedOrder } from "../../model/types/approvedOrder";
-import { fetchApprovedOrder } from "../../model/services/fetchApprovedOrder";
-import { ApprovedOrderModal } from "../ApprovedOrderModal/ApprovedOrderModal";
+import { Button, Typography } from "@shared/ui";
+import { useAppDispatch, useModal } from "@shared/hooks";
+import { DynamicModuleLoader, ReducersList } from "@shared/libs/component";
+import { fetchGetSellerData } from "@features/GetSellerData/model/services/fetchGetSellerData";
+import { IGetSellerData } from "@features/GetSellerData/model/types/getSellerData";
+import { fetchDeleteFromSellerData } from "@features/DeleteFromSellerData/model/services/fetchDeleteFromSellerData";
+import { getUserAuthData, initUserAuthData } from "@entities/user";
+import { sellerDataActions } from "@entities/SellerOrders";
+import { Conditions } from "@shared/libs/conditions/conditions";
+import { selectSumBasketActions } from "@widgets/SumBasket/model/slice/stateBasketSlice";
+import { useAlertsInfo } from "@widgets/Nomenclature/model/libs/hooks/useAlertsInfo";
 import { approvedOrderReducer } from "../../model/slice/approvedOrderSlice";
-import { fetchGetSellerData } from "../../../../features/GetSellerData/model/services/fetchGetSellerData";
-import { IGetSellerData } from "../../../../features/GetSellerData/model/types/getSellerData";
-import { fetchDeleteFromSellerData } from "../../../../features/DeleteFromSellerData/model/services/fetchDeleteFromSellerData";
-import { getUserAuthData, initUserAuthData } from "../../../../entities/user";
-import { sellerDataActions } from "../../../../entities/SellerOrders";
-import { Conditions } from "../../../../shared/libs/conditions/conditions";
-import { selectSumBasketActions } from "../../../../widgets/SumBasket/model/slice/stateBasketSlice";
-import { useAlertsInfo } from "../../../../widgets/Nomenclature/model/libs/hooks/useAlertsInfo";
+import { ApprovedOrderModal } from "../ApprovedOrderModal/ApprovedOrderModal";
+import { fetchApprovedOrder } from "../../model/services/fetchApprovedOrder";
+import { IApprovedOrder } from "../../model/types/approvedOrder";
 
 interface ApprovedOrderButtonProps {
   dataApprovedOrder: IApprovedOrder
@@ -26,18 +26,18 @@ const reducers: ReducersList = {
   approvedOrderForm: approvedOrderReducer,
 };
 
-const Component = ({ dataApprovedOrder, isApproved }: ApprovedOrderButtonProps) => {
+const Component = ({ dataApprovedOrder }: ApprovedOrderButtonProps) => {
   const dispatch = useAppDispatch();
   const { isOpen, open, close } = useModal();
   const navigate = useNavigate();
   const [paramsQuery] = useSearchParams();
   const params = useParams<{id: string}>();
   const alertBox = useAlertsInfo();
-
+  // const approvedOrderIsLoading = useSelector(getApprovedOrderIsLoading);
   const user = useSelector(getUserAuthData);
   const documentGUID = paramsQuery.get("documentGUID") || params.id!;
 
-  const [isApprovedDocument, setApprovedDoc] = useState(isApproved);
+  // const [isApprovedDocument, setApprovedDoc] = useState(isApproved);
 
   const onHandleCreateOrder = useCallback(async () => {
     const paramRequest = {
@@ -61,9 +61,10 @@ const Component = ({ dataApprovedOrder, isApproved }: ApprovedOrderButtonProps) 
       httpQuery.delete("documentGUID");
       httpQuery.delete("contractGUID");
       navigate({
+        pathname: "/orders",
         search: `${httpQuery}`,
       });
-      setApprovedDoc(true);
+      // setApprovedDoc(true);
       dispatch(selectSumBasketActions.setSumBasket(0));
       alertBox.onOpenAlert({
         id: 1,
@@ -85,14 +86,10 @@ const Component = ({ dataApprovedOrder, isApproved }: ApprovedOrderButtonProps) 
       <>
         <Button
           onClick={onHandleCreateOrder}
-          background={isApprovedDocument
-            ? "green"
-            : undefined}
+          // disabled={isApprovedDocument || approvedOrderIsLoading}
         >
           <Typography variant="h4">
-            {isApprovedDocument
-              ? "Утверждено"
-              : "Утвердить"}
+            Подтвердить
           </Typography>
         </Button>
         <Conditions condition={isOpen}>

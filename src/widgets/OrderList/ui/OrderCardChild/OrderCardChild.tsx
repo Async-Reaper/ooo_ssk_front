@@ -1,12 +1,12 @@
 import React, { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { ApprovedOrderButton } from "@features/ApprovedOrder";
+import { getUserAuthData } from "@entities/user";
+import { HStack, Typography } from "@shared/ui";
+import { ColoredIcon } from "@shared/libs/icons";
+import { classNames } from "@shared/libs/classNames/classNames";
 import cls from "./OrderCardChild.module.scss";
-import { ApprovedOrderButton } from "../../../../features/ApprovedOrder";
-import { getUserAuthData } from "../../../../entities/user";
-import { HStack, Typography } from "../../../../shared/ui";
-import { ColoredIcon } from "../../../../shared/libs/icons";
-import { classNames } from "../../../../shared/libs/classNames/classNames";
 
 interface orderCardChildProps {
   number?: string;
@@ -41,7 +41,7 @@ const Component = ({
     },
     products: [],
   }), [user]);
-
+  
   const onHandleOpenOrder = () => {
     navigate({
       pathname: `/orders/${documentGUID}`,

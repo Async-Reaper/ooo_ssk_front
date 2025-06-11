@@ -1,15 +1,15 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Button, AppImage } from "../../../../shared/ui";
-import { useAppDispatch } from "../../../../shared/hooks";
-import { useAlertsInfo } from "../../../../widgets/Nomenclature/model/libs/hooks/useAlertsInfo";
-import { IAlert } from "../../../../entities/Alerts";
+import { Button, AppImage } from "@shared/ui";
+import { useAppDispatch } from "@shared/hooks";
+import { useAlertsInfo } from "@widgets/Nomenclature";
+import { IAlert } from "@entities/Alerts";
 import {
-  Product, getCurrentSellerOrders, sellerDataActions, sellerDataReducer, 
-} from "../../../../entities/SellerOrders";
-import { fetchAddToSellerData } from "../../../../features/AddToSellerData";
-import { DynamicModuleLoader, ReducersList } from "../../../../shared/libs/component";
-import { selectSumBasketReducer } from "../../../../widgets/SumBasket/model/slice/stateBasketSlice";
+  Product, getCurrentSellerOrders, sellerDataActions, 
+} from "@entities/SellerOrders";
+import { fetchAddToSellerData } from "@features/AddToSellerData";
+import { DynamicModuleLoader, ReducersList } from "@shared/libs/component";
+import { selectSumBasketReducer } from "@widgets/SumBasket";
 
 interface DeleteFromSellerDataProps {
   productGUID: string;
@@ -18,7 +18,6 @@ interface DeleteFromSellerDataProps {
 
 const reducers : ReducersList = {
   CurrentSumBusket: selectSumBasketReducer,
-  sellerOrdersForm: sellerDataReducer,
 };
 
 const Component = ({ productGUID, productName }: DeleteFromSellerDataProps) => {

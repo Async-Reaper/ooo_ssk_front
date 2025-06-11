@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { fetchAddToSellerData } from "@features/AddToSellerData";
+import { fetchDeleteFromSellerData } from "@features/DeleteFromSellerData";
 import { ISellerOrder, SellerOrderSchema } from "../types/sellerOrdersTypes";
 import { fetchSellerData } from "../services/fetchSellerOrders";
-import { fetchAddToSellerData } from "../../../../features/AddToSellerData";
-import { fetchDeleteFromSellerData } from "../../../../features/DeleteFromSellerData/model/services/fetchDeleteFromSellerData";
 
 const initialState: SellerOrderSchema = {
   isLoading: false,

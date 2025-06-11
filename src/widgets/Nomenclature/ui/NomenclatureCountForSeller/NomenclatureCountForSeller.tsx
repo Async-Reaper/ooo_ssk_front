@@ -5,11 +5,9 @@ import {
 import { useAppDispatch } from "@shared/hooks";
 import { fetchGetSellerData, getSellerDataActions } from "@features/GetSellerData";
 import { fetchAddToSellerData } from "@features/AddToSellerData";
-
 import { IAlert } from "@entities/Alerts";
 import { selectSumBasketReducer } from "@widgets/SumBasket";
 import { DynamicModuleLoader, ReducersList } from "@shared/libs/component";
-import { sellerDataReducer } from "@entities/SellerOrders";
 import { Icon } from "@shared/libs/icons";
 import { useAlertsInfo } from "../../model/libs/hooks/useAlertsInfo";
 import { INomenclature } from "../../model/types/nomenclature";
@@ -25,6 +23,10 @@ interface NomenclatureCountForSellerProps {
   price?: number;
 }
 
+const reducers: ReducersList = {
+  CurrentSumBusket: selectSumBasketReducer,
+};
+
 const Component = ({
   nomenclatureData, 
   countValue, 
@@ -34,26 +36,26 @@ const Component = ({
   isShow,
   price,
 }: NomenclatureCountForSellerProps) => {
-  const reducers: ReducersList = {
-    CurrentSumBusket: selectSumBasketReducer,
-    sellerOrdersForm: sellerDataReducer,
-  };
+
    
   const dispatch = useAppDispatch();
 
-  const calculateAmount = (products: any[]) => products.reduce((amount: number, product: any) => amount + (product.count || 0) * (product.price || 0), 0);
+  const calculateAmount = (products: any[]) => products.reduce((amount: number, product: any) => amount += ((product.count) * (product.price)), 0);
    
   const alert = useAlertsInfo();
   let priceConfirm = 0;
+
   if (price !== undefined && price !== null && price !== 0) {
     priceConfirm = price;
   } 
-  if (priceConfirm === 0 && nomenclatureData?.additional_information !== undefined
-         && nomenclatureData?.additional_information !== null) priceConfirm = nomenclatureData?.additional_information.price;
 
-  // const formattedPrice: string = priceConfirm !== undefined
-  //    ? `${priceConfirm.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")} ₽`
-  //    : "0 ₽";
+  if (
+    priceConfirm === 0 
+      && nomenclatureData?.additional_information !== undefined
+      && nomenclatureData?.additional_information !== null
+  ) {
+    priceConfirm = nomenclatureData?.additional_information.price;
+  }
 
   const [countToBasket, setCountToBasket] = useState(countValue || 0);
   const multiplicity = nomenclatureData?.multiplicity === 0
@@ -61,12 +63,14 @@ const Component = ({
     : nomenclatureData?.multiplicity;
   const thisGUID = productGUID || nomenclatureData?.guid;
 
-  let remains = nomenclatureData === undefined || nomenclatureData.additional_information === null
+  let remains = (nomenclatureData === undefined || nomenclatureData.additional_information === null)
     ? 0
     : nomenclatureData.additional_information.remains;
+
   if (remains === 0) {
     remains = countValue || 0;
   }
+
   const detectCorrectCount = (count: number) => {
     if (remains === 0 && count < countToBasket) {
       return false;
@@ -92,6 +96,7 @@ const Component = ({
 
   const onHandleAddOrRemoveSellerData = useCallback(async (elem: number) => {
     const isNotCorrectCount = detectCorrectCount(elem);
+
     if (isNotCorrectCount) {
       return;
     }
@@ -103,19 +108,23 @@ const Component = ({
     
     if (response.meta.requestStatus === "fulfilled") {
       const dataBasket = { ...response.payload };
-    
+      
       if (elem <= 0) {
         const updatedProducts = dataBasket.document_data.products.filter(
           (item: { product_guid: any; }) => item.product_guid !== thisGUID,
         );
+
         dataBasket.document_data = {
           ...dataBasket.document_data,
           products: updatedProducts,
         };
+
         dispatch(getSellerDataActions.freshView(dataBasket));
       } else {
         const documentDataCopy = { ...dataBasket.document_data };
+        
         const newProducts = [...documentDataCopy.products];
+
         const findElementIndex = newProducts.findIndex(
           (el: { product_guid: string }) => el.product_guid === thisGUID,
         );

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { DynamicModuleLoader, ReducersList } from "@shared/libs/component";
 import { favoriteReducer, fetchFavoriteProduct, getFavoriteData } from "@entities/FavoriteProducts";
-import { basketReducer, fetchBasketProductWithContract, getBasketData } from "@entities/BasketEntitie";
+import { fetchBasketProductWithContract, getBasketData } from "@entities/BasketEntitie";
 import { getSearchValue, searchProductReducer } from "@features/SearchProduct";
 import { VStack } from "@shared/ui";
 import { getCurrentTradePoint } from "@entities/TradePoint";
@@ -29,7 +29,7 @@ const reducers: ReducersList = {
   nomenclature: nomenclatureReducer,
   search: searchProductReducer,
   favoriteList: favoriteReducer,
-  basketList: basketReducer,
+  // basketList: basketReducer,
 };
 
 const Component = () => {
@@ -43,7 +43,7 @@ const Component = () => {
   const searchValue = useSelector(getSearchValue);
 
   const [page, setPage] = useState(1);
-  const [limit] = useState(30);
+  const [limit] = useState(10);
    
   const placeholderItems = usePlaceholderItems(limit);
   const dispatch = useAppDispatch();
@@ -53,6 +53,7 @@ const Component = () => {
   const brandGUID = search.get("brandGUID");
   const isNew = search.get("isNew");
   const parentGuid = search.get("parentGUID");
+  const isOnlyMatrix = search.get("isOnlyMatrix");
 
   useEffect(() => {
     const paramsForRequest: IFilterNomenclatures = {
@@ -72,8 +73,11 @@ const Component = () => {
     if (searchValue !== undefined && searchValue !== null && searchValue !== "") {
       paramsForRequest.titleProduct = searchValue;
     }
+    if (isOnlyMatrix !== undefined && isOnlyMatrix !== null && isOnlyMatrix !== "") {
+      paramsForRequest.matrixGUID = JSON.parse(localStorage.getItem("matrix") || "");
+    }
     dispatch(fetchNomenclaturesList(paramsForRequest));
-  }, [dispatch, page, contractGUID, searchValue, brandGUID, parentGuid, isNew]);
+  }, [dispatch, page, contractGUID, searchValue, brandGUID, parentGuid, isNew, isOnlyMatrix]);
 
   useEffect(() => {
     dispatch(fetchFavoriteProduct({ userGuid: user?.userGUID!, contractGuid: currentTradePoint?.guid! }));

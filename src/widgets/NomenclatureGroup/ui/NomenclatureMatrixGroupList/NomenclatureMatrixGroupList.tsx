@@ -11,7 +11,7 @@ import { getNomenclatureGroupData } from "../../model/selectors/nomenclatureGrou
 import { fetchNomenclatureGroup } from "../../model/services/fetchNomenclatureGroup";
 import { nomenclatureGroupReducer } from "../../model/slice/nomenclatureGroupSlice";
 import { NomenclatureGroupParent } from "../NomenclatureGroupParent/NomenclatureGroupParent";
-import cls from "./NomenclatureGroupList.module.scss";
+import cls from "../NomenclatureGroupList/NomenclatureGroupList.module.scss";
 
 const reducers: ReducersList = {
   nomenclatureGroupList: nomenclatureGroupReducer,
@@ -37,7 +37,7 @@ const Component: React.FC<ChildComponentProps> = ({ blockVisible, onVisibleChang
     const httpQuery = new URLSearchParams(location.search);
     httpQuery.delete("parentGUID");
     httpQuery.delete("brandGUID");
-    httpQuery.delete("isOnlyMatrix");
+    httpQuery.set("isOnlyMatrix", "true");
     dispatch(searchProductActions.setSearchValue(""));
     navigate({
       pathname: getRouteMain(),
@@ -58,7 +58,7 @@ const Component: React.FC<ChildComponentProps> = ({ blockVisible, onVisibleChang
 
         <div className={cls.group_wrap}>
           <div onClick={handleBlockVisibleClick}>
-            <Typography variant="h4">Весь ассортимент</Typography>
+            <Typography variant="h4">Вся матрица</Typography>
           </div>
         </div>
 
@@ -81,4 +81,4 @@ const Component: React.FC<ChildComponentProps> = ({ blockVisible, onVisibleChang
   );
 };
 
-export const GroupList = React.memo(Component);
+export const GroupListMatrix = React.memo(Component);

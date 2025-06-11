@@ -11,7 +11,7 @@ import { deleteFromFavoriteReducer } from "@features/DeleteFromFavorite";
 import { Typography, VStack } from "@shared/ui";
 import { Substrate } from "@shared/ui/Primitives/Container/Container";
 import {
-  basketReducer, fetchBasketProductWithContract, getBasketData, getBasketIsLoading, 
+  fetchBasketProductWithContract, getBasketData, getBasketIsLoading, 
 } from "@entities/BasketEntitie";
 import { getFavoriteData, getFavoriteIsLoading } from "../model/selectors/favoriteSelectors";
 import { fetchFavoriteProduct } from "../model/services/fetchFavoriteProduct";
@@ -19,7 +19,7 @@ import cls from "./FavoriteProductsMenu.module.scss";
 
 const reducers: ReducersList = {
   favoriteList: favoriteReducer,
-  basketList: basketReducer,
+  // basketList: basketReducer,
   SumBusket: sumBasketReducer,
   deleteFromFavoriteForm: deleteFromFavoriteReducer,
 };
@@ -36,12 +36,24 @@ const Component = (() => {
   const favoriteDataIsLoading = useSelector(getFavoriteIsLoading);
   const favoriteData = useSelector(getFavoriteData);
    
+  const httpQuery = new URLSearchParams(location.search);
+
   useEffect(() => {
     if (!favoriteDataIsLoading) {
-      dispatch(fetchFavoriteProduct({ userGuid: userInfo?.userGUID!, contractGuid: curentContract?.guid! }));
+      dispatch(fetchFavoriteProduct({
+        userGuid: userInfo?.userGUID!,
+        contractGuid: curentContract
+          ? curentContract?.guid
+          : httpQuery.get("contractGUID"), 
+      }));
     }
     if (!basketProductsIsLoading) {
-      dispatch(fetchBasketProductWithContract({ userGuid: userInfo?.userGUID!, contractGuid: curentContract?.guid! }));
+      dispatch(fetchBasketProductWithContract({
+        userGuid: userInfo?.userGUID!,
+        contractGuid: curentContract
+          ? curentContract?.guid
+          : httpQuery.get("contractGUID"), 
+      }));
     }
   }, [dispatch, userInfo, curentContract]);
 

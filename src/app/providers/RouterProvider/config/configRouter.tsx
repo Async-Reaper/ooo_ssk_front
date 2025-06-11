@@ -10,20 +10,20 @@ import {
   getRouteOrders,
   getRouteTest,
   getRouteFavorites,
-} from "../../../../shared/const/router";
-import { AppRoutesProps } from "../../../../shared/types/router";
-import { NotFoundPage } from "../../../../pages/NotFoundPage";
-import { MainPage } from "../../../../pages/MainPage";
-import { LoginPage } from "../../../../pages/LoginPage";
-import { HistoryPage } from "../../../../pages/HistoryPage";
-import { HistoryIdPage } from "../../../../pages/HistoryIdPage";
-import { BasketPage } from "../../../../pages/BasketPage";
-import { BrandPage } from "../../../../pages/BrandPage";
-import { OrdersPage } from "../../../../pages/OrdersPage";
-import { TestingPage } from "../../../../pages/TestingPage";
-import { OrderIdPage } from "../../../../pages/OrderIdPage";
-import { UserRoles } from "../../../../entities/user";
-import { FavorivePage } from "../../../../pages/FavorivePage";
+} from "@shared/const/router";
+import { AppRoutesProps } from "@shared/types/router";
+import { NotFoundPage } from "@pages/NotFoundPage";
+import { MainPage } from "@pages/MainPage";
+import { LoginPage } from "@pages/LoginPage";
+import { HistoryPage } from "@pages/HistoryPage";
+import { HistoryIdPage } from "@pages/HistoryIdPage";
+import { BasketPage } from "@pages/BasketPage";
+import { BrandPage } from "@pages/BrandPage";
+import { OrdersPage } from "@pages/OrdersPage";
+import { TestingPage } from "@pages/TestingPage";
+import { OrderIdPage } from "@pages/OrderIdPage";
+import { UserRoles } from "@entities/user";
+import { FavorivePage } from "@pages/FavorivePage";
 
 export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
   [AppRoutes.HISTORY]: {

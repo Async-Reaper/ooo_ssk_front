@@ -1,5 +1,5 @@
-import { Container } from "../../../shared/ui";
-import { FavoriteProductsMenu } from "../../../entities/FavoriteProducts/ui/FavoriteProductsMenu";
+import { FavoriteProductsMenu } from "@entities/FavoriteProducts";
+import { Container } from "@shared/ui";
 
 const FavoritePage = () => (
   <Container>

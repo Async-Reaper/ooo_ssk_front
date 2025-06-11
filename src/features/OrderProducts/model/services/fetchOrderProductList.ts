@@ -5,7 +5,7 @@ import { ThunkConfig } from "@app/providers/StoreProvider";
 import { IOrderProductsList } from "../types/orderProductsList";
 
 export const fetchOrderProductList = createAsyncThunk<IOrderProductsList, string, ThunkConfig<any>>(
-  "order/table/id",
+  "order/table/lisy",
   async (orderId, thunkApi) => {
     const { extra, rejectWithValue } = thunkApi;
     try {

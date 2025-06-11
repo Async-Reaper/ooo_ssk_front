@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { ThunkConfig } from "@app/providers/StoreProvider";
-import { ISellerOrder } from "../../../../entities/SellerOrders";
+import { ISellerOrder } from "@entities/SellerOrders";
 
 export const fetchAddToSellerData = createAsyncThunk<ISellerOrder, ISellerOrder, ThunkConfig<any>>(
   "sellerData/add",

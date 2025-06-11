@@ -7,7 +7,8 @@
     pointer-events: none;
     z-index: -1;
     color: var(--color-neutral);
-    backdrop-filter: blur(10px);
+    will-change: filter;
+    // backdrop-filter: blur(5px);
 }
 
 .overlay {
@@ -36,7 +37,7 @@
     pointer-events: auto;
     z-index: 99999;
     animation: opened 0.2s ease-in-out forwards;
-
+    // opacity: 1;
     .content {
         transform: scale(1);
     }

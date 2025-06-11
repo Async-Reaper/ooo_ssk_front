@@ -414,7 +414,7 @@ const Component = () => {
    const basketList = useSelector(getBasketData);
    
    const [page, setPage] = useState(1);
-   const [limit] = useState(30);
+   const [limit] = useState(10);
    
    const placeholderItems = usePlaceholderItems(limit);
    const dispatch = useAppDispatch();

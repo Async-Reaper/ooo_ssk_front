@@ -80,7 +80,7 @@ export interface StateSchema {
   approvedOrderForm?: ApprovedOrderSchema
 
   // Sellers
-  sellerOrdersForm? : SellerOrderSchema
+  sellerOrders?: SellerOrderSchema
   deleteFromSellerData?: DeleteFromSellerDataSchema
   getSellerData?: GetSellerDataSchema
   addToSellerData?: AddToSellerDataSchema

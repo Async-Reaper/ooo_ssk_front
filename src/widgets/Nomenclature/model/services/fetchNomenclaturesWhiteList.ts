@@ -4,7 +4,7 @@ import { ThunkConfig } from "@app/providers/StoreProvider";
 import { INomenclaturesWhiteList } from "../types/nomenclaturesWhiteList";
 
 export interface fetchNomenclaturesWhiteListParams {
-  nomenclatures: string[];
+  nomenclatures?: string[];
 }
 
 export const fetchNomenclaturesWhiteList = createAsyncThunk<INomenclaturesWhiteList[], fetchNomenclaturesWhiteListParams, ThunkConfig<any>>(

@@ -12,5 +12,6 @@ export type { NomenclaturesWhiteListSchema, INomenclaturesWhiteList } from "./mo
 export { nomenclaturesWhiteListActions, nomenclaturesWhiteListReducer } from "./model/slice/nomenclaturesWhiteListSlice";
 export { getNomenclaturesWhiteList, getNomenclaturesWhiteListIsLoading } from "./model/selectors/nomenclaturesWhiteList";
 export { fetchNomenclaturesWhiteList } from "./model/services/fetchNomenclaturesWhiteList";
+export { fetchNomenclatureById } from "./model/services/fetchNomenclatureById";
 export type { fetchNomenclaturesWhiteListParams } from "./model/services/fetchNomenclaturesWhiteList";
 export { useAlertsInfo } from "./model/libs/hooks/useAlertsInfo";

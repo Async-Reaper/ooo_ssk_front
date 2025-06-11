@@ -20,4 +20,4 @@ const selectDateSlice = createSlice({
 });
 
 export const { actions: selectDateActions } = selectDateSlice;
-export const { reducer: sellerDataReducer } = selectDateSlice;
+export const { reducer: selectDateReducer } = selectDateSlice;

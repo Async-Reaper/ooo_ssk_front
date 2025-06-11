@@ -1,7 +1,10 @@
-import { OpenOrder } from "@features/AddToSellerData";
+import { OrderProductsList } from "@features/OrderProducts";
+import { Container } from "@shared/ui";
 
 const OrderIdPage = () => (
-  <OpenOrder />
+  <Container>
+    <OrderProductsList />
+  </Container>
 );
 
 export default OrderIdPage;

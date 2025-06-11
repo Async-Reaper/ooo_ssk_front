@@ -1,10 +1,11 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
-import { useParams, useSearchParams } from "react-router-dom";
-import cls from "./OrderHeader.module.scss";
-import { DynamicModuleLoader, ReducersList } from "../../../../shared/libs/component";
-import { useAppDispatch } from "../../../../shared/hooks";
-import { HStack, Input, Typography } from "../../../../shared/ui";
+import { useLocation, useParams, useSearchParams } from "react-router-dom";
+import { DynamicModuleLoader, ReducersList } from "@shared/libs/component";
+import { useAppDispatch } from "@shared/hooks";
+import { HStack, Input, Typography } from "@shared/ui";
+import { ApprovedOrderButton } from "@features/ApprovedOrder";
+import { getUserAuthData } from "@entities/user";
 import {
   fetchOrderHeader,
 } from "../../model/services/fetchOrderHeader";
@@ -12,8 +13,7 @@ import {
   getOrderHeaderData, getOrdersHeaderIsLoading,
 } from "../../model/selectors/orderHeaderSelectors";
 import { orderHeaderReducer } from "../../model/slice/orderHeaderSlice";
-import { ApprovedOrderButton } from "../../../../features/ApprovedOrder";
-import { getUserAuthData } from "../../../../entities/user";
+import cls from "./OrderHeader.module.scss";
 
 const reducers: ReducersList = {
   orderHeader: orderHeaderReducer,
@@ -23,6 +23,7 @@ const Component = () => {
   const params = useParams<{id: string}>();
   const user = useSelector(getUserAuthData);
   const [paramsQuery] = useSearchParams();
+  const location = useLocation();
   const documentGUID = paramsQuery.get("documentGUID") || params!.id;
   const orderHeader = useSelector(getOrderHeaderData);
   const orderHeaderIsLoading = useSelector(getOrdersHeaderIsLoading);
@@ -32,10 +33,23 @@ const Component = () => {
     if (documentGUID?.length) {
       dispatch(fetchOrderHeader(documentGUID));
     }
-  }, [dispatch, documentGUID]);
+  }, [dispatch, location, documentGUID]);
 
   // shipment
   const [dateShipment, setDateShipment] = useState("");
+  const currentDate = new Date(dateShipment);
+
+  const convertDate = () => {
+    const day = String(currentDate.getDate()).padStart(2, "0");
+    const month = String(currentDate.getMonth() + 1).padStart(2, "0"); // Месяцы начинаются с 0
+    const year = currentDate.getFullYear();
+
+    const hours = String(currentDate.getHours() + 1).padStart(2, "0"); // Добавляем +1 час к часам
+    const minutes = String(currentDate.getMinutes()).padStart(2, "0");
+    const seconds = String(currentDate.getSeconds()).padStart(2, "0");
+
+    return `${day}.${month}.${year} ${hours}:${minutes}:${seconds}`; 
+  };
 
   useEffect(() => {
     if (!orderHeaderIsLoading) {
@@ -65,16 +79,13 @@ const Component = () => {
       setComment(orderHeader?.comment || "");
     }
   }, [orderHeader?.comment, orderHeaderIsLoading]);
-   
+
   // approved order
   const dataApprovedOrder: any = useMemo(() => ({
     header: {
       userGUID: user?.userGUID,
       documentGUID,
-      dateshipment: new Date(dateShipment).toLocaleString(
-        "ru-RU", 
-        { year: "numeric", month: "numeric", day: "numeric" },
-      ).split(".").join(""),
+      dateshipment: convertDate(),
       comment,
     },
     products: [],
@@ -122,7 +133,7 @@ const Component = () => {
                 onChange={(e) => handleShipmentChange(e.target.value)}
               />
               <Input value={comment} placeholder="Комментарий" onChange={handleCommentChange} />
-              <ApprovedOrderButton dataApprovedOrder={dataApprovedOrder} /> 
+              <ApprovedOrderButton dataApprovedOrder={dataApprovedOrder} isApproved={orderHeader?.approved} /> 
             </HStack>
           </>
         )

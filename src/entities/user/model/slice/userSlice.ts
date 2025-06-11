@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { setCookie } from "@shared/libs/cookie";
+import { deleteCookie } from "@shared/libs/cookie";
 import { UserSchema } from "../types/userTypes";
 import { initUserAuthData } from "../services/initUserAuthData/initUserAuthData";
 
@@ -16,7 +16,7 @@ const userSlice = createSlice({
     logout(state) {
       state.data = undefined;
       localStorage.removeItem("matrix");
-      setCookie("access_token", "");
+      deleteCookie("access_token");
     },
   },
   extraReducers: (builder) => builder

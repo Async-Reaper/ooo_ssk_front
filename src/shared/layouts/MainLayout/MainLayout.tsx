@@ -1,7 +1,7 @@
-import React, { memo, type ReactElement } from "react";
+import { memo, type ReactElement } from "react";
 
-import { classNames } from "@shared/libs/classNames/classNames";
 import { useIsShowElems } from "@shared/hooks";
+import { classNames } from "@shared/libs/classNames/classNames";
 import cls from "./MainLayout.module.scss";
 
 interface MainLayoutProps {

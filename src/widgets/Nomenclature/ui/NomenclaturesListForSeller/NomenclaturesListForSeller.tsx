@@ -1,13 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
-import { useAppDispatch } from "../../../../shared/hooks";
-import { Skeleton } from "../../../../shared/ui/Skeleton";
-import { VStack } from "../../../../shared/ui";
-import { DynamicModuleLoader, ReducersList } from "../../../../shared/libs/component";
-import { getUserAuthData } from "../../../../entities/user";
-import { Pagination } from "../../../../shared/ui/Pagination/Pagination";
-import { getSearchValue } from "../../../../features/SearchProduct";
+import { useAppDispatch } from "@shared/hooks";
+import { Skeleton } from "@shared/ui/Skeleton";
+import { VStack } from "@shared/ui";
+import { DynamicModuleLoader, ReducersList } from "@shared/libs/component";
+import { getUserAuthData } from "@entities/user";
+import { Pagination } from "@shared/ui/Pagination/Pagination";
+import { getSearchValue } from "@features/SearchProduct";
+import {
+  getSellerData, getSellerDataIsLoading, fetchGetSellerData, getSellerDataReducer, 
+} from "@features/GetSellerData";
+
+import { getCurrentSellerOrders } from "@entities/SellerOrders";
+import { Conditions } from "@shared/libs/conditions/conditions";
+import { selectSumBasketActions, selectSumBasketReducer } from "@widgets/SumBasket";
 import { usePlaceholderItems } from "../../model/libs/hooks/usePlaceholderItems";
 import { NomenclatureCardForSeller } from "../NomenclatureCardForSeller/NomenclatureCardForSeller";
 import {
@@ -17,19 +24,12 @@ import {
 } from "../../model/selectors/nomenclaturesListSelectors";
 import { fetchNomenclaturesList } from "../../model/services/fetchNomenclaturesList";
 import { nomenclaturesListReducer } from "../../model/slice/nomenclaturesListSlice";
-import { getSellerData, getSellerDataIsLoading } from "../../../../features/GetSellerData/model/selectors/getSellerDataSelectors";
-import { fetchGetSellerData } from "../../../../features/GetSellerData/model/services/fetchGetSellerData";
-import { getSellerDataReducer } from "../../../../features/GetSellerData/model/slice/getSellerDataSlice";
-import { getCurrentSellerOrders, sellerDataReducer } from "../../../../entities/SellerOrders";
-import { Conditions } from "../../../../shared/libs/conditions/conditions";
 import { NomenclaturesListEmpty } from "../NomenclatureListEmpty/NomenclatureListEmpty";
-import { selectSumBasketActions, selectSumBasketReducer } from "../../../../widgets/SumBasket/model/slice/stateBasketSlice";
 
 const reducers: ReducersList = {
   nomenclaturesList: nomenclaturesListReducer,
   getSellerData: getSellerDataReducer,
   CurrentSumBusket: selectSumBasketReducer,
-  sellerOrdersForm: sellerDataReducer,
 };
 
 const Component = () => {
@@ -42,7 +42,7 @@ const Component = () => {
   const searchValue = useSelector(getSearchValue);
 
   const [page, setPage] = useState(1);
-  const [limit] = useState(30);
+  const [limit] = useState(10);
 
   const placeholderItems = usePlaceholderItems(limit);
   const dispatch = useAppDispatch();
@@ -76,7 +76,7 @@ const Component = () => {
     paramsForRequest.titleProduct = searchValue;
   }
    
-  const calculateAmount = (products: any[]) => products.reduce((amount: number, product: any) => amount + (product.count || 0) * (product.price || 0), 0);
+  const calculateAmount = (products: any[]) => products.reduce((amount: number, product: any) => amount += ((product.count) * (product.price)), 0);
 
   useEffect(() => {
     if (currentDocument) {
