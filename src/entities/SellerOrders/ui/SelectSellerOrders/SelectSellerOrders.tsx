@@ -36,6 +36,7 @@ const Component = () => {
    
   const onSetIsExpanded = () => {
     setIsExpanded(!isExpanded);
+    // setIsExpanded(true);
   };
 
   useEffect(() => {
@@ -53,8 +54,8 @@ const Component = () => {
     navigate({
       search: `${httpQuery}`,
     });
-    onSetIsExpanded();
-  }, [sellerOrders, dispatch, navigate, currentSellerOrder, onSetIsExpanded]);
+    setIsExpanded(false);
+  }, [sellerOrders, dispatch, navigate, currentSellerOrder]);
 
   useEffect(() => {
     // eslint-disable-next-line array-callback-return
@@ -63,7 +64,7 @@ const Component = () => {
         dispatch(sellerDataActions.changeSellerData(tradePoint));
       }
     });
-  }, [sellerOrders, dispatch]);
+  }, [sellerOrders, dispatch, params]);
 
   const calculateAmount = (products: any[]) => products.reduce((amount: number, product: any) => amount += (product.count) * (product.price), 0);
 
@@ -74,19 +75,19 @@ const Component = () => {
     }
   }, [dispatch, currentSellerOrder]);
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (blockRef.current && !blockRef.current.contains(event.target as Node)) {
-        setIsExpanded(false);
-      }
-    };
+  // useEffect(() => {
+  //   const handleClickOutside = (event: MouseEvent) => {
+  //     if (blockRef.current && !blockRef.current.contains(event.target as Node)) {
+  //       setIsExpanded(false);
+  //     }
+  //   };
 
-    document.addEventListener("mousedown", handleClickOutside);
+  //   document.addEventListener("mousedown", handleClickOutside);
 
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
+  //   return () => {
+  //     document.removeEventListener("mousedown", handleClickOutside);
+  //   };
+  // }, []);
 
   return (
     <DynamicModuleLoader

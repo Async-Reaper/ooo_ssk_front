@@ -18,6 +18,7 @@ export interface ModalProps {
   onClose?: () => void;
   size?: DesignSystemUiSize;
   lazy?: boolean;
+  isLogo?: boolean;
 }
 
 export const Modal = (props: ModalProps) => {
@@ -29,6 +30,7 @@ export const Modal = (props: ModalProps) => {
     onClose,
     lazy,
     size = "xs",
+    isLogo = true,
   } = props;
 
   const {
@@ -62,7 +64,7 @@ export const Modal = (props: ModalProps) => {
             className={classNames(cls.content, {}, classes)}
             onClick={onContentClick}
           >
-            <ModalHeading onClose={closeHandler} />
+            <ModalHeading onClose={closeHandler} isLogo={isLogo} />
             <ModalBody>{children}</ModalBody>
           </div>
         </div>

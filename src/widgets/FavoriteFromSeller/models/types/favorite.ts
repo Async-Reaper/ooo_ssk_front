@@ -1,14 +1,19 @@
+import { INomenclature } from "@widgets/Nomenclature";
+
 export interface IFavorite {
-  picture_path: string;
   user_name: string; 
   user_guid: string; 
-  product_guid: string;
-  product_title: string;
-  nomenclature_data: any;
-  path: string;
+  contract_guid: string;
+  products: IFavoriteProducts[];
 }
 
-export interface FavoriteSchem {
+export interface IFavoriteProducts {
+  product_guid: string;
+  product_title: string;
+  nomenclature_data: INomenclature;
+}
+
+export interface FavoriteSellerSchema {
   isLoading: boolean;
   error?: IResponseError;
   data?: IFavorite[]

@@ -28,7 +28,7 @@ import { DeleteFromSellerDataSchema } from "@features/DeleteFromSellerData";
 import { AddToSellerDataSchema } from "@features/AddToSellerData";
 import { SellerOrderSchema } from "@entities/SellerOrders";
 import { SumBasketShema, StateSumBasket } from "@widgets/SumBasket";
-import { FavoriteSchem } from "@widgets/FavoriteFromSeller";
+import { FavoriteSellerSchema } from "@widgets/FavoriteFromSeller";
 import { DebtsSchema } from "@features/Debts";
 
 export interface StateSchema {
@@ -55,7 +55,7 @@ export interface StateSchema {
   addToFavoriteForm?: AddToFavoriteSchema,
   deleteFromFavoriteForm?: DeleteFromFavoriteSchema,
   favoriteList?: FavoriteSchema
-  favoriteSchem?: FavoriteSchem
+  favoriteSellerSchema?: FavoriteSellerSchema
 
   // Brand
   brandsList?: BrandsListSchema,

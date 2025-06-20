@@ -1,8 +1,8 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { FavoriteSchem } from "../types/favorite";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { FavoriteSellerSchema } from "../types/favorite";
 import { fetchFavoriteById } from "../services/fetchFavoriteById";
 
-const initialState: FavoriteSchem = {
+const initialState: FavoriteSellerSchema = {
   isLoading: false,
 };
 
@@ -12,6 +12,15 @@ const favoriteSlice = createSlice({
   reducers: {
     setFavorite(state, action) {
       state.data = action.payload;
+    },
+    deleteFavoriteById(state, action: PayloadAction<string>) {
+      state.data = state.data?.map((favorite) => ({
+        ...favorite,
+        products: favorite.products.filter((product) => product.product_guid !== action.payload),
+      }));
+    },
+    deleteFavoriteAll(state, action: PayloadAction<string>) {
+      state.data = state.data?.filter((favorite) => favorite.user_name !== action.payload);
     },
   },
   extraReducers: (builder) => builder
@@ -28,5 +37,5 @@ const favoriteSlice = createSlice({
     }),
 });
 
-export const { actions: favoriteActions } = favoriteSlice;
-export const { reducer: favoriteReducer } = favoriteSlice;
+export const { actions: favoriteSellerActions } = favoriteSlice;
+export const { reducer: favoriteSellerReducer } = favoriteSlice;

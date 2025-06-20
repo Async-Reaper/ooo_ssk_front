@@ -5,11 +5,11 @@ import { getRouteBasket } from "@shared/const/router";
 import { useMediaQuery } from "@shared/hooks";
 import { DynamicModuleLoader, ReducersList } from "@shared/libs/component";
 import { Icon } from "@shared/libs/icons";
-import { AppLink, Typography } from "@shared/ui";
+import { Typography } from "@shared/ui";
 import { getCountBasketOrder } from "@widgets/SumBasket";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import cls from "./BasketButton.module.scss";
 
 const reducers: ReducersList = {
@@ -17,24 +17,39 @@ const reducers: ReducersList = {
 };
 
 const Component = () => {
-  let routeBasket = getRouteBasket();
+  // let routeBasket = getRouteBasket();
   const userRole = useSelector(getUserRole);
   const basketCountBuyer = useSelector(getCountBasketOrder);
-  const [basketCountSeller, setBasketCountSeller] = useState(0);
-  
-  const isColorGray = useMediaQuery("(min-width: 1024px)");
-
-  const [params] = useSearchParams();
-
   const sellerData = useSelector(getSellerData);
-
+  
+  const [basketCountSeller, setBasketCountSeller] = useState(0);
+  const isColorGray = useMediaQuery("(min-width: 1024px)");
+  const [params] = useSearchParams();
+  const navigate = useNavigate();
+  
   useEffect(() => {
+    if (userRole === UserRoles.SELLER) {
+      sellerData?.document_data.products && setBasketCountSeller(sellerData.document_data.products.length);
+      // const documentGUID = params.get("documentGUID");
+      // const contractGUID = params.get("contractGUID");
+      // if (contractGUID !== null && documentGUID !== null) {
+      // routeBasket = `${routeBasket}?documentGUID=${documentGUID}&contractGUID=${contractGUID}`;
+      // }
+
+      // console.log(documentGUID, contractGUID)
+    }
+  }, [userRole, sellerData]);
+
+  const onHandleRouteBasket = useCallback(() => {
     if (userRole === UserRoles.SELLER) {
       sellerData?.document_data.products && setBasketCountSeller(sellerData.document_data.products.length);
       const documentGUID = params.get("documentGUID");
       const contractGUID = params.get("contractGUID");
       if (contractGUID !== null && documentGUID !== null) {
-        routeBasket = `${routeBasket}?documentGUID=${documentGUID}&contractGUID=${contractGUID}`;
+        // routeBasket = `${routeBasket}?documentGUID=${documentGUID}&contractGUID=${contractGUID}`;
+        navigate(`${getRouteBasket()}?documentGUID=${documentGUID}&contractGUID=${contractGUID}`);
+      } else {
+        navigate(getRouteBasket());
       }
     }
   }, [userRole, sellerData, params]);
@@ -44,7 +59,8 @@ const Component = () => {
       reducers={reducers}
       removeAfterUnmount
     >
-      <AppLink to={routeBasket} className={cls.basket__title}>
+      <div onClick={onHandleRouteBasket} className={cls.basket__title}>
+        {/* <AppLink to={routeBasket} className={cls.basket__title}> */}
         <div className={cls.basket__count}>
           <Typography className={cls.count_text} variant="h4" align="center">
             {userRole === UserRoles.BUYER 
@@ -59,7 +75,8 @@ const Component = () => {
             ? "gray-primary"
             : "white-bg"}
         />
-      </AppLink>
+        {/* </AppLink> */}
+      </div>
     </DynamicModuleLoader>
   ); 
 };

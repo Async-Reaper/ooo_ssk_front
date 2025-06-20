@@ -23,6 +23,7 @@ const sellerDataSlice = createSlice({
     .addCase(fetchSellerData.fulfilled, (state, action: PayloadAction<ISellerOrder[]>) => {
       state.isLoading = false;
       state.data = action.payload;
+      // state.data = action.payload.map(result => [...new Set(result.document_data)]);
       state.errors = undefined;
     })
     .addCase(fetchSellerData.rejected, (state, action) => {

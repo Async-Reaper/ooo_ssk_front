@@ -2,6 +2,7 @@ export { NomenclatureCard } from "./ui/NomenclatureCard/NomenclatureCard";
 export { NomenclatureCardForSeller } from "./ui/NomenclatureCardForSeller/NomenclatureCardForSeller";
 export { NomenclaturesList } from "./ui/NomenclaturesList/NomenclaturesList";
 export { NomenclaturesListForSeller } from "./ui/NomenclaturesListForSeller/NomenclaturesListForSeller";
+export { NomenclatureFavorite } from "./ui/NomenclatureFavorite/NomenclatureFavorite";
 export * from "./model/selectors/nomenclatureSelectors";
 export * from "./model/slice/nomenclatureSlice";
 export * from "./model/selectors/nomenclaturesListSelectors";

@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Button, Typography } from "@shared/ui";
@@ -16,6 +16,7 @@ import { approvedOrderReducer } from "../../model/slice/approvedOrderSlice";
 import { ApprovedOrderModal } from "../ApprovedOrderModal/ApprovedOrderModal";
 import { fetchApprovedOrder } from "../../model/services/fetchApprovedOrder";
 import { IApprovedOrder } from "../../model/types/approvedOrder";
+import { getApprovedOrderIsLoading } from "../../model/selectors/approvedOrderSelectors";
 
 interface ApprovedOrderButtonProps {
   dataApprovedOrder: IApprovedOrder
@@ -26,18 +27,16 @@ const reducers: ReducersList = {
   approvedOrderForm: approvedOrderReducer,
 };
 
-const Component = ({ dataApprovedOrder }: ApprovedOrderButtonProps) => {
+const Component = ({ dataApprovedOrder, isApproved }: ApprovedOrderButtonProps) => {
   const dispatch = useAppDispatch();
   const { isOpen, open, close } = useModal();
   const navigate = useNavigate();
   const [paramsQuery] = useSearchParams();
   const params = useParams<{id: string}>();
   const alertBox = useAlertsInfo();
-  // const approvedOrderIsLoading = useSelector(getApprovedOrderIsLoading);
+  const approvedOrderIsLoading = useSelector(getApprovedOrderIsLoading);
   const user = useSelector(getUserAuthData);
   const documentGUID = paramsQuery.get("documentGUID") || params.id!;
-
-  // const [isApprovedDocument, setApprovedDoc] = useState(isApproved);
 
   const onHandleCreateOrder = useCallback(async () => {
     const paramRequest = {
@@ -86,7 +85,7 @@ const Component = ({ dataApprovedOrder }: ApprovedOrderButtonProps) => {
       <>
         <Button
           onClick={onHandleCreateOrder}
-          // disabled={isApprovedDocument || approvedOrderIsLoading}
+          disabled={isApproved || approvedOrderIsLoading}
         >
           <Typography variant="h4">
             Подтвердить

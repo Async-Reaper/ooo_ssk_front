@@ -2,8 +2,7 @@ import { getUserAuthData, getUserisLoading } from "@entities/user";
 import { fetchAddToSellerData } from "@features/AddToSellerData";
 import { getApprovedOrderIsLoading } from "@features/ApprovedOrder";
 import {
-  fetchGetSellerData,
-  getSellerDataReducer, IGetSellerData,
+  fetchGetSellerData, getSellerData, getSellerDataReducer, IGetSellerData, 
 } from "@features/GetSellerData";
 import { useAppDispatch } from "@shared/hooks";
 import { DynamicModuleLoader, ReducersList } from "@shared/libs/component";
@@ -11,7 +10,7 @@ import { Loader, VStack } from "@shared/ui";
 import { NomenclatureCardForSeller } from "@widgets/Nomenclature";
 import { getOrderHeaderData, getOrdersHeaderIsLoading, orderHeaderReducer } from "@widgets/OrderHeader";
 import { fetchOrderHeader } from "@widgets/OrderHeader/model/services/fetchOrderHeader";
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import {
@@ -31,6 +30,7 @@ const reducers: ReducersList = {
 };
 
 const Component = () => {
+  const sellerData = useSelector(getSellerData);
   const ordersProductsData = useSelector(getOrdersProductsData);
   const ordersProductsIsLoading = useSelector(getOrdersProductsIsLoading);
   const orderHeader = useSelector(getOrderHeaderData);
@@ -101,18 +101,7 @@ const Component = () => {
         {
           (ordersProductsIsLoading || approvedOrderIsLoading) 
             ? <Loader />
-            // : sellerData?.document_data.products?.map((ordersProduct) => (
-            //   <NomenclatureCardForSeller
-            //     documentGUID={orderHeader?.documentGUID}
-            //     userGUID={user?.userGUID}
-            //     key={ordersProduct.product_guid}
-            //     price={ordersProduct.price}
-            //     count={ordersProduct.count}
-            //     isWithGuid
-            //     guid={ordersProduct.product_guid}
-            //   />
-            // ))
-            : ordersProductsData?.map((ordersProduct) => (
+            : sellerData?.document_data.products?.map((ordersProduct) => (
               <NomenclatureCardForSeller
                 documentGUID={orderHeader?.documentGUID}
                 userGUID={user?.userGUID}
@@ -123,6 +112,17 @@ const Component = () => {
                 guid={ordersProduct.product_guid}
               />
             ))
+            // : ordersProductsData?.map((ordersProduct) => (
+            //   <NomenclatureCardForSeller
+            //     documentGUID={orderHeader?.documentGUID}
+            //     userGUID={user?.userGUID}
+            //     key={ordersProduct.product_guid}
+            //     price={ordersProduct.price}
+            //     count={ordersProduct.count}
+            //     isWithGuid
+            //     guid={ordersProduct.product_guid}
+            //   />
+            // ))
         }
       </VStack>
     </DynamicModuleLoader>

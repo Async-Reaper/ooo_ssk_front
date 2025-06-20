@@ -7,6 +7,7 @@ export interface ICreateOrderHeader {
   contractGUID: string;
   dateshipment: string;
   userGUID: string;
+  comment?: string
 }
 
 export interface ICreateOrderProduct {

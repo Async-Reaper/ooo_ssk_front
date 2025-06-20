@@ -7,6 +7,7 @@ import {CloseIcon as close} from './Close';
 import {CopyIcon as copy} from './Copy';
 import {DollarIcon as dollar} from './Dollar';
 import {EyeIcon as eye} from './Eye';
+import {FavoriteIcon as favorite} from './Favorite';
 import {HeadphonesIcon as headphones} from './Headphones';
 import {HeartIcon as heart} from './Heart';
 import {InstagramIcon as instagram} from './Instagram';
@@ -45,6 +46,7 @@ export type IconName =
   | 'copy'
   | 'dollar'
   | 'eye'
+  | 'favorite'
   | 'headphones'
   | 'heart'
   | 'instagram'
@@ -85,6 +87,7 @@ export const iconSet: {
   copy,
   dollar,
   eye,
+  favorite,
   headphones,
   heart,
   instagram,

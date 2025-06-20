@@ -1,41 +1,33 @@
+import { getUserAuthData } from "@entities/user";
+import { ApprovedOrderButton } from "@features/ApprovedOrder";
+import { getSellerData, getSellerDataReducer } from "@features/GetSellerData";
+import { DynamicModuleLoader, ReducersList } from "@shared/libs/component";
+import { HStack, Input, Typography } from "@shared/ui";
 import React, { useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import { useLocation, useParams, useSearchParams } from "react-router-dom";
-import { DynamicModuleLoader, ReducersList } from "@shared/libs/component";
-import { useAppDispatch } from "@shared/hooks";
-import { HStack, Input, Typography } from "@shared/ui";
-import { ApprovedOrderButton } from "@features/ApprovedOrder";
-import { getUserAuthData } from "@entities/user";
+import { CreateOrderButton, ICreateOrder, ICreateOrderProduct } from "@features/CreateOrder";
 import {
-  fetchOrderHeader,
-} from "../../model/services/fetchOrderHeader";
-import {
-  getOrderHeaderData, getOrdersHeaderIsLoading,
+  getOrdersHeaderIsLoading,
 } from "../../model/selectors/orderHeaderSelectors";
-import { orderHeaderReducer } from "../../model/slice/orderHeaderSlice";
 import cls from "./OrderHeader.module.scss";
 
 const reducers: ReducersList = {
-  orderHeader: orderHeaderReducer,
+  getSellerData: getSellerDataReducer,
 };
 
 const Component = () => {
   const params = useParams<{id: string}>();
   const user = useSelector(getUserAuthData);
   const [paramsQuery] = useSearchParams();
-  const location = useLocation();
+  const pathname = useLocation();
   const documentGUID = paramsQuery.get("documentGUID") || params!.id;
-  const orderHeader = useSelector(getOrderHeaderData);
+  const contractGUID = paramsQuery.get("contractGUID");
+  const sellerData = useSelector(getSellerData);
+  const orderHeader = sellerData?.document_data.document_header;
   const orderHeaderIsLoading = useSelector(getOrdersHeaderIsLoading);
-  const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    if (documentGUID?.length) {
-      dispatch(fetchOrderHeader(documentGUID));
-    }
-  }, [dispatch, location, documentGUID]);
-
-  // shipment
+  const [comment, setComment] = useState("");
   const [dateShipment, setDateShipment] = useState("");
   const currentDate = new Date(dateShipment);
 
@@ -50,6 +42,23 @@ const Component = () => {
 
     return `${day}.${month}.${year} ${hours}:${minutes}:${seconds}`; 
   };
+
+  const [dataCreateOrder, setDataCreateOrder] = useState<ICreateOrder>();
+
+  useEffect(() => {
+    setDataCreateOrder({
+      header: {
+        contractGUID: contractGUID!,
+        dateshipment: convertDate(),
+        userGUID: user?.userGUID as string,
+        comment,
+      },
+      products: sellerData?.document_data.products!.map((product) => ({
+        product_guid: product.product_guid,
+        count: product.count,
+      })) as ICreateOrderProduct[],
+    });
+  }, [sellerData, contractGUID, dateShipment, user]);
 
   useEffect(() => {
     if (!orderHeaderIsLoading) {
@@ -69,11 +78,6 @@ const Component = () => {
     setDateShipment(event);
   };
 
-  // comment
-  const [comment, setComment] = useState("");
-  const handleCommentChange = (event:string) => {
-    setComment(event);
-  };
   useEffect(() => {
     if (!orderHeaderIsLoading) {
       setComment(orderHeader?.comment || "");
@@ -132,8 +136,12 @@ const Component = () => {
                 value={dateShipment}
                 onChange={(e) => handleShipmentChange(e.target.value)}
               />
-              <Input value={comment} placeholder="Комментарий" onChange={handleCommentChange} />
-              <ApprovedOrderButton dataApprovedOrder={dataApprovedOrder} isApproved={orderHeader?.approved} /> 
+              <Input value={comment} placeholder="Комментарий" onChange={setComment} />
+              {
+                (orderHeader?.approved && dataCreateOrder)
+                  ? <CreateOrderButton dataCreateOrder={dataCreateOrder} />
+                  : <ApprovedOrderButton dataApprovedOrder={dataApprovedOrder} isApproved={orderHeader?.approved} /> 
+              }
             </HStack>
           </>
         )

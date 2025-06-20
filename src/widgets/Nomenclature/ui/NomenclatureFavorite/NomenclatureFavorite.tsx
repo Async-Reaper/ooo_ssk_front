@@ -1,15 +1,15 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Icon } from "../../../../shared/libs/icons";
-import { IFavorite, favoriteActions } from "../../../../entities/FavoriteProducts";
-import { UserDataType } from "../../../../entities/user";
-import { useAppDispatch } from "../../../../shared/hooks";
-import { addToFavoriteActions, fetchAddToFavorite } from "../../../../features/AddToFavorite";
-import { deleteFromFavoriteActions, fetchDeleteFromFavorite } from "../../../../features/DeleteFromFavorite";
+import { Icon } from "@shared/libs/icons";
+import { IFavorite, favoriteActions } from "@entities/FavoriteProducts";
+import { UserDataType } from "@entities/user";
+import { useAppDispatch } from "@shared/hooks";
+import { addToFavoriteActions, fetchAddToFavorite } from "@features/AddToFavorite";
+import { deleteFromFavoriteActions, fetchDeleteFromFavorite } from "@features/DeleteFromFavorite";
+import { getCurrentTradePoint } from "@entities/TradePoint";
 import { INomenclature } from "../../model/types/nomenclature";
 import cls from "./NomenclatureFavorite.module.scss";
 import { useAlertsInfo } from "../../model/libs/hooks/useAlertsInfo";
-import { getCurrentTradePoint } from "../../../../entities/TradePoint";
 
 interface NomenclatureFavoriteProps {
   favoriteList: IFavorite[];
@@ -37,6 +37,7 @@ const Component = ({
     const response = await dispatch(fetchAddToFavorite({
       product_guid: nomenclatureData.guid,
       user_guid: user!.userGUID,
+      user_name: user!.user_info!.username,
       currentTradePoint: CurrentTradePoint!,
     }));
     if (response.meta.requestStatus === "fulfilled") {

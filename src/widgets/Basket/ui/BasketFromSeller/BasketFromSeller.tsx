@@ -7,7 +7,7 @@ import { DynamicModuleLoader, ReducersList } from "@shared/libs/component";
 import {
   Typography, VStack,
 } from "@shared/ui";
-import { OrderHeader } from "@widgets/OrderHeader";
+import { OrderHeader, orderHeaderReducer } from "@widgets/OrderHeader";
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate, useSearchParams } from "react-router-dom";
@@ -22,6 +22,7 @@ const reducers: ReducersList = {
   getSellerData: getSellerDataReducer,
   deleteFromSellerData: deleteFromSellerDataReducer,
   addToSellerData: addToSellerDataReducer,
+  orderHeader: orderHeaderReducer,
 };
 
 const Component = () => {
@@ -72,7 +73,9 @@ const Component = () => {
                   Добавить товары в заказ
                 </Typography>
               </div>
-              <OrderHeader />
+              <div className="head">
+                {/* <OrderHeader /> */}
+              </div>
             </>
           )
           : ""}

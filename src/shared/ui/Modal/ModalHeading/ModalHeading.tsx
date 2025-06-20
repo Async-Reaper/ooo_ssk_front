@@ -6,13 +6,18 @@ import cls from "./styles.module.scss";
 
 interface Props {
   children?: ReactNode;
+  isLogo?: boolean;
   onClose: () => void;
 }
-const Component = ({ children, onClose }: Props) => (
+const Component = ({ children, isLogo, onClose }: Props) => (
   <div className={cls.heading}>
-    <div className={cls.logo__wrapper}>
-      <AppImage src="/common/logo.png" className={cls.logo} />
-    </div>
+    {
+      isLogo && (
+        <div className={cls.logo__wrapper}>
+          <AppImage src="/common/logo.png" className={cls.logo} />
+        </div>
+      )
+    }
     <div className={cls.modalClose} onClick={onClose}>
       <Icon name="close" size={40} color="red" />
     </div>

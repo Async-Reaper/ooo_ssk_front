@@ -12,6 +12,7 @@ import { SumBasketData } from "@widgets/SumBasket";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
+import { FavoriteMenu } from "@widgets/FavoriteFromSeller";
 import { Navigation } from "../Navigation/Navigation";
 import cls from "./Header.module.scss";
 
@@ -34,12 +35,12 @@ const Component = () => {
   };
 
   useEffect(() => {
-    if (userRole === UserRoles.BUYER || (userRole === UserRoles.SELLER && pathname.search === "")) {
-      setIsShowHeader(false)
+    if (userRole === UserRoles.BUYER || (userRole === UserRoles.SELLER && pathname.search !== "")) {
+      setIsShowHeader(true);
     } else {
-      setIsShowHeader(true)
+      setIsShowHeader(false);
     }
-  }, [userRole, pathname, setIsShowHeader])
+  }, [userRole, pathname, setIsShowHeader]);
 
   return (
     <div className={cls.header__wrapper}>
@@ -91,6 +92,7 @@ const Component = () => {
           <AppLink className={cls.orders__link} variant="secondary" to={getRouteOrders()}>
             <Typography className={cls.assort} variant="h3">Посмотреть все заказы</Typography>
           </AppLink>
+          <FavoriteMenu />
         </div>
       )}
       <div className={cls.header__bottom}>

@@ -18,19 +18,20 @@ export interface DocumentData {
  
 export interface Product {
   product_guid: string
-  amount: number
+  amount?: number
   count: number
   price: number
 }
 
 export interface DocumentHeader {
-  documentGUID?: string
-  number?: string
-  date?: string
-  dateShipment?: string
-  contractName?: string
-  contractGUID?: string
-  approved?: boolean
+  documentGUID: string
+  number: string
+  date: string
+  dateShipment: string
+  contractName: string
+  contractGUID: string
+  approved: boolean
   products_count?: number
+  comment?: string;
   amount?: number
 }

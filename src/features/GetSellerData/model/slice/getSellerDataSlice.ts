@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { Product, GetSellerDataSchema, IGetSellerData } from "../types/getSellerData";
 import { fetchGetSellerData } from "../services/fetchGetSellerData";
-import { GetSellerDataSchema, IGetSellerData } from "../types/getSellerData";
 
 const initialState: GetSellerDataSchema = {
   isLoading: false,
@@ -10,8 +10,15 @@ const getSellerDataSlice = createSlice({
   name: "sellerData/get",
   initialState,
   reducers: {
-    freshView(state, action: PayloadAction<IGetSellerData>) {
-      state.data = action.payload;
+    setApproved(state, action: PayloadAction<boolean>) {
+      if (state.data && state.data.document_data.document_header) {
+        state.data.document_data.document_header.approved = action.payload;
+      }
+    },
+    freshView(state, action: PayloadAction<Product[]>) {
+      if (state.data) {
+        state.data.document_data.products = action.payload;
+      }
     },
   },
   extraReducers: (builder) => builder

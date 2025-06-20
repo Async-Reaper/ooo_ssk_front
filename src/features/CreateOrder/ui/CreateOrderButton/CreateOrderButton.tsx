@@ -8,9 +8,13 @@ import {
 } from "@widgets/SumBasket";
 import { DynamicModuleLoader, ReducersList } from "@shared/libs/component";
 
-import { CreateOrderModal } from "../CreateOrderModal/CreateOrderModal";
-import { fetchCreateOrder } from "../../model/services/fetchCreateOrder";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { getUserRole, UserRoles } from "@entities/user";
+import { getRouteOrders } from "@shared/const/router";
 import { ICreateOrder } from "../../model/types/createOrder";
+import { fetchCreateOrder } from "../../model/services/fetchCreateOrder";
+import { CreateOrderModal } from "../CreateOrderModal/CreateOrderModal";
 
 interface CreateOrderButtonProps {
   dataCreateOrder: ICreateOrder
@@ -24,6 +28,8 @@ const reducers : ReducersList = {
 const Component = ({ dataCreateOrder }: CreateOrderButtonProps) => {
   const dispatch = useAppDispatch();
   const alertBox = useAlertsInfo();
+  const userRole = useSelector(getUserRole);
+  const navigate = useNavigate();
    
   const { isOpen, open, close } = useModal();
   
@@ -51,9 +57,11 @@ const Component = ({ dataCreateOrder }: CreateOrderButtonProps) => {
       });
       dispatch(fetchSumBasketByParams({ userGuid: dataCreateOrder.header.userGUID, contractGuid: dataCreateOrder.header.contractGUID }));
       dispatch(selectSumBasketActions.setSumBasket(0));
+      userRole === UserRoles.SELLER && navigate(getRouteOrders());
     } else {
       open();
     }
+    // console.log(dataCreateOrder)
   }, [dispatch, dataCreateOrder, open]);
 
   return (
