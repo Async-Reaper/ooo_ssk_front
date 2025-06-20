@@ -106,9 +106,7 @@ const Component = ({
       document_guid: documentGUID!,
     }));
     
-    if (response.meta.requestStatus === "fulfilled") {
-      const dataBasket = { ...response.payload };
-      
+    if (sellerData?.document_data.document_header && sellerData?.document_data.products) {
       if (elem <= 0) {
         const updatedProducts = dataBasket.document_data.products.filter(
           (item: { product_guid: any; }) => item.product_guid !== thisGUID,
