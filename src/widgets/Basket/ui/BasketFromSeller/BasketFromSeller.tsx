@@ -7,7 +7,7 @@ import { DynamicModuleLoader, ReducersList } from "@shared/libs/component";
 import {
   Typography, VStack,
 } from "@shared/ui";
-import { OrderHeader, orderHeaderReducer } from "@widgets/OrderHeader";
+import { orderHeaderReducer } from "@widgets/OrderHeader";
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate, useSearchParams } from "react-router-dom";

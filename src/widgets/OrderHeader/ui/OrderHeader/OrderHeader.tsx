@@ -5,7 +5,7 @@ import { DynamicModuleLoader, ReducersList } from "@shared/libs/component";
 import { HStack, Input, Typography } from "@shared/ui";
 import React, { useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
-import { useLocation, useParams, useSearchParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import { CreateOrderButton, ICreateOrder, ICreateOrderProduct } from "@features/CreateOrder";
 import {
   getOrdersHeaderIsLoading,
@@ -20,7 +20,6 @@ const Component = () => {
   const params = useParams<{id: string}>();
   const user = useSelector(getUserAuthData);
   const [paramsQuery] = useSearchParams();
-  const pathname = useLocation();
   const documentGUID = paramsQuery.get("documentGUID") || params!.id;
   const contractGUID = paramsQuery.get("contractGUID");
   const sellerData = useSelector(getSellerData);

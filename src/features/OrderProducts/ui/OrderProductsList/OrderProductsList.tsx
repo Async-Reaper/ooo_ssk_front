@@ -10,7 +10,7 @@ import { Loader, VStack } from "@shared/ui";
 import { NomenclatureCardForSeller } from "@widgets/Nomenclature";
 import { getOrderHeaderData, getOrdersHeaderIsLoading, orderHeaderReducer } from "@widgets/OrderHeader";
 import { fetchOrderHeader } from "@widgets/OrderHeader/model/services/fetchOrderHeader";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import {

@@ -8,7 +8,7 @@ import {
 } from "@widgets/SumBasket";
 import { DynamicModuleLoader, ReducersList } from "@shared/libs/component";
 
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getUserRole, UserRoles } from "@entities/user";
 import { getRouteOrders } from "@shared/const/router";
