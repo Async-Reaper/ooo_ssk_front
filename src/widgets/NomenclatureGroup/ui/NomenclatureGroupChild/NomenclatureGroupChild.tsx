@@ -7,21 +7,28 @@ import { useAppDispatch } from "@shared/hooks";
 import { searchProductActions } from "@features/SearchProduct";
 import cls from "./NomenclatureGroupChild.module.scss";
 
-interface nomenclatureGroupChildProps {
+interface NomenclatureGroupChildProps {
   fullname?: string; 
   guid?: string; 
+  isMatrix: boolean;
 }
 
 const Component = ({
   fullname,
   guid,
-} : nomenclatureGroupChildProps) => {
+  isMatrix,
+} : NomenclatureGroupChildProps) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const handleParent = useCallback(() => {
     const httpQuery = new URLSearchParams(location.search);
     httpQuery.set("parentGUID", guid!);
+    isMatrix 
+      ? httpQuery.set("isOnlyMatrix", "true") 
+      : httpQuery.delete("isOnlyMatrix");
+
+    httpQuery.delete("isNew");
     httpQuery.delete("brandGUID");
     navigate({
       pathname: getRouteMain(),
@@ -29,7 +36,8 @@ const Component = ({
     });
     dispatch(searchProductActions.setSearchValue(""));
     dispatch(uiActions.setSidebarCollapsed(false));
-  }, []);
+  }, [isMatrix]);
+ 
   return (
 
     <div className={cls.subgroup_wrap} onClick={handleParent}>

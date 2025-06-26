@@ -41,16 +41,17 @@ const Component = () => {
   }, [userRole, sellerData]);
 
   const onHandleRouteBasket = useCallback(() => {
+    const documentGUID = params.get("documentGUID");
+    const contractGUID = params.get("contractGUID");
+
     if (userRole === UserRoles.SELLER) {
       sellerData?.document_data.products && setBasketCountSeller(sellerData.document_data.products.length);
-      const documentGUID = params.get("documentGUID");
-      const contractGUID = params.get("contractGUID");
-      if (contractGUID !== null && documentGUID !== null) {
-        // routeBasket = `${routeBasket}?documentGUID=${documentGUID}&contractGUID=${contractGUID}`;
-        navigate(`${getRouteBasket()}?documentGUID=${documentGUID}&contractGUID=${contractGUID}`);
-      } else {
-        navigate(getRouteBasket());
-      }
+    }
+    if (contractGUID !== null && documentGUID !== null) {
+      // routeBasket = `${routeBasket}?documentGUID=${documentGUID}&contractGUID=${contractGUID}`;
+      navigate(`${getRouteBasket()}?documentGUID=${documentGUID}&contractGUID=${contractGUID}`);
+    } else {
+      navigate(getRouteBasket());
     }
   }, [userRole, sellerData, params]);
 

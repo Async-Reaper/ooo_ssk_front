@@ -1,6 +1,6 @@
 import { Container, HStack, VStack } from "@shared/ui";
 import { Substrate } from "@shared/ui/Primitives/Container/Container";
-import { ButtonBack } from "@widgets/ButtanBack/ui/ButtonBack";
+import { ButtonBack } from "@widgets/ButtonBack/ui/ButtonBack";
 import { AddOrderToBasket, OrderProductsHistoryList } from "@widgets/OrderProductsHistory";
 
 const HistoryIdPage = () => (

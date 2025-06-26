@@ -27,17 +27,20 @@ const Component: React.FC<ChildComponentProps> = ({ blockVisible, onVisibleChang
   const navigate = useNavigate();
   const isShowSidebar = useSelector(getSidebarCollapsed);
   const currentGroups = useSelector(getNomenclatureGroupData);
+  const httpQuery = new URLSearchParams(location.search);
   // const isLoading = useSelector(getNomenclatureGroupIsLoading);
 
   useEffect(() => {
     dispatch(fetchNomenclatureGroup());
   }, [dispatch]);
 
-  const handleBlockVisibleClick = () => {
-    const httpQuery = new URLSearchParams(location.search);
+  const handleBlockVisibleClick = (isNew: boolean) => {
     httpQuery.delete("parentGUID");
     httpQuery.delete("brandGUID");
     httpQuery.delete("isOnlyMatrix");
+    isNew 
+      ? httpQuery.set("isNew", "true")
+      : httpQuery.delete("isNew");
     dispatch(searchProductActions.setSearchValue(""));
     navigate({
       pathname: getRouteMain(),
@@ -55,27 +58,32 @@ const Component: React.FC<ChildComponentProps> = ({ blockVisible, onVisibleChang
         ? cls.group__products
         : cls.group__sidebar}
       >
-
         <div className={cls.group_wrap}>
-          <div onClick={handleBlockVisibleClick}>
-            <Typography variant="h4">Весь ассортимент</Typography>
+          <div onClick={() => handleBlockVisibleClick(true)}>
+            <Typography variant="h4">Новинки</Typography>
           </div>
         </div>
-
         {/* новинки */}
         {/* акционный товары */}
         {currentGroups?.map((groupParent) => (
           <div key={groupParent.object.guid}>
             <NomenclatureGroupParent 
               key={groupParent.object.guid}
+              // guid={groupParent.object.guid}
               fullname={groupParent.object.fullname} 
               parentGUID={groupParent.object.guid} 
               subject={groupParent.subject}
               blockVisible={blockVisible}
               onVisibleChange={onVisibleChange}
+              isMatrix={false}
             />
           </div>
         ))}
+        <div className={cls.group_wrap}>
+          <div onClick={() => handleBlockVisibleClick(false)}>
+            <Typography variant="h4">Весь ассортимент</Typography>
+          </div>
+        </div>
       </div>
     </DynamicModuleLoader>
   );

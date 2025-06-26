@@ -7,6 +7,12 @@
 
   .select__button {
     cursor: pointer;
+    color: var(--color-gray-primary);
+
+    &:hover {
+      transition: ease-in-out .3s;
+      color: var(--color-black);
+    }
   }
 
   .groups {
@@ -14,15 +20,6 @@
     background: var(--color-white-bg);
     border-radius: 0 0 15px 15px;
     z-index: 1000;
-  }
-
-  .assort {
-    color: var(--color-gray-primary);
-
-    &:hover {
-      transition: ease-in-out .3s;
-      color: var(--color-black);
-    }
   }
 
   .history__link {

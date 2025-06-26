@@ -21,7 +21,7 @@ const Component = () => {
           Разработка сайта &quot;Агит-Плюс&ldquo;
         </Typography>
       </div>
-      {(currentRole === UserRoles.SELLER)
+      {(currentRole === UserRoles.BUYER)
        && (
          <Conditions condition={currentTradePoint?.representative_name?.length}>
            <div className={cls.footer}>

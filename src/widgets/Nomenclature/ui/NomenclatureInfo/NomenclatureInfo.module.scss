@@ -5,12 +5,13 @@
 
     .image_wrap{
         max-width: 80vw;
-        max-height: 90vh;
+        max-height: 40vh;
 
-        @include tablets{
+        @include tablets {
             width: 400px;
             max-width: 90vw;
-            max-height: 90vh;
+            max-height: 40vh;
+            object-fit: contain;
         }
     }
 }

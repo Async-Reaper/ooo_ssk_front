@@ -4,4 +4,4 @@ export const getSumBasketOrder = (state: StateSchema) => state.SumBusket?.data?.
 export const getCountBasketOrder = (state: StateSchema) => state.SumBusket?.data?.countProduct;
 export const getBasketSumIsLoading = (state: StateSchema) => state?.SumBusket?.isLoading;
 export const getBasketSumError = (state: StateSchema) => state?.SumBusket?.error;
-export const getСurrentBasketSum = (state: StateSchema) => state?.CurrentSumBusket?.sumBasket;
+export const getCurrentBasketSum = (state: StateSchema) => state?.CurrentSumBusket?.sumBasket;

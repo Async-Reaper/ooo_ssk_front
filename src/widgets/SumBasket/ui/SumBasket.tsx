@@ -7,7 +7,7 @@ import { getCurrentTradePoint } from "@entities/TradePoint";
 import { UserRoles, getUserAuthData } from "@entities/user";
 import { sellerDataReducer } from "@entities/SellerOrders";
 import { getSellerData } from "@features/GetSellerData";
-import { getСurrentBasketSum, getSumBasketOrder } from "../model/selectors/basketSumSelectors";
+import { getCurrentBasketSum, getSumBasketOrder } from "../model/selectors/basketSumSelectors";
 import { fetchSumBasketByParams } from "../model/services/fetchSumBasket";
 import { sumBasketReducer } from "../model/slice/sumBasketSlice";
 import cls from "./SumBasket.module.scss";
@@ -22,7 +22,7 @@ const Component = (() => {
   const currentTradePoint = useSelector(getCurrentTradePoint);
   const sellerData = useSelector(getSellerData);
   const user = useSelector(getUserAuthData);
-  const currentBasketSum = useSelector(getСurrentBasketSum); 
+  const currentBasketSum = useSelector(getCurrentBasketSum); 
   const contractGUID = currentTradePoint?.guid! || new URLSearchParams(location.search).get("contract_guid")!;
   const dispatch = useAppDispatch();
   const [formattedNumber, setFormatedNumber] = useState(0);
@@ -52,8 +52,8 @@ const Component = (() => {
       reducers={reducers}
     >
       <div className={cls.basket_sum}>
-
-        {`${formattedNumber.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")} ₽`}
+        {user?.role === UserRoles.SELLER && `${formattedNumber?.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")} ₽`}
+        {user?.role === UserRoles.BUYER && `${basketSum?.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")} ₽`}
       </div>
 
     </DynamicModuleLoader>

@@ -13,7 +13,8 @@ const Component: React.FC = () => {
   const userRole = useSelector(getUserRole);
   const navigate = useNavigate();
 
-  const blockRef = useRef<HTMLDivElement>(null);
+  const blockRefMatrix = useRef<HTMLDivElement>(null);
+  const blockRefAssort = useRef<HTMLDivElement>(null);
   const [blockVisibleMatrix, setBlockVisibleMatrix] = useState(false);
   const [blockVisibleAssort, setBlockVisibleAssort] = useState(false);
 
@@ -35,8 +36,17 @@ const Component: React.FC = () => {
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (blockRef.current && !blockRef.current.contains(event.target as Node)) {
+      if (blockRefMatrix.current && !blockRefMatrix.current.contains(event.target as Node)) {
         setBlockVisibleMatrix(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (blockRefAssort.current && !blockRefAssort.current.contains(event.target as Node)) {
         setBlockVisibleAssort(false);
       }
     };
@@ -49,20 +59,20 @@ const Component: React.FC = () => {
       {/* <Conditions condition={userRole === UserRoles.SELLER && }>
 
       </Conditions> */}
-      <div>
+      <div ref={blockRefMatrix}>
         <div className={cls.select__button} onClick={handleVisibleChangeMatrix}>
-          <Typography className={cls.assort} variant="h4">Матрица</Typography>
+          <Typography variant="h4">Матрица</Typography>
         </div>
         {blockVisibleMatrix
           && (
-            <div ref={blockRef} className={cls.groups}>
+            <div className={cls.groups}>
               <GroupListMatrix blockVisible={blockVisibleMatrix} onVisibleChange={handleVisibleChangeMatrix} />
             </div>
           )}
       </div>
-      <div>
-        <div ref={blockRef} className={cls.select__button} onClick={handleVisibleChangeAssort}>
-          <Typography className={cls.assort} variant="h4">Ассортимент</Typography>
+      <div ref={blockRefAssort}>
+        <div className={cls.select__button} onClick={handleVisibleChangeAssort}>
+          <Typography variant="h4">Ассортимент</Typography>
         </div>
         {blockVisibleAssort
           && (

@@ -13,13 +13,13 @@ import { nomenclatureGroupReducer } from "../../model/slice/nomenclatureGroupSli
 import { NomenclatureGroupParent } from "../NomenclatureGroupParent/NomenclatureGroupParent";
 import cls from "../NomenclatureGroupList/NomenclatureGroupList.module.scss";
 
-const reducers: ReducersList = {
-  nomenclatureGroupList: nomenclatureGroupReducer,
-};
-
-type ChildComponentProps = {
+interface ChildComponentProps {
   blockVisible: boolean;
   onVisibleChange: (newState: boolean) => void;
+}
+
+const reducers: ReducersList = {
+  nomenclatureGroupList: nomenclatureGroupReducer,
 };
 
 const Component: React.FC<ChildComponentProps> = ({ blockVisible, onVisibleChange }) => {
@@ -27,17 +27,21 @@ const Component: React.FC<ChildComponentProps> = ({ blockVisible, onVisibleChang
   const navigate = useNavigate();
   const isShowSidebar = useSelector(getSidebarCollapsed);
   const currentGroups = useSelector(getNomenclatureGroupData);
+  const httpQuery = new URLSearchParams(location.search);
+
   // const isLoading = useSelector(getNomenclatureGroupIsLoading);
 
   useEffect(() => {
     dispatch(fetchNomenclatureGroup());
   }, [dispatch]);
 
-  const handleBlockVisibleClick = () => {
-    const httpQuery = new URLSearchParams(location.search);
+  const handleBlockVisibleClick = (isNew: boolean) => {
     httpQuery.delete("parentGUID");
     httpQuery.delete("brandGUID");
     httpQuery.set("isOnlyMatrix", "true");
+    isNew 
+      ? httpQuery.set("isNew", "true")
+      : httpQuery.delete("isNew");
     dispatch(searchProductActions.setSearchValue(""));
     navigate({
       pathname: getRouteMain(),
@@ -55,13 +59,9 @@ const Component: React.FC<ChildComponentProps> = ({ blockVisible, onVisibleChang
         ? cls.group__products
         : cls.group__sidebar}
       >
-
-        <div className={cls.group_wrap}>
-          <div onClick={handleBlockVisibleClick}>
-            <Typography variant="h4">Вся матрица</Typography>
-          </div>
+        <div className={cls.group_wrap} onClick={() => handleBlockVisibleClick(true)}>
+          <Typography variant="h4">Новинки</Typography>
         </div>
-
         {/* новинки */}
         {/* акционный товары */}
         {currentGroups?.map((groupParent) => (
@@ -73,9 +73,15 @@ const Component: React.FC<ChildComponentProps> = ({ blockVisible, onVisibleChang
               subject={groupParent.subject}
               blockVisible={blockVisible}
               onVisibleChange={onVisibleChange}
+              isMatrix
             />
           </div>
         ))}
+        <div className={cls.group_wrap}>
+          <div onClick={() => handleBlockVisibleClick(false)}>
+            <Typography variant="h4">Вся матрица</Typography>
+          </div>
+        </div>
       </div>
     </DynamicModuleLoader>
   );

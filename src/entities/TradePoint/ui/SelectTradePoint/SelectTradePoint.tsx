@@ -80,7 +80,7 @@ const Component = () => {
     };
 
     document.addEventListener("mousedown", handleClickOutside);
-  }, []);
+  }, [onSetIsExpanded]);
 
   return (
     <DynamicModuleLoader
@@ -91,9 +91,9 @@ const Component = () => {
         isLoading
           ? <Skeleton width="250px" height="50px" border="10px" />
           : (
-            <div className={cls.select__wrapper}>
+            <div ref={blockRef} className={cls.select__wrapper}>
               <div className={cls.select__default} onClick={onSetIsExpanded}>
-                <Typography className={cls.tr_point} align="center" variant="h4">
+                <Typography className={cls.trade_point__name} align="center" variant="h4">
                   {currentTradePoint?.fullname
                     ? currentTradePoint.fullname
                     : "Выберите торговую точку"}
