@@ -1,90 +1,93 @@
 @import "@app/styles/mixins";
 
 .red {
-  // border: 3px solid #eeb3b3 !important;
+    // border: 3px solid #eeb3b3 !important;
 }
 
 .debt_btn, .red {
-  @include flex-row;
-  gap: 5px;
-  padding: 10px;
-  border-radius: var(--border-radius-lg);
-  background: var(--color-gray-primary);
-  color: var(--color-white-bg);
-  cursor: pointer;
+    @include flex-row;
+
+    gap: 5px;
+    padding: 10px;
+    border-radius: var(--border-radius-lg);
+    background: var(--color-gray-primary);
+    color: var(--color-white-bg);
+    cursor: pointer;
 }
 
 
 .debt_plate {
-  @include grid-center;
-  gap: 10px;
-  background-color: var(--color-gray-secondary);
-  border: 1px solid var(--color-black);
-  border-radius: 5px;
-  padding: 10px;
-  width: 100%;
-  max-height: 300px;
-  overflow-x: scroll;
-
-  @include tablets {
-    width: 60vw;
-    overflow-x: hidden;
-  }
-
-  &::-webkit-scrollbar-track {
-    background-color: transparent;
-    border-radius: 10px;
-    height: 90%;
-  }
-
-  &::-webkit-scrollbar {
-    background-color: transparent;
-    height: 3px;
-    width: 3px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    border-radius: 60px;
-  }
-
-  .debt_column {
     @include grid-center;
-    width: 20%;
-    padding: 10px;
-    border-right: 1px solid var(--color-black);
-  }
 
-  .debt_title {
-    position: sticky;
-    top: 0;
+    gap: 10px;
     background-color: var(--color-gray-secondary);
     border: 1px solid var(--color-black);
     border-radius: 5px;
+    padding: 10px;
+    width: 100%;
+    max-height: 300px;
+    overflow-x: scroll;
+
+    @include tablets {
+        width: 60vw;
+        overflow-x: hidden;
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color: transparent;
+        border-radius: 10px;
+        height: 90%;
+    }
+
+    &::-webkit-scrollbar {
+        background-color: transparent;
+        height: 3px;
+        width: 3px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: 60px;
+    }
 
     .debt_column {
-      height: 50px;
+        @include grid-center;
+
+        width: 20%;
+        padding: 10px;
+        border-right: 1px solid var(--color-black);
     }
-  }
 
-  .debt_row {
-    width: 100%;
-    height: var(--height-plate-rows);
-    border: 1px solid var(--color-black);
-    border-radius: 5px;
-  }
+    .debt_title {
+        position: sticky;
+        top: 0;
+        background-color: var(--color-gray-secondary);
+        border: 1px solid var(--color-black);
+        border-radius: 5px;
 
-  .number {
-    width: 40%;
-  }
+        .debt_column {
+            height: 50px;
+        }
+    }
 
-  .amountDebt {
-    width: 20%;
-    border: none;
-  }
+    .debt_row {
+        width: 100%;
+        height: var(--height-plate-rows);
+        border: 1px solid var(--color-black);
+        border-radius: 5px;
+    }
 
-  .debt_sum {
-    @include flex-end;
+    .number {
+        width: 40%;
+    }
 
-    width: 90%;
-  }
+    .amountDebt {
+        width: 20%;
+        border: none;
+    }
+
+    .debt_sum {
+        @include flex-end;
+
+        width: 90%;
+    }
 }

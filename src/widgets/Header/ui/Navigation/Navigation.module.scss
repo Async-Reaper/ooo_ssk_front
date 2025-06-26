@@ -1,34 +1,34 @@
 .navigation {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 25px;
-  width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    width: 100%;
 
-  .select__button {
-    cursor: pointer;
-    color: var(--color-gray-primary);
+    .select__button {
+        cursor: pointer;
+        color: var(--color-gray-primary);
 
-    &:hover {
-      transition: ease-in-out .3s;
-      color: var(--color-black);
+        &:hover {
+            transition: ease-in-out .3s;
+            color: var(--color-black);
+        }
     }
-  }
 
-  .groups {
-    position: absolute;
-    background: var(--color-white-bg);
-    border-radius: 0 0 15px 15px;
-    z-index: 1000;
-  }
-
-  .history__link {
-    color: var(--color-gray-primary);
-    transition: ease-in-out .2s;
-    cursor: pointer;
-
-    &:hover {
-      color: var(--color-black);
+    .groups {
+        position: absolute;
+        background: var(--color-white-bg);
+        border-radius: 0 0 15px 15px;
+        z-index: 1000;
     }
-  }
+
+    .history__link {
+        color: var(--color-gray-primary);
+        transition: ease-in-out .2s;
+        cursor: pointer;
+
+        &:hover {
+            color: var(--color-black);
+        }
+    }
 }

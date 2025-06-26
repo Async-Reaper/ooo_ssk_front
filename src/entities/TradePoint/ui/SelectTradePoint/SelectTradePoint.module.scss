@@ -1,80 +1,80 @@
 @import "@app/styles/mixins";
 
 .select__wrapper {
-  border-radius: var(--border-radius-lg);
-  background: var(--color-gray-primary);
-  backdrop-filter: blur(10px);
-  z-index: 1;
-  color: var(--color-white-bg);
-  font-size: 19px;
-  font-weight: 300;
-  padding: 5px;
-  width: 300px;
-  position: relative;
-
-  .trade_point__name {
-    margin: 0 auto;
-  }
-
-  .down, .up {
-    margin-left: auto;
-  }
-
-  .down {
-    transition: all 0.3s;
-  }
-
-  .up {
-    transform: rotate(180deg);
-    transition: all 0.3s;
-  }
-
-  .select__default {
-    display: flex;
-    align-items: center;
-    min-height: 35px;
-    cursor: pointer;
-  }
-
-  .select__list {
-    position: absolute;
-    right: 0;
-    left: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    transition: all .2s;
-    height: auto;
-    width: 100%;
-    background: #F9F3F6;
-    color: black;
     border-radius: var(--border-radius-lg);
-    border: 1px solid;
+    background: var(--color-gray-primary);
+    backdrop-filter: blur(10px);
+    z-index: 1;
+    color: var(--color-white-bg);
+    font-size: 19px;
+    font-weight: 300;
+    padding: 5px;
+    width: 300px;
+    position: relative;
 
-    &[aria-expanded="false"] {
-      height: 0;
-      scale: 0;
-      transform: translateY(-500px);
+    .trade_point__name {
+        margin: 0 auto;
     }
 
-    &[aria-expanded="true"] {
-      height: max-content;
-      scale: 1;
-      transform: translateY(0);
+    .down, .up {
+        margin-left: auto;
     }
 
-    .select__item {
-      cursor: pointer;
-      padding: 10px;
-      backdrop-filter: blur(10px);
-
-      &+.select__item {
-        border-top: 1px solid;
-      }
-
-      &:nth-last-child(1) {
-        border-radius: 0 0 20px 20px;
-      }
+    .down {
+        transition: all 0.3s;
     }
-  }
+
+    .up {
+        transform: rotate(180deg);
+        transition: all 0.3s;
+    }
+
+    .select__default {
+        display: flex;
+        align-items: center;
+        min-height: 35px;
+        cursor: pointer;
+    }
+
+    .select__list {
+        position: absolute;
+        right: 0;
+        left: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        transition: all .2s;
+        height: auto;
+        width: 100%;
+        background: #F9F3F6;
+        color: black;
+        border-radius: var(--border-radius-lg);
+        border: 1px solid;
+
+        &[aria-expanded="false"] {
+            height: 0;
+            scale: 0;
+            transform: translateY(-500px);
+        }
+
+        &[aria-expanded="true"] {
+            height: max-content;
+            scale: 1;
+            transform: translateY(0);
+        }
+
+        .select__item {
+            cursor: pointer;
+            padding: 10px;
+            backdrop-filter: blur(10px);
+
+            &+.select__item {
+                border-top: 1px solid;
+            }
+
+            &:nth-last-child(1) {
+                border-radius: 0 0 20px 20px;
+            }
+        }
+    }
 }

@@ -1,46 +1,47 @@
 @import "@app/styles/mixins";
 
 .basket__wrapper {
-  @include page-flex;
+    @include page-flex;
 
-  align-items: center;
-  gap: 10px;
-
-  .button__continue__order {
-    cursor: pointer;
-    color: var(--color-gray-primary);
-    transition: ease-in-out .2s;
-    width: 100%;
-
-    &:hover {
-      color: var(--color-black);
-    }
-  }
-
-  .basket__list__wrapper {
-    @include flex-column;
     align-items: center;
-    gap: 16px;
-    background: var(--color-gray-secondary);
-    width: 100%;
-    padding: 15px 25px;
-    border-radius: 30px;
-  }
+    gap: 10px;
 
-  .input_date {
-    border-bottom: 1.5px solid var(--color-tiffany-blue);
-    padding: 5px 0;
-  }
+    .button__continue__order {
+        cursor: pointer;
+        color: var(--color-gray-primary);
+        transition: ease-in-out .2s;
+        width: 100%;
 
-  .com_wrap {
-    flex-direction: column;
-
-    @include tablets {
-      flex-direction: row;
+        &:hover {
+            color: var(--color-black);
+        }
     }
-  }
 
-  .commentary {
-    width: 70%;
-  }
+    .basket__list__wrapper {
+        @include flex-column;
+
+        align-items: center;
+        gap: 16px;
+        background: var(--color-gray-secondary);
+        width: 100%;
+        padding: 15px 25px;
+        border-radius: 30px;
+    }
+
+    .input_date {
+        border-bottom: 1.5px solid var(--color-tiffany-blue);
+        padding: 5px 0;
+    }
+
+    .com_wrap {
+        flex-direction: column;
+
+        @include tablets {
+            flex-direction: row;
+        }
+    }
+
+    .commentary {
+        width: 70%;
+    }
 }

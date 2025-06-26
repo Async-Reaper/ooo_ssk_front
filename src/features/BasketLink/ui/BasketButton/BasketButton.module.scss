@@ -1,24 +1,24 @@
 @import "@app/styles/mixins";
 
 .basket__title {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  cursor: pointer;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
 
-  @include flex-center;
+    @include flex-center;
 
-  .basket__count {
-    background-color: var(--color-green);
-    border-radius: var(--border-radius-over);
-    padding: 0 7px;
-    color: var(--color-white-bg);
-    position: absolute;
-    top: -13px;
-    right: -10px;
+    .basket__count {
+        background-color: var(--color-green);
+        border-radius: var(--border-radius-over);
+        padding: 0 7px;
+        color: var(--color-white-bg);
+        position: absolute;
+        top: -13px;
+        right: -10px;
 
-    .count_text {
-      line-height: 22px;
+        .count_text {
+            line-height: 22px;
+        }
     }
-  }
 }

@@ -1,118 +1,121 @@
 @import "@app/styles/mixins";
 
 .nomenclature__wrapper {
-  @include flex-column;
-  align-items: center;
-  gap: 20px;
-  position: relative;
-  padding: 25px;
-  border-radius: var(--border-radius-xxl);
-  background: var(--color-white-bg);
-  width: 100%;
+    @include flex-column;
 
-  @include laptop {
-    @include flex-row;
-  }
-
-  .nomenclature__image {
-    display: grid;
+    align-items: center;
+    gap: 20px;
+    position: relative;
+    padding: 25px;
+    border-radius: var(--border-radius-xxl);
+    background: var(--color-white-bg);
     width: 100%;
-    min-width: 170px;
-    height: 125px;
-    border-radius: var(--border-radius-lg);
-    overflow: hidden;
-    justify-content: center;
 
-    img {
-      width: inherit;
-      height: inherit;
-      object-fit: contain;
+    @include laptop {
+        @include flex-row;
+    }
+
+    .nomenclature__image {
+        display: grid;
+        width: 100%;
+        min-width: 170px;
+        height: 125px;
+        border-radius: var(--border-radius-lg);
+        overflow: hidden;
+        justify-content: center;
+
+        img {
+            width: inherit;
+            height: inherit;
+            object-fit: contain;
+        }
+
+        @include tablets {
+            width: 170px;
+            height: 130px;
+        }
+    }
+
+    .nomenclature__description {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+
+        .name,
+        .expiration_date,
+        .measurement {
+            padding: 5px 10px;
+            border-radius: var(--border-radius-lg);
+            border: 1px solid var(--color-gray-primary);
+        }
+
+        .nomenclature__other {
+            @include flex-row;
+
+            align-items: center;
+            gap: 15px;
+            margin-left: auto;
+        }
+
+        .info {
+            @include flex-row;
+
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 15px;
+
+            @include laptop {
+                flex-wrap: nowrap;
+            }
+        }
+    }
+
+    .nomenclature__settings {
+        display: flex;
+        flex-direction: column;
+        place-items: center;
+        gap: 10px;
+        min-width: 150px;
+        width: 100%;
+        font-size: 25px;
+
+        @include laptop {
+            width: 20%;
+            min-width: 200px;
+        }
+
+        .remains__wrap {
+            border: 1px solid var(--color-gray-primary);
+            border-radius: var(--border-radius-lg);
+            width: 100%;
+            height: 45px;
+            font-weight: 600;
+            padding: 5px 0;
+
+            @include grid-center;
+            @include adaptive("font-size", 26, 15);
+        }
+    }
+
+    .trash__wrap {
+        position: absolute;
+        right: 10px;
+        height: 50px;
+    }
+
+    .ribbon {
+        position: absolute;
+        top: 11px;
+        left: -6px;
+        transform: rotate(312deg);
     }
 
     @include tablets {
-      width: 170px;
-      height: 130px;
+        .trash__wrap {
+            right: 0;
+            position: relative;
+            height: 100px;
+        }
     }
-  }
-
-  .nomenclature__description {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
-
-    .name,
-    .expiration_date,
-    .measurement {
-      padding: 5px 10px;
-      border-radius: var(--border-radius-lg);
-      border: 1px solid var(--color-gray-primary);
-    }
-
-    .nomenclature__other {
-      @include flex-row;
-      align-items: center;
-      gap: 15px;
-      margin-left: auto;
-    }
-
-    .info {
-      @include flex-row;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 15px;
-
-      @include laptop {
-        flex-wrap: nowrap;
-      }
-    }
-  }
-
-  .nomenclature__settings {
-    display: flex;
-    flex-direction: column;
-    place-items: center;
-    gap: 10px;
-    min-width: 150px;
-    width: 100%;
-    font-size: 25px;
-
-    @include laptop {
-      width: 20%;
-      min-width: 200px;
-    }
-
-    .remains__wrap {
-      border: 1px solid var(--color-gray-primary);
-      border-radius: var(--border-radius-lg);
-      width: 100%;
-      height: 45px;
-      font-weight: 600;
-      padding: 5px 0;
-
-      @include grid-center;
-      @include adaptive("font-size", 26, 15);
-    }
-  }
-
-  .trash__wrap {
-    position: absolute;
-    right: 10px;
-    height: 50px;
-  }
-
-  .ribbon {
-    position: absolute;
-    top: 11px;
-    left: -6px;
-    transform: rotate(312deg);
-  }
-
-  @include tablets {
-    .trash__wrap {
-      right: 0;
-      position: relative;
-      height: 100px;
-    }
-  }
 }

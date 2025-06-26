@@ -1,13 +1,13 @@
 .history_object {
-  display: flex;
-  cursor: pointer;
-  border: 1px solid var(--color-green);
-  color: var(--color-green);
-  padding: 5px 10px;
-  border-radius: 10px;
+    display: flex;
+    cursor: pointer;
+    border: 1px solid var(--color-green);
+    color: var(--color-green);
+    padding: 5px 10px;
+    border-radius: 10px;
 
-  &:hover {
-    background: var(--color-green-primary);
+    &:hover {
+        background: var(--color-green-primary);
 
-  }
+    }
 }

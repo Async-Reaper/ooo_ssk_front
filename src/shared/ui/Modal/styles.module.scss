@@ -8,13 +8,14 @@
     z-index: -1;
     color: var(--color-neutral);
     will-change: filter;
+
     // backdrop-filter: blur(5px);
 }
 
 .overlay {
     width: 100%;
     height: 100%;
-    background: rgba(127, 207, 30, 0.664);
+    background: rgb(127 207 30 / 66.4%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -37,6 +38,7 @@
     pointer-events: auto;
     z-index: 99999;
     animation: opened 0.2s ease-in-out forwards;
+
     // opacity: 1;
     .content {
         transform: scale(1);

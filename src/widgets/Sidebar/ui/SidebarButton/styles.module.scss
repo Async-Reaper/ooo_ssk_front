@@ -1,13 +1,13 @@
 @import "@app/styles/mixins";
 
 .sidebarButton__wrapper {
-  transition: 0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
 
-  @include laptop {
-    display: none;
-  }
+    @include laptop {
+        display: none;
+    }
 
-  path {
-    fill: var(--color-green-primary);
-  }
+    path {
+        fill: var(--color-green-primary);
+    }
 }

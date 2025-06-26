@@ -1,74 +1,75 @@
 @import "@app/styles/mixins";
 
 .sidebar {
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  max-width: 600px;
-  transition: ease-in-out .4s;
-  z-index: 99990;
-  display: flex;
-  flex-direction: column;
-  transform: translateX(-1000px);
-
-  &.collapsed {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    max-width: 600px;
+    transition: ease-in-out .4s;
+    z-index: 99990;
     display: flex;
-    transform: translateX(0);
-  }
+    flex-direction: column;
+    transform: translateX(-1000px);
 
-  .sidebar__wrap {
-    @include flex-column;
-    gap: 30px;
-    width: 100%;
-    height: 100%;
-    background: var(--color-white-bg);
-    padding: 15px;
-    overflow: auto;
-
-    .sidebar__head {
-      display: flex;
-      width: 100%;
-      align-items: center;
-
-      .close__button {
-        cursor: pointer;
-        margin-bottom: auto;
-      }
+    &.collapsed {
+        display: flex;
+        transform: translateX(0);
     }
 
-    .sidebar__logo {
-      margin: 0 auto;
-    }
+    .sidebar__wrap {
+        @include flex-column;
 
-    .logo {
-      width: 130px;
-      height: 130px;
-      border-radius: 50%;
-    }
+        gap: 30px;
+        width: 100%;
+        height: 100%;
+        background: var(--color-white-bg);
+        padding: 15px;
+        overflow: auto;
 
-    .search__product__wrapper {
-      max-width: 80%;
-      margin: 0 auto;
-      width: 100%;
-    }
+        .sidebar__head {
+            display: flex;
+            width: 100%;
+            align-items: center;
 
-    .logout_btn {
-      margin: 0 auto;
-    }
+            .close__button {
+                cursor: pointer;
+                margin-bottom: auto;
+            }
+        }
 
-    &::-webkit-scrollbar-track {
-      background-color: transparent;
-      border-radius: 10px;
-      height: 90%;
-    }
+        .sidebar__logo {
+            margin: 0 auto;
+        }
 
-    &::-webkit-scrollbar {
-      background-color: transparent;
-      width: 3px;
-    }
+        .logo {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+        }
 
-    &::-webkit-scrollbar-thumb {
-      background-color: transparent;
+        .search__product__wrapper {
+            max-width: 80%;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .logout_btn {
+            margin: 0 auto;
+        }
+
+        &::-webkit-scrollbar-track {
+            background-color: transparent;
+            border-radius: 10px;
+            height: 90%;
+        }
+
+        &::-webkit-scrollbar {
+            background-color: transparent;
+            width: 3px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: transparent;
+        }
     }
-  }
 }

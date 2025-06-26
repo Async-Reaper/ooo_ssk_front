@@ -1,22 +1,22 @@
 @import "@app/styles/mixins";
 
 .logout__wrapper {
-  margin: 0 auto;
-  width: max-content;
+    margin: 0 auto;
+    width: max-content;
 }
 
 .description {
-  color: var(--color-gray-primary);
-  width: max-content;
-  margin: 0 auto 5px;
+    color: var(--color-gray-primary);
+    width: max-content;
+    margin: 0 auto 5px;
 }
 
 .footer {
-  @include flex-column;
-  height: 100%;
-  align-items: center;
-  background: var(--color-gray-primary);
-  padding: 15px;
-  justify-items: center;
-  font-size: 10px;
+    @include flex-column;
+
+    height: 100%;
+    place-items: center center;
+    background: var(--color-gray-primary);
+    padding: 15px;
+    font-size: 10px;
 }

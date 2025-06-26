@@ -1,29 +1,30 @@
 @import "@app/styles/mixins";
 
 .navigation {
-  @include flex-center;
-  flex-direction: column;
-  gap: 30px;
-  margin: 0 auto;
-  width: max-content;
-  z-index: 99999;
-  cursor: pointer;
-  user-select: none;
-  touch-action: manipulation;
+    @include flex-center;
 
-  .bar_text {
-    font-weight: 600;
-  }
-
-  .link__underline {
-    width: 100%;
+    flex-direction: column;
+    gap: 30px;
     margin: 0 auto;
-    height: 2px;
-    border: none;
-    background: var(--color-green-primary);
-  }
+    width: max-content;
+    z-index: 99999;
+    cursor: pointer;
+    user-select: none;
+    touch-action: manipulation;
 
-  &:active {
-    outline: none;
-  }
+    .bar_text {
+        font-weight: 600;
+    }
+
+    .link__underline {
+        width: 100%;
+        margin: 0 auto;
+        height: 2px;
+        border: none;
+        background: var(--color-green-primary);
+    }
+
+    &:active {
+        outline: none;
+    }
 }

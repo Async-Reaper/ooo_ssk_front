@@ -2,47 +2,49 @@
 
 
 .social__modal {
-  .decoration__left,
-  .decoration__right {
-    height: 100%;
-    border-radius: 25px;
-    z-index: 0;
-  }
-
-  .decoration__left {
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-
-  .decoration__right {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-  }
-
-  .promo__wrapper {
-    @include flex-column;
-    gap: 15px;
-    align-items: center;
-    height: 100%;
-    margin: 0 auto;
-    padding: 0 0 60px;
-    z-index: 2;
-
-    .button__group {
-      @include flex-row;
-      gap: 25px;
+    .decoration__left,
+    .decoration__right {
+        height: 100%;
+        border-radius: 25px;
+        z-index: 0;
     }
 
-    .button__tg {
-      border: 2px solid var(--color-white-bg);
-      color: var(--color-white-bg);
+    .decoration__left {
+        position: absolute;
+        top: 0;
+        left: 0;
     }
 
-    .button__vk {
-      border: 2px solid var(--color-green-primary);
-      color: var(--color-green-primary);
+    .decoration__right {
+        position: absolute;
+        bottom: 0;
+        right: 0;
     }
-  }
+
+    .promo__wrapper {
+        @include flex-column;
+
+        gap: 15px;
+        align-items: center;
+        height: 100%;
+        margin: 0 auto;
+        padding: 0 0 60px;
+        z-index: 2;
+
+        .button__group {
+            @include flex-row;
+
+            gap: 25px;
+        }
+
+        .button__tg {
+            border: 2px solid var(--color-white-bg);
+            color: var(--color-white-bg);
+        }
+
+        .button__vk {
+            border: 2px solid var(--color-green-primary);
+            color: var(--color-green-primary);
+        }
+    }
 }
