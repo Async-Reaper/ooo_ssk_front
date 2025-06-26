@@ -7,12 +7,12 @@ import { getNomenclatureByIdList, nomenclatureReducer } from "@widgets/Nomenclat
 import { useAlertsInfo } from "@widgets/Nomenclature/model/libs/hooks/useAlertsInfo";
 import React, { useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { basketReducer, fetchBasketProductWithContract, getBasketData } from "@entities/BasketEntitie";
+import { DynamicModuleLoader, ReducersList } from "@shared/libs/component";
 import {
   getOrdersHistoryProductsData,
 } from "../../model/selectors/orderProductsHistoryListSelectors";
-import { basketReducer, fetchBasketProductWithContract, getBasketData } from "@entities/BasketEntitie";
 import { orderProductHistoryListReducer } from "../../model/slice/orderProductHistoryListSlice";
-import { DynamicModuleLoader, ReducersList } from "@shared/libs/component";
 
 const reducers: ReducersList = {
   orderProductHistoryList: orderProductHistoryListReducer,
@@ -34,21 +34,18 @@ const Component = () => {
   useEffect(() => {
     dispatch(fetchBasketProductWithContract({ userGuid: user!.userGUID, contractGuid: currentTradePoint!.guid }));
     
-    basketProducts?.map(productBasket => {
-      const thisProduct = orderHistoryListData?.find((productHistory) => productBasket.product_guid === productHistory.product_guid)
+    basketProducts?.map((productBasket) => {
+      const thisProduct = orderHistoryListData?.find((productHistory) => productBasket.product_guid === productHistory.product_guid);
 
       if (thisProduct) {
         setIsDisabled(true);
       } else {
         setIsDisabled(false);
       }
-    })
-    console.log(basketProducts)
-  }, [dispatch, orderHistoryListData, setIsDisabled])
-  
+    });
+  }, [dispatch, orderHistoryListData, setIsDisabled]);
 
   const onAddOrderToBasket = useCallback(() => {
-    // eslint-disable-next-line array-callback-return
     orderHistoryListData?.map((order) => {
       const thisProduct = nomenclatureList?.find((product) => product.guid === order.product_guid);
 
@@ -68,7 +65,7 @@ const Component = () => {
             count: order.count,
           }));     
           
-          setIsDisabled(true)
+          setIsDisabled(true);
         } else {
           alertInfo.onOpenAlert({
             id: 1,
@@ -83,7 +80,7 @@ const Component = () => {
 
   useEffect(() => {
 
-  }, [])
+  }, []);
 
   return (
     <DynamicModuleLoader
@@ -94,8 +91,8 @@ const Component = () => {
         <Typography variant="h3">
           {
             isDisabled 
-            ? "Заказ добавлен в корзину"
-            : "Добавить заказ в корзину"
+              ? "Заказ добавлен в корзину"
+              : "Добавить заказ в корзину"
           }
         </Typography>
       </Button>

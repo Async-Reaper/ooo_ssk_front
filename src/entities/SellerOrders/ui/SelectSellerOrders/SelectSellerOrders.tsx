@@ -58,7 +58,6 @@ const Component = () => {
   }, [sellerOrders, dispatch, navigate, currentSellerOrder]);
 
   useEffect(() => {
-    // eslint-disable-next-line array-callback-return
     sellerOrders?.map((tradePoint) => {
       if (params.get("documentGUID") === tradePoint.document_guid) {
         dispatch(sellerDataActions.changeSellerData(tradePoint));

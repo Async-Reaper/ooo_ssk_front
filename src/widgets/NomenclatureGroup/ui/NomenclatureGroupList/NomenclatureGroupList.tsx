@@ -69,7 +69,7 @@ const Component: React.FC<ChildComponentProps> = ({ blockVisible, onVisibleChang
           <div key={groupParent.object.guid}>
             <NomenclatureGroupParent 
               key={groupParent.object.guid}
-              // guid={groupParent.object.guid}
+              guid={groupParent.object.guid}
               fullname={groupParent.object.fullname} 
               parentGUID={groupParent.object.guid} 
               subject={groupParent.subject}

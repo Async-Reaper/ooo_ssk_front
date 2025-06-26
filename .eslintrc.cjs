@@ -57,7 +57,6 @@ module.exports = {
     "no-shadow": "off",
     "no-nested-ternary": "off",
     "@typescript-eslint/no-shadow": "warn",
-    // "array-callback-return": "off",
     "no-restricted-globals": "off",
     "no-restricted-syntax": "off",
     "no-unused-expressions": "off",

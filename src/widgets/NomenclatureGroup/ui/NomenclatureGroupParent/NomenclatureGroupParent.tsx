@@ -10,7 +10,7 @@ import cls from "./NomenclatureGroupParent.module.scss";
 import { NomenclatureGroupChild } from "../NomenclatureGroupChild/NomenclatureGroupChild";
 
 interface NomenclatureGroupParentProps {
-  // guid: string;
+  guid: string;
   fullname?: string;
   parentGUID?: string;
   subject?: NomenclatureGroupType[]
@@ -20,7 +20,7 @@ interface NomenclatureGroupParentProps {
 }
 
 const Component = ({
-  // guid,
+  guid,
   fullname,
   subject,
   parentGUID,
@@ -61,7 +61,7 @@ const Component = ({
   return (
     <>
       <div className={cls.group_wrap} onClick={onOpenSelect}>
-        {/* <AppImage src={`${__API__}/templates/static/nomenclature_groups/${parentGUID}/${guid}.png`} /> */}
+        <AppImage src={`${__API__}/templates/static/nomenclature_groups/${parentGUID}/${guid}.png`} />
         <Typography variant="h4">{fullname}</Typography>
       </div>
       {showChild

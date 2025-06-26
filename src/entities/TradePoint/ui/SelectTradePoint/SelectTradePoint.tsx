@@ -54,7 +54,6 @@ const Component = () => {
   }, [tradePoints, dispatch, navigate, currentTradePoint, setIsExpanded]);
 
   useEffect(() => {
-    // eslint-disable-next-line array-callback-return
     tradePoints?.map((tradePoint) => {
       if (params.get("contractGUID") === tradePoint.guid) {
         dispatch(tradePointActions.changeTradePoint(tradePoint));

@@ -43,7 +43,7 @@ const Component = (() => {
     if (user?.role === UserRoles.SELLER && currentBasketSum) {
       setFormatedNumber(currentBasketSum);
     } else if (user?.role === UserRoles.SELLER && !currentBasketSum && sellerData?.document_data.products) {
-      setFormatedNumber(sellerData?.document_data.products?.reduce((total, product) => total += product.price * product.count, 0));
+      setFormatedNumber(sellerData?.document_data.products?.reduce((total: number, product: { price: number; count: number; }) => total += product.price * product.count, 0));
     }
   }, [user, currentBasketSum, sellerData]);
 
@@ -53,7 +53,9 @@ const Component = (() => {
     >
       <div className={cls.basket_sum}>
         {user?.role === UserRoles.SELLER && `${formattedNumber?.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")} ₽`}
-        {user?.role === UserRoles.BUYER && `${basketSum?.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")} ₽`}
+        {(user?.role === UserRoles.BUYER && basketSum)
+          ? `${basketSum?.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")} ₽`
+          : (user?.role === UserRoles.BUYER && basketSum) && "0 ₽"}
       </div>
 
     </DynamicModuleLoader>

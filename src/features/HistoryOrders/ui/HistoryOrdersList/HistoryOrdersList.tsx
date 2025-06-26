@@ -28,9 +28,7 @@ const Component = () => {
     >
       <VStack max>
         <Conditions condition={historyOrdersIsLoading}>
-          {new Array(10).fill(null).map((_, index) =>
-            // eslint-disable-next-line react/no-array-index-key,implicit-arrow-linebreak
-            <Skeleton key={index} width="100%" height="75px" border="10px" />)}
+          {new Array(10).fill(null).map((_, index) => <Skeleton key={index} width="100%" height="75px" border="10px" />)}
         </Conditions>
             
         {historyOrdersList?.map((historyItem) => (
