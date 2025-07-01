@@ -59,7 +59,7 @@ const Component = () => {
     const paramsForRequest: IFilterNomenclatures = {
       page,
       limit,
-      contractGuid: contractGUID!,
+      contractGuid: contractGUID as string,
     };
 
     if (brandGUID !== undefined && brandGUID !== null && brandGUID !== "") {

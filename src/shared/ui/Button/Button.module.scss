@@ -19,8 +19,9 @@
     }
 
     &:disabled {
-        cursor: auto;
+        cursor: default;
         opacity: 0.7;
+        pointer-events: none;
     }
 
     @import "./styles/variant.module";

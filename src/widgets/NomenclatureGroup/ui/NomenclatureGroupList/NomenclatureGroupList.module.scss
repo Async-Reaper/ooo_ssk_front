@@ -1,12 +1,11 @@
-@import "../../../../app/styles/mixins";
+@import "@app/styles/mixins";
 
-.group__products{
+.group__products {
     width: 300px;
     background: var(--color-white-bg);
     border-radius: var(--border-radius-xxl);
     border: 3px solid var(--color-green-primary);
     height: 60vh;
-    overflow: scroll;
     overflow-x: hidden;
     
     &::-webkit-scrollbar-track{
@@ -25,58 +24,32 @@
         background-image: radial-gradient(#0d8d8f, #0fa4a700 60%);
     }
 
-}
+    .group_wrap {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        cursor: pointer;
+        height: max-content;
+        position: relative;
+        padding: 15px;
+        
+        &:not(:last-child) {
+            border-bottom: 1px solid var(--color-gray-light);
+        }
 
-.group__sidebar{
-    background: transparent;
+        &:last-child {
+            border-radius: 0 0 var(--border-radius-xl) var(--border-radius-xl);
+        }
 
-    // border-radius: var(--border-radius-xxl);
-    border: none;
-    height: 60vh;
-    overflow: scroll;
-    overflow-x: hidden;
-    color: var(--color-black-bg);
-    
-    &::-webkit-scrollbar-track{
-        background-color: transparent;
-        border-radius: 10px;
-        height: 90%;
-    }
+        &:hover {
+            background: #0fa4a723;
+        }
 
-    &::-webkit-scrollbar{
-        background-color: transparent;
-        width: 3px;
-    }   
-
-    &::-webkit-scrollbar-thumb{
-        border-radius: 60px;
-        background-image: radial-gradient(#0d8d8f, #0fa4a700 60%);
-    }
-
-}
-
-.group__sidebar:active {
-    outline: none;
-}
-
-.group_wrap {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    width: 100%;
-    border-bottom: solid var(--color-gray-light) 1px;
-    cursor: pointer;
-    height: max-content;
-    position: relative;
-    padding: 15px;
-
-    &:hover{
-        background: #0fa4a723;
-    }
-
-    img {
-        width: 30px;
-        height: auto;
-        object-fit: contain;
+        img {
+            width: 30px;
+            height: auto;
+            object-fit: contain;
+        }
     }
 }

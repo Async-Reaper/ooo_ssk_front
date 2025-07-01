@@ -132,6 +132,7 @@ const Component = ({
         value={countToBasket === 0
           ? ""
           : countToBasket}
+        disabled={!currentTradePoint?.guid || remains === 0}
         onChange={onHandleInputCount}
         className={cls.input_count}
         placeholder="0"
@@ -139,7 +140,7 @@ const Component = ({
             
       <Button
         variant="comparate_button" 
-        disabled={!currentTradePoint?.guid}
+        disabled={!currentTradePoint?.guid || remains === 0}
         size="xs"
         fullWidth
         onClick={onHandleAddToBasket}
@@ -148,12 +149,6 @@ const Component = ({
           <Icon name="plus" size={30} />
         </div>
       </Button>
-
-      {/* <div className={cls.price_object}>
-            <Typography align="center" variant="h6">
-               {countToBasket !== 0 && `${formattedPrice} / ${nomenclatureData?.measurement}`}                  
-            </Typography>
-         </div> */}
     </div>
   );
 };

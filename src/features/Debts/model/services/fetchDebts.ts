@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { ThunkConfig } from "../../../../app/providers/StoreProvider";
+import { ThunkConfig } from "@app/providers/StoreProvider";
 import { IDebtsData } from "../types/debts";
 
 export const fetchDebts = createAsyncThunk<IDebtsData, string, ThunkConfig<any>>(

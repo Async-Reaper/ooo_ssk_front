@@ -7,6 +7,7 @@ import { getCurrentTradePoint } from "@entities/TradePoint";
 import { useAppDispatch } from "@shared/hooks";
 import { __API__ } from "@shared/protocols/api";
 import { DeleteFromSellerDataProductButton } from "@features/DeleteFromSellerData";
+import { classNames } from "@shared/libs/classNames/classNames";
 import { nomenclatureReducer } from "../../model/slice/nomenclatureSlice";
 import { INomenclature } from "../../model/types/nomenclature";
 import { fetchNomenclatureById } from "../../model/services/fetchNomenclatureById";
@@ -47,12 +48,6 @@ const Component = ({
   const nomenclatureData = nomenclatureById || nomenclature;
   const currentTradePoint = useSelector(getCurrentTradePoint);
   const curentTradePointGUID = currentTradePoint?.guid! || httpQuery.get("contractGUID")!;
-  const styleRed = {
-    color: "var(--color-red)",
-  };
-  const styleGreen = {
-    color: "var(--color-green)",
-  };
 
   const getNomenclatureById = useCallback(async () => {
     if (isWithGuid && guid) {
@@ -87,13 +82,9 @@ const Component = ({
           </div>
           <div className={cls.info}>
             <Typography variant="h4">
-              {nomenclatureData?.additional_information?.price}
-              {" "}
-              ₽
-              {" "}
-              /
-              {" "}
-              {nomenclatureData?.measurement}
+              <Typography variant="h4">
+                {`${nomenclatureData?.additional_information?.price} ₽/ ${nomenclatureData?.measurement}`}
+              </Typography>
             </Typography>
             <div className={cls.expiration_date}>
               <Typography variant="h5">
@@ -111,14 +102,22 @@ const Component = ({
         </div>
         <div className={cls.nomenclature__settings}>
           <div
-            className={cls.remains__wrap}
-            style={nomenclatureData?.additional_information?.remains! > 0
-              ? styleGreen
-              : styleRed}
+            className={classNames(cls.remains__wrap, { 
+              [cls.positive]: nomenclatureData?.additional_information?.remains! > 0,
+            })}
           >
-            {nomenclatureData?.additional_information?.remains! > 0
-              ? "в наличии"
-              : "отсутствует"}
+            {(nomenclatureData?.additional_information?.remains! > 0 && currentTradePoint)
+              && (
+                <Typography variant="h4" bold>
+                  в наличии
+                </Typography>
+              )}
+            {(nomenclatureData?.additional_information?.remains! === 0 && currentTradePoint) 
+              && (
+                <Typography variant="h4" bold>
+                  отсутствует
+                </Typography>
+              )}
           </div>
 
           <NomenclatureCountForSeller

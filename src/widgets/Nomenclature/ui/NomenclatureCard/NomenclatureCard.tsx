@@ -16,6 +16,7 @@ import { DynamicModuleLoader, ReducersList } from "@shared/libs/component";
 import { addToFavoriteReducer } from "@features/AddToFavorite";
 import { deleteFromFavoriteReducer } from "@features/DeleteFromFavorite";
 import { addToBasketReducer } from "@features/AddToBasket";
+import { classNames } from "@shared/libs/classNames/classNames";
 import { NomenclatureFavorite } from "../NomenclatureFavorite/NomenclatureFavorite";
 import { NomenclatureCount } from "../NomenclatureCount/NomenclatureCount";
 import { INomenclature } from "../../model/types/nomenclature";
@@ -58,13 +59,6 @@ const Component = ({
   const nomenclatureData = nomenclature || nomenclatureById;
   const currentTradePoint = useSelector(getCurrentTradePoint);
 
-  const styleRed = {
-    color: "var(--color-red)",
-  };
-  const styleGreen = {
-    color: "var(--color-green)",
-  };
-
   const getNomenclatureById = useCallback(async () => {
     if (isWithGuid && guid) {
       const response = await dispatch(fetchNomenclatureById({
@@ -102,15 +96,14 @@ const Component = ({
             </Typography>
           </div>
           <div className={cls.info}>
-            <Typography variant="h4">
-              {nomenclatureData?.additional_information?.price}
-              {" "}
-              ₽
-              {" "}
-              /
-              {" "}
-              {nomenclatureData?.measurement}
-            </Typography>
+            {
+              currentTradePoint 
+                && (
+                  <Typography variant="h4">
+                    {`${nomenclatureData?.additional_information?.price} ₽/ ${nomenclatureData?.measurement}`}
+                  </Typography>
+                )
+            }
             <div className={cls.expiration_date}>
               <Typography variant="h5">
                 Срок годности:
@@ -140,19 +133,28 @@ const Component = ({
           </div>
         </div>
         <div className={cls.nomenclature__settings}>
-          {/* <div
-                  className={classNames(cls.presence, { [cls.positive]: nomenclatureData?.status === StatusNomenclatureType.IN_STOCK })}
-               > */}
-
           <div
-            className={cls.remains__wrap}
-            style={nomenclatureData?.additional_information?.remains! > 0
-              ? styleGreen
-              : styleRed}
+            className={classNames(cls.remains__wrap, { 
+              [cls.positive]: nomenclatureData?.additional_information?.remains! > 0,
+            })}
           >
-            {nomenclatureData?.additional_information?.remains! > 0
-              ? "в наличии"
-              : "отсутствует"}
+            {!currentTradePoint && (
+              <Typography variant="h5" bold>
+                Не выбрана торговая точка
+              </Typography>
+            )}
+            {(nomenclatureData?.additional_information?.remains! > 0 && currentTradePoint)
+              && (
+                <Typography variant="h4" bold>
+                  в наличии
+                </Typography>
+              )}
+            {(nomenclatureData?.additional_information?.remains! === 0 && currentTradePoint) 
+              && (
+                <Typography variant="h4" bold>
+                  отсутствует
+                </Typography>
+              )}
           </div>
 
           <NomenclatureCount

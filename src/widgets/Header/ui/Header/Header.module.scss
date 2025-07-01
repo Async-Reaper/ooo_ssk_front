@@ -8,15 +8,18 @@
     width: 100%;
 
     .header__top {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 20px;
+        @include flex-space;
+        @include adaptive('gap', 16, 10);
+
+        padding-block: 20px;
+        padding-inline: 20px;
         width: 100%;
         background: var(--color-gray-primary);
 
         @include laptop {
-            background: linear-gradient(91.65deg, #AFFC38 2.43%, #F6FD41 100%);
+            @include adaptive('padding-inline', 20, 10);
+
+            background: none;
         }
     }
 

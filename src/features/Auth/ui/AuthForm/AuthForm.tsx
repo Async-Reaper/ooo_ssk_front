@@ -8,6 +8,7 @@ import { useAppDispatch } from "@shared/hooks";
 import { initUserAuthData, UserRoles } from "@entities/user";
 import { useAlertsInfo } from "@widgets/Nomenclature";
 import { useSelector } from "react-redux";
+import { __API__ } from "@shared/protocols/api";
 import { authUser } from "../../model/services/authUser";
 import { authReducer } from "../../model/slice/authSlice";
 import cls from "./AuthForm.module.scss";
@@ -77,7 +78,6 @@ const Component = () => {
             : (
               <Button
                 size="login"
-                variant="login_special"
                 disabled={disabled}
                 onClick={onHandleAuth}
                 background="gray-primary"
@@ -86,7 +86,7 @@ const Component = () => {
               </Button>
             )
         }
-        <a href="/CCK.arm.apk" download className={cls.download__link}>
+        <a href={`${__API__}/static/CCK.arm.apk`} download className={cls.download__link}>
           <Typography variant="h4">
             Скачать мобильное приложение
           </Typography>

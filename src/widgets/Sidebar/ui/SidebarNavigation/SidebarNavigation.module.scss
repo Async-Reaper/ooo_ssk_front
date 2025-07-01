@@ -13,7 +13,8 @@
     touch-action: manipulation;
 
     .bar_text {
-        font-weight: 600;
+        margin: 0 auto 10px;
+        width: max-content;
     }
 
     .link__underline {

@@ -60,7 +60,7 @@ const Component = () => {
               </div>
               <HStack gap="16">
                 <div onMouseEnter={onHandleEnter}>
-                  <HStack className={cls.basket_wrap} align="center" justify="center" gap="16">
+                  <HStack className={cls.basket_wrap} align="center" justify="center" gap="8">
                     <SumBasketData />
                     <BasketLink />
                   </HStack>

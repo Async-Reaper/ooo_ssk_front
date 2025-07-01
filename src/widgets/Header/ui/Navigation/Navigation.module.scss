@@ -1,8 +1,9 @@
+@import "@app/styles/mixins";
+
 .navigation {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 25px;
+    @include flex-space;
+    @include adaptive("gap", 25, 10);
+
     width: 100%;
 
     .select__button {

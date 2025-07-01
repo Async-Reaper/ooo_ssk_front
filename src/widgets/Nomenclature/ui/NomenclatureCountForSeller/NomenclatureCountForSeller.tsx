@@ -226,11 +226,6 @@ const Component = ({
           </div>
         </Button>
       </div>
-      {/* <div className={cls.price_object}>
-               <Typography align="center" variant="h6">
-                  {countToBasket !== 0 && `${formattedPrice} / ${nomenclatureData?.measurement}`}                  
-               </Typography>
-            </div> */}
     </DynamicModuleLoader>
   );
 };

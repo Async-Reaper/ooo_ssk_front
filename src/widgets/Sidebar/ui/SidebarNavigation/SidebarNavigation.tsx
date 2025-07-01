@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Typography } from "@shared/ui";
 import { UserRoles, getUserAuthData } from "@entities/user";
-import { GroupList } from "@widgets/NomenclatureGroup";
+import { GroupList, GroupListMatrix } from "@widgets/NomenclatureGroup";
 import { useAppDispatch } from "@shared/hooks";
 import { uiActions } from "@features/UI";
 import cls from "./SidebarNavigation.module.scss";
@@ -14,11 +14,17 @@ const Component = () => {
   const dispatch = useAppDispatch();
   const httpQuery = new URLSearchParams(location.search);
   const userRole = useSelector(getUserAuthData)?.role;
-  const blockRef = useRef<HTMLDivElement>(null);
-  const [blockVisible, setBlockVisible] = useState(false);
-  
-  const handleVisibleChange = (newState: boolean) => {
-    setBlockVisible(newState);
+  const blockRefMatrix = useRef<HTMLDivElement>(null);
+  const blockRefAssort = useRef<HTMLDivElement>(null);
+  const [blockVisibleMatrix, setBlockVisibleMatrix] = useState(false);
+  const [blockVisibleAssort, setBlockVisibleAssort] = useState(false);
+
+  const handleVisibleChangeMatrix = () => {   
+    setBlockVisibleMatrix(!blockVisibleMatrix);
+  };
+
+  const handleVisibleChangeAssort = () => {
+    setBlockVisibleAssort(!blockVisibleAssort);
   };
 
   const onHandleRoutePage = (link : string) => {
@@ -31,27 +37,29 @@ const Component = () => {
 
   return (
     <div className={cls.navigation}>
-      {(userRole === UserRoles.BUYER && (
-        <div onClick={() => setBlockVisible(!blockVisible)}>
-          <Typography className={cls.bar_text} variant="h3">Матрица</Typography>
+      <div ref={blockRefMatrix}>
+        <div className={cls.bar_text} onClick={handleVisibleChangeMatrix}>
+          <Typography variant="h3">Матрица</Typography>
         </div>
-      ))}
-      {blockVisible
-        && (
-          <div className={cls.groups} ref={blockRef}>
-            <GroupList blockVisible={blockVisible} onVisibleChange={handleVisibleChange}/>
-          </div>
-        )}
-      <hr className={cls.link__underline}/>
-      <div onClick={() => setBlockVisible(!blockVisible)}>
-        <Typography className={cls.bar_text} variant="h3">Ассортимент</Typography>
+        {blockVisibleMatrix
+          && (
+            <div className={cls.groups}>
+              <GroupListMatrix blockVisible={blockVisibleMatrix} onVisibleChange={handleVisibleChangeMatrix} />
+            </div>
+          )}
       </div>
-      {blockVisible
-        && (
-          <div className={cls.groups} ref={blockRef}>
-            <GroupList blockVisible={blockVisible} onVisibleChange={handleVisibleChange}/>
-          </div>
-        )}
+      <hr className={cls.link__underline}/>
+      <div ref={blockRefAssort}>
+        <div className={cls.bar_text} onClick={handleVisibleChangeAssort}>
+          <Typography variant="h3">Ассортимент</Typography>
+        </div>
+        {blockVisibleAssort
+          && (
+            <div className={cls.groups}>
+              <GroupList blockVisible={blockVisibleAssort} onVisibleChange={handleVisibleChangeAssort} />
+            </div>
+          )}
+      </div>
       <hr className={cls.link__underline}/>
       {userRole === UserRoles.BUYER && (
         links.map((link) => (
