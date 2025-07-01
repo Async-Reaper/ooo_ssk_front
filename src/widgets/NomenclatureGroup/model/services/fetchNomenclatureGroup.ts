@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { ThunkConfig } from "@app/providers/StoreProvider";
 import axios from "axios";
-import { NomeclatureGroupListType } from "@features/NomenclatureGroupSelect/model/types/nomenclatureGroup";
+import { NomeclatureGroupListType } from "../types/nomenclatureGroup";
 // import { NomeclatureGroupListType } from "../types/nomenclatureGroup";
 
 export const fetchNomenclatureGroup = createAsyncThunk<NomeclatureGroupListType[], void, ThunkConfig<string>>(

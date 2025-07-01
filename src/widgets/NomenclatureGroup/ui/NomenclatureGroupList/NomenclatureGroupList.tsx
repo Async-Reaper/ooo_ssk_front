@@ -3,10 +3,11 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "@shared/hooks";
 import { DynamicModuleLoader, ReducersList } from "@shared/libs/component";
-import { Typography } from "@shared/ui";
+import { AppImage, Typography } from "@shared/ui";
 import { getRouteMain } from "@shared/const/router";
 import { getSidebarCollapsed } from "@features/UI";
 import { searchProductActions } from "@features/SearchProduct";
+import { __API__ } from "@shared/protocols/api";
 import { getNomenclatureGroupData } from "../../model/selectors/nomenclatureGroupSelectors";
 import { fetchNomenclatureGroup } from "../../model/services/fetchNomenclatureGroup";
 import { nomenclatureGroupReducer } from "../../model/slice/nomenclatureGroupSlice";
@@ -58,10 +59,9 @@ const Component: React.FC<ChildComponentProps> = ({ blockVisible, onVisibleChang
         ? cls.group__products
         : cls.group__sidebar}
       >
-        <div className={cls.group_wrap}>
-          <div onClick={() => handleBlockVisibleClick(true)}>
-            <Typography variant="h4">Новинки</Typography>
-          </div>
+        <div className={cls.group_wrap} onClick={() => handleBlockVisibleClick(true)}>
+          <AppImage src={`${__API__}/static/nomenclature_groups/news/novelty.png`} />
+          <Typography variant="h4">Новинки</Typography>
         </div>
         {/* новинки */}
         {/* акционный товары */}
@@ -69,7 +69,7 @@ const Component: React.FC<ChildComponentProps> = ({ blockVisible, onVisibleChang
           <div key={groupParent.object.guid}>
             <NomenclatureGroupParent 
               key={groupParent.object.guid}
-              guid={groupParent.object.guid}
+              picture={groupParent.object.picture}
               fullname={groupParent.object.fullname} 
               parentGUID={groupParent.object.guid} 
               subject={groupParent.subject}

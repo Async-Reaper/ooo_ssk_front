@@ -22,6 +22,6 @@ export interface NomenclatureGroupType {
   parent_guid: string,
   guid: string,
   fullname: string,
-  // picture: string,
+  picture: string,
   is_deleted: boolean
 }

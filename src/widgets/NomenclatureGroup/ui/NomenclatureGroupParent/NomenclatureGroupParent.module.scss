@@ -1,4 +1,7 @@
 .group_wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     width: 100%;
     border-bottom: solid var(--color-gray-light) 1px;
     cursor: pointer;
@@ -8,6 +11,12 @@
 
     &:hover{
         background: #0fa4a723;
+    }
+
+    img {
+        width: 30px;
+        height: auto;
+        object-fit: contain;
     }
 }
     

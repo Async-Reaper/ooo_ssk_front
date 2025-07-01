@@ -15,7 +15,6 @@ import { AddToBasketSchema } from "@features/AddToBasket";
 import { DeleteFromBasketSchema } from "@features/DeleteFromBasket";
 import { AddToFavoriteSchema } from "@features/AddToFavorite";
 import { DeleteFromFavoriteSchema } from "@features/DeleteFromFavorite";
-import { NomenclatureGroupSchema } from "@features/NomenclatureGroupSelect";
 import { HistoryOrderProductSchema } from "@features/HistoryOrderProduct";
 import { HistoryOrdersListSchema, selectDateSchema } from "@features/HistoryOrders";
 import { BrandsListSchema } from "@features/BrandsList";
@@ -30,6 +29,7 @@ import { SellerOrderSchema } from "@entities/SellerOrders";
 import { SumBasketShema, StateSumBasket } from "@widgets/SumBasket";
 import { FavoriteSellerSchema } from "@widgets/FavoriteFromSeller";
 import { DebtsSchema } from "@features/Debts";
+import { NomenclatureGroupSchema } from "@widgets/NomenclatureGroup";
 
 export interface StateSchema {
   user: UserSchema,

@@ -1,11 +1,16 @@
 @import "../../../../app/styles/mixins";
 
-.slider_wrap{
+.slider_wrap {
     width: 100%;
 
-    .image_wrap{
+    .arrow__back {
+        transform: rotate(-180deg);
+    }
+
+    .image_wrap {
         max-width: 80vw;
         max-height: 40vh;
+        border-radius: var(--border-radius-xl);
 
         @include tablets {
             width: 400px;
